@@ -5,7 +5,7 @@
  * @version 05/06/2015
  */
 public class Client {
-    String code;    /* The client code */
+    private String code;    /* The client code */
 
     /**
      * Unparameterized constructor
