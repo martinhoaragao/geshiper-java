@@ -1,3 +1,6 @@
+import java.util.NavigableMap;
+import java.util.SortedMap;
+
 /**
  * Class to represent the menu of Gesthiper application
  *
@@ -27,5 +30,13 @@ public class Menu {
      */
     public void addProduct (Product product) {
         gesthiper.addProduct(product);
+    }
+
+    public void getClientsByInitial (String initial) {
+        NavigableMap<String, Client> map = gesthiper.getClientsByInitial(initial);
+
+        for (String code : map.keySet())
+            System.out.println(code);
+        System.out.println(map.size());
     }
 }

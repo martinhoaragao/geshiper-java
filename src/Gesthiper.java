@@ -1,3 +1,5 @@
+import java.util.NavigableMap;
+
 /**
  * @author jfc
  * @version 07/06/2015
@@ -28,5 +30,15 @@ public class Gesthiper {
      */
     public void addProduct (Product product) {
         p_cat.addProduct(product);
+    }
+
+    /**
+     * Get List of clients whose client code begins with a given initial
+     * @param initial The initial letter
+     * @return NavigableMap<String, Client> whose client code begins with the
+     * given initial
+     */
+    public NavigableMap<String, Client> getClientsByInitial (String initial) {
+        return c_cat.getClientsByInitial(initial);
     }
 }

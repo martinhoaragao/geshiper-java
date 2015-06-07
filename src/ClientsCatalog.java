@@ -6,6 +6,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 public class ClientsCatalog {
@@ -60,6 +61,23 @@ public class ClientsCatalog {
         }
 
         return clients_copy;
+    }
+
+    /**
+     * Create NavigableMap with all the clients that whose code is initiated
+     * by a specified character
+     * @param initial The code initial letter
+     */
+    public NavigableMap<String, Client> getClientsByInitial (String initial) throws IllegalArgumentException {
+        if (initial.trim().length() != 1)
+            throw new IllegalArgumentException("initial must only contain a character.");
+        if (Character.isDigit(initial.charAt(0)))
+            throw new IllegalArgumentException("initial can't be a digit.");
+
+        String init = Character.toUpperCase(initial.charAt(0)) + "A000";
+        String end  = Character.toUpperCase(initial.charAt(0)) + "Z999";
+
+        return clients.subMap(init, true, end, true);
     }
 
     /* equals, toString and clone */

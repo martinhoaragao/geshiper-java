@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         menu = new Menu();
         String line;
+        Scanner sc = new Scanner(System.in);
 
         /* Read clients file */
         try {
@@ -43,5 +45,10 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        /* Show menu to user */
+        System.out.print("Initial: ");
+        line = sc.nextLine();
+        menu.getClientsByInitial(line.trim().replaceAll("[\n\r]", ""));
     }
 }
