@@ -15,11 +15,23 @@ public class Client {
     }
 
     /**
-     * Parameterized constructor
+     * Parameterized constructor, the code must be composed by two uppercase
+     * letters and three numbers
      * @param code The client code
      */
-    public Client (String code) {
-        this.code = code;
+    public Client (String code) throws IllegalArgumentException {
+        boolean initials, numbers;
+
+        if (code.trim().length() != 5)
+            throw new IllegalArgumentException("code can only have 5 characters.");
+
+        /* Check if the two initials area uppercase letters */
+        initials    = Character.isUpperCase(code.charAt(0)) && Character.isUpperCase(code.charAt(1));
+        numbers     = Character.isDigit(code.charAt(2)) && Character.isDigit(code.charAt(3)) &&
+                Character.isDigit(code.charAt(4));
+
+        if (initials && numbers) this.code = code;
+        else throw new IllegalArgumentException("Invalid code.");
     }
 
     /**
@@ -50,6 +62,8 @@ public class Client {
             throw new NullPointerException("code can't be null.");
         if (code.trim().equals(""))
             throw new IllegalArgumentException("code can't be empty");
+        if (code.trim().length() != 5)
+            throw new IllegalArgumentException("code needs to have 5 characters.");
         this.code = code;
     }
 

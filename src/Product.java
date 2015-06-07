@@ -15,11 +15,23 @@ public class Product {
     }
 
     /**
-     * Parameterized Constructor
+     * Parameterized Constructor, the code must be composed by two uppercase
+     * letters and four numbers
      * @param code The Product code
      */
     public Product (String code) {
-        this.code = code;
+        boolean initials, numbers;
+
+        if (code.trim().length() != 6)
+            throw new IllegalArgumentException("code can only have 6 characters.");
+
+        /* Check if the two initials area uppercase letters */
+        initials    = Character.isUpperCase(code.charAt(0)) && Character.isUpperCase(code.charAt(1));
+        numbers     = Character.isDigit(code.charAt(2)) && Character.isDigit(code.charAt(3)) &&
+                Character.isDigit(code.charAt(4)) && Character.isDigit(code.charAt(5));
+
+        if (initials && numbers) this.code = code;
+        else throw new IllegalArgumentException("Invalid code.");
     }
 
     /**

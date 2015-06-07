@@ -36,10 +36,13 @@ public class ClientsCatalog {
      * Add a client to the catalog
      * @param client Client to be added
      */
-    public void addClient (Client client) throws IllegalArgumentException {
+    public void addClient (Client client) throws IllegalArgumentException, NullPointerException {
         Client c;
-        c = clients.get(client.getCode());
+        if (client == null)
+            throw new NullPointerException("client can't be null.");
 
+        /* Check if there is already a client with the given code */
+        c = clients.get(client.getCode());
         if (c != null)
             throw new IllegalArgumentException("There is already a client with that code.");
         else clients.put(client.getCode(), client);
