@@ -64,20 +64,28 @@ public class ClientsCatalog {
     }
 
     /**
-     * Create NavigableMap with all the clients that whose code is initiated
+     * Create ArrayList with all the clients whose code is initiated
      * by a specified character
      * @param initial The code initial letter
      */
-    public NavigableMap<String, Client> getClientsByInitial (String initial) throws IllegalArgumentException {
+    public ArrayList<String> getClientsByInitial (String initial) throws IllegalArgumentException {
+        NavigableMap<String, Client> map;
+        ArrayList<String> codes;
+
         if (initial.trim().length() != 1)
             throw new IllegalArgumentException("initial must only contain a character.");
         if (Character.isDigit(initial.charAt(0)))
             throw new IllegalArgumentException("initial can't be a digit.");
 
+        codes = new ArrayList<String>();
+
         String init = Character.toUpperCase(initial.charAt(0)) + "A000";
         String end  = Character.toUpperCase(initial.charAt(0)) + "Z999";
 
-        return clients.subMap(init, true, end, true);
+        map = clients.subMap(init, true, end, true);
+        for (String code : map.keySet())
+            codes.add(code);
+        return codes;
     }
 
     /* equals, toString and clone */
