@@ -38,13 +38,10 @@ public class Menu {
      */
     public void getClientsByInitial () {
         Scanner sc = new Scanner(System.in);
-
         clean();
         System.out.print("Initial: ");
         ArrayList<String> clients = gesthiper.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
-
-        for (String code : clients)
-            System.out.println(code);
+        paginate(clients, "Clients");
     }
 
     /**
@@ -56,11 +53,8 @@ public class Menu {
 
         clean();
         System.out.print("Initial: ");
-        ArrayList<String> clients = gesthiper.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
-
-        for (String code : clients)
-            System.out.println(code);
-        System.out.println(clients.size());
+        ArrayList<String> products = gesthiper.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+        paginate(products, "Products");
     }
 
     /**
@@ -72,6 +66,56 @@ public class Menu {
         System.out.println("1: List of Clients by initial");
         System.out.println("2: List of Products by initial");
         System.out.println("3: Exit");
+    }
+
+    /**
+     * Paginate a ArrayList of strings
+     * @param list List to be displayed
+     * @param type What is being displayed
+     */
+    public void paginate (ArrayList<String> list, String type) {
+        Scanner sc = new Scanner(System.in);
+        String choice;      /* The user choice */
+        boolean finished;   /* Control if user has finished */
+        int pages;          /* Nmber of pages */
+        int codes;          /* Number of codes to be displayed */
+        int actual_page;    /* Number of the actual page */
+        int index;          /* Auxiliar index */
+        int i_index;        /* Initial index */
+        int e_index;        /* Ending index */
+        codes = 10;
+        pages = list.size() / codes;
+        actual_page = 0;
+        finished = false;
+        index = 0;
+
+        while (!finished) {
+            if (actual_page > pages) actual_page = pages;
+            else if (actual_page < 0) actual_page = 0;
+            index = (codes * actual_page);
+
+            clean();
+            i_index = index + 1;
+            e_index = index + 11;
+            if (e_index > list.size()) e_index = list.size();
+
+            System.out.println("Displaying clients from " + i_index + " to " + e_index + " | " + list.size() + " " + type);
+            System.out.println("Page " + (actual_page + 1) + " of " + (pages + 1));
+            for (; (index < e_index); index++) {
+                System.out.println(list.get(index));
+            }
+            System.out.println("N: Next | B: Back | P: page | E: Exit");
+
+            choice = sc.nextLine().trim().replaceAll("[\n\r]", "");
+
+            if (choice.equals("N")) actual_page++;
+            else if (choice.equals("B")) actual_page--;
+            else if (choice.equals("E")) finished = true;
+            else if (choice.equals("P")) {
+                System.out.print("Page number: ");
+                actual_page = sc.nextInt() - 1;
+            }
+        }
     }
 
     /**
