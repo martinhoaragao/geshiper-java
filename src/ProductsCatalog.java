@@ -76,11 +76,11 @@ public class ProductsCatalog {
 
         codes = new ArrayList<String>();
 
-        String init = Character.toUpperCase(initial.charAt(0)) + "A000";
-        String end  = Character.toUpperCase(initial.charAt(0)) + "Z999";
+        String init = Character.toUpperCase(initial.charAt(0)) + "A0000";
+        String end  = Character.toUpperCase(initial.charAt(0)) + "Z9999";
 
         map = products.subMap(init, true, end, true);
-        for (String code : products.keySet())
+        for (String code : map.keySet())
             codes.add(code);
         return codes;
     }

@@ -4,12 +4,13 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
-    private static Menu menu;
 
     public static void main(String[] args) {
-        menu = new Menu();
-        String line;
+        Menu menu = new Menu();
         Scanner sc = new Scanner(System.in);
+        boolean finished = false;
+        String line;
+        int option;
 
         /* Read clients file */
         try {
@@ -47,8 +48,16 @@ public class Main {
         }
 
         /* Show menu to user */
-        System.out.print("Initial: ");
-        line = sc.nextLine();
-        menu.getClientsByInitial(line.trim().replaceAll("[\n\r]", ""));
+        while (!finished) {
+            menu.showMenu();
+
+            option = sc.nextInt();
+            switch (option) {
+                case 1: menu.getClientsByInitial(); break;
+                case 2: menu.getProductsByInitial();break;
+                case 3: finished = true;            break;
+                default:                            break;
+            }
+        }
     }
 }

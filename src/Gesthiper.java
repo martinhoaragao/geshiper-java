@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.NavigableMap;
 
 /**
@@ -35,10 +36,18 @@ public class Gesthiper {
     /**
      * Get List of clients whose client code begins with a given initial
      * @param initial The initial letter
-     * @return NavigableMap<String, Client> whose client code begins with the
-     * given initial
+     * @return ArrayList<String> with the client codes
      */
-    public NavigableMap<String, Client> getClientsByInitial (String initial) {
+    public ArrayList<String> getClientsByInitial (String initial) {
         return c_cat.getClientsByInitial(initial);
+    }
+
+    /**
+     * Get List of products whose code begins with a given initial
+     * @param initial The initial letter
+     * @return ArrayList<String> with the product codes
+     */
+    public ArrayList<String> getProductsByInitial (String initial) {
+        return p_cat.getProductsByInitial(initial);
     }
 }

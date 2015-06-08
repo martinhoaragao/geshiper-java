@@ -1,5 +1,5 @@
-import java.util.NavigableMap;
-import java.util.SortedMap;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class to represent the menu of Gesthiper application
@@ -32,11 +32,53 @@ public class Menu {
         gesthiper.addProduct(product);
     }
 
-    public void getClientsByInitial (String initial) {
-        NavigableMap<String, Client> map = gesthiper.getClientsByInitial(initial);
+    /**
+     * Get the initial from the user and display the clients
+     * list whose code starts with the given initial
+     */
+    public void getClientsByInitial () {
+        Scanner sc = new Scanner(System.in);
 
-        for (String code : map.keySet())
+        clean();
+        System.out.print("Initial: ");
+        ArrayList<String> clients = gesthiper.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+
+        for (String code : clients)
             System.out.println(code);
-        System.out.println(map.size());
+    }
+
+    /**
+     * Get the initial from the user and display the clients
+     * list whose code starts with the given initial
+     */
+    public void getProductsByInitial () {
+        Scanner sc = new Scanner(System.in);
+
+        clean();
+        System.out.print("Initial: ");
+        ArrayList<String> clients = gesthiper.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+
+        for (String code : clients)
+            System.out.println(code);
+        System.out.println(clients.size());
+    }
+
+    /**
+     * Display the menu to the user
+     */
+    public void showMenu () {
+        clean();
+
+        System.out.println("1: List of Clients by initial");
+        System.out.println("2: List of Products by initial");
+        System.out.println("3: Exit");
+    }
+
+    /**
+     * Clean the terminal view
+     */
+    public void clean () {
+     if (System.console() != null)
+         System.out.print("\u001b[2J" + "\u001b[H");
     }
 }
