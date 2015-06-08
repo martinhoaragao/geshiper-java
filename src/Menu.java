@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,13 +8,13 @@ import java.util.Scanner;
  * Created by joaocosta on 07/06/15.
  */
 public class Menu {
-    private Gesthiper gesthiper;
+    private Hypermarket market;
 
     /**
      * Unparameterized constructor
      */
     public Menu () {
-        gesthiper = new Gesthiper();
+        market = new Hypermarket();
     }
 
     /**
@@ -21,7 +22,7 @@ public class Menu {
      * @param client Client to be added
      */
     public void addClient (Client client) {
-        gesthiper.addClient(client);
+        market.addClient(client);
     }
 
     /**
@@ -29,7 +30,7 @@ public class Menu {
      * @param product Product to be added
      */
     public void addProduct (Product product) {
-        gesthiper.addProduct(product);
+        market.addProduct(product);
     }
 
     /**
@@ -40,7 +41,7 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         clean();
         System.out.print("Initial: ");
-        ArrayList<String> clients = gesthiper.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+        ArrayList<String> clients = market.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
         paginate(clients, "Clients");
     }
 
@@ -53,8 +54,43 @@ public class Menu {
 
         clean();
         System.out.print("Initial: ");
-        ArrayList<String> products = gesthiper.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+        ArrayList<String> products = market.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
         paginate(products, "Products");
+    }
+
+    /**
+     * Show list of clients that did not buy any product
+     */
+    public void cheapClients () {
+        ArrayList<String> clients;
+
+        try {
+            clients = market.getCheapClients();
+            paginate(clients, "Clients");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Show list of products that no one bought
+     */
+    public void unusedProducts () {
+        ArrayList<String> products;
+
+        try {
+            products = market.getCheapClients();
+            paginate(products, "Products");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Register a sale
+     */
+    public void registerSale (ArrayList<String> args) {
+        market.registerSale(args);
     }
 
     /**
@@ -65,7 +101,9 @@ public class Menu {
 
         System.out.println("1: List of Clients by initial");
         System.out.println("2: List of Products by initial");
-        System.out.println("3: Exit");
+        System.out.println("3: List of clients that bough nothing");
+        System.out.println("4: List of products not sold");
+        System.out.println("5: Exit");
     }
 
     /**

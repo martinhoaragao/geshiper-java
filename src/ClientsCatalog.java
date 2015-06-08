@@ -5,18 +5,18 @@
  * @version 05/06/2015
  */
 
-import java.util.ArrayList;
-import java.util.NavigableMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ClientsCatalog {
     private TreeMap<String, Client> clients;    /* All clients Code -> Client */
+    private TreeSet<String> cheap_clients;      /* Clients that bought no product */
 
     /**
      * Unparameterized constructor
      */
     public ClientsCatalog () {
         this.clients = new TreeMap<String, Client>();
+        this.cheap_clients = new TreeSet<String>(new AlphabeticComparator());
     }
 
     /**
@@ -46,7 +46,10 @@ public class ClientsCatalog {
         c = clients.get(client.getCode());
         if (c != null)
             throw new IllegalArgumentException("There is already a client with that code.");
-        else clients.put(client.getCode(), client);
+        else {
+            this.clients.put(client.getCode(), client);
+            this.cheap_clients.add(client.getCode());
+        }
     }
 
     /**
@@ -86,6 +89,29 @@ public class ClientsCatalog {
         for (String code : map.keySet())
             codes.add(code);
         return codes;
+    }
+
+    /**
+     * Remove client from list of clients that didn't bought any product
+     * @param code The client code
+     */
+    public void removeSpendingClient (String code) throws NullPointerException {
+        if (code == null)
+            throw new NullPointerException("code can't be null.");
+        else this.cheap_clients.remove(code);
+    }
+
+    /**
+     * Get list of clients that didn't buy a single product
+     * @return ArrayList with the client codes
+     */
+    public ArrayList<String> getCheapClients () {
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (String code : this.cheap_clients)
+            list.add(code);
+
+        return list;
     }
 
     /* equals, toString and clone */

@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Main {
+public class GesthiperOO {
 
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -37,11 +39,21 @@ public class Main {
         /* Read sales file */
         try {
             BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
-            for (int i = 0; i < 5; i++) {
-                line = br.readLine();
-                StringTokenizer st = new StringTokenizer(line, " ");
-                while (st.hasMoreTokens())
-                    System.out.println(st.nextToken());
+            StringTokenizer st;
+            String token;
+            ArrayList<String> tokens = new ArrayList<String>();
+
+            while ((line = br.readLine()) != null) {
+                int i = 1;
+                st = new StringTokenizer(line, " ");
+
+                while (st.hasMoreTokens()) {
+                    token = st.nextToken();
+                    if (i == 1) tokens.add(token);
+                    if (i == 5) tokens.add(token);
+                    i++;
+                }
+                menu.registerSale(tokens);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +67,9 @@ public class Main {
             switch (option) {
                 case 1: menu.getClientsByInitial(); break;
                 case 2: menu.getProductsByInitial();break;
-                case 3: finished = true;            break;
+                case 3: menu.cheapClients();        break;
+                case 4: menu.unusedProducts();      break;
+                case 5: finished = true;            break;
                 default:                            break;
             }
         }

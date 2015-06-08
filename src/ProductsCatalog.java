@@ -13,13 +13,15 @@ import java.util.ArrayList;
         import java.util.TreeMap;
 
 public class ProductsCatalog {
-    private TreeMap<String, Product> products;    /* All clients Code -> Product */
+    private TreeMap<String, Product> products;      /* All clients Code -> Product */
+    private TreeSet<String> unused_products;        /* The products that no one bought */
 
     /**
      * Unparameterized Constructor
      */
     public ProductsCatalog () {
         this.products = new TreeMap<String, Product>();
+        this.unused_products = new TreeSet<String>(new AlphabeticComparator());
     }
 
     /* Getters */
@@ -57,7 +59,10 @@ public class ProductsCatalog {
     public void addProduct (Product prod) throws IllegalArgumentException {
         if (products.get(prod.getCode()) != null)
             throw new IllegalArgumentException("There is already a product with that code.");
-        else products.put(prod.getCode(), prod);
+        else {
+            this.products.put(prod.getCode(), prod);
+            this.unused_products.add(prod.getCode());
+        }
     }
 
     /**
@@ -83,6 +88,29 @@ public class ProductsCatalog {
         for (String code : map.keySet())
             codes.add(code);
         return codes;
+    }
+
+    /**
+     * Mark a product as bought
+     * @param code The product code
+     */
+    public void markAsBought (String code) throws NullPointerException {
+        if (code == null)
+            throw new NullPointerException("code can't be null.");
+        else this.unused_products.remove(code);
+    }
+
+    /**
+     * Create list with all the product codes that no one bought
+     * @return ArrayList<String> with all the product codes
+     */
+    public ArrayList<String> getUnusedProducts () {
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (String code : this.unused_products)
+            list.add(code);
+
+        return list;
     }
 
     /* toString, equals and clone */
