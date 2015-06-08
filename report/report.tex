@@ -1,0 +1,110 @@
+\documentclass[10pt] {article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[labelformat=empty]{caption}
+\usepackage{tikz}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\usepackage{geometry} % Required to change the page size to A4
+\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\usepackage{indentfirst} %Identação nos parágrafos iniciais
+
+% Code
+\usepackage{listings}
+\lstset{language=C, breaklines=true, basicstyle=\footnotesize} % Especificar Haskell, mudar de linha quando acabar espaço, diminuir tamanho da letra.
+\usepackage{fixltx2e} % Corrige alguns erros
+\begin{document}
+
+\title{Relatório Trabalho Prático Java \\ $\small{Grupo 13}$}
+
+\maketitle
+
+%--------------------------------
+% Group Members
+%--------------------------------
+\begin{figure}[!htb]
+\minipage{0.31\textwidth}
+  \includegraphics[width=\linewidth]{jc.jpg}
+  \caption{João Costa A70563}\label{fig:awesome_image1}
+\endminipage\hfill
+\minipage{0.29\textwidth}
+  \includegraphics[width=\linewidth]{ls.jpg}
+  \caption{Leandro Salgado A70949}\label{fig:awesome_image2}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{ma.jpg}
+  \caption{Martinho Aragão A72205}
+\endminipage
+\end{figure}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introdução}
+
+\newpage
+\section{Classes}
+Na seguinte secção vamos explicar as classes que decidimos criar para a resolução do projeto, incluindo diagramas 
+de classes e explicação das estruturas escolhidas para cada classe.
+%------------------------
+% Clients
+%------------------------
+
+\subsection{Client}
+\par Para criar clientes decidimos criar uma class \textbf{Client} que como variável de instância tem apenas uma string 
+com ó código do cliente.
+
+\begin{lstlisting}[language=Java]
+/* Codigo do cliente */
+private String code;
+\end{lstlisting}
+
+\subsection{ClientsCatalog}
+\par Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \textbf{ClientsCatalog} irá tratar de guardar 
+os clientes e manter também a lista de clientes que não realizaram nenhuma compra.
+\par Também é esta class que trata de criar a lista com os códigos de cliente dado a letra inicial do código.
+\par Fica aqui o código que define as variáveis de instância:
+\begin{lstlisting}[language=Java]
+/* Codigo de cliente -> Cliente */
+private TreeMap<String,Client> clients;
+/* Lista de clientes que nao compraram nenhum produto */
+private TreeSet<String> cheap_clients;
+\end{lstlisting}
+
+% UI
+\newpage
+\section{Interface Utilizador}
+
+\newpage
+\section{Diagrama de Classes}
+
+\newpage
+\section{Gráficos e Resultados}
+
+\newpage
+\section{Conclusão}
+
+\indent\par Em suma, apesar de cada uma das queries ter sido concluída, o trabalho mantém-se inacabado. De
+facto, existem inúmeros pormenores que não foram resolvidos da melhor forma, como por exemplo a
+eficácia da \emph{query 12}. Mesmo assim, a execução por módulos, com encapsulamento e abstração de dados
+foi conseguida. Nota-se, no entanto, uma clara distinção entre a organização e o código dos diferentes módulos.
+Outro dos problemas presentes, embora menor, é a não adoção das regras de C no que toca à designação de
+nomes de variáveis e funções.
+\par Uma das dificuldades que nos deparamos no curso deste trabalho prático é que, quando se trabalha com vista a responder a um conjunto tão grande de queries
+haverá sempre uma decisão a fazer, ou se perde mais tempo na inicialização do programa consumindo mais memória e se gasta
+menos tempo na execução da tarefa ou, pelo contrário, se gasta menos tempo na inicialização, menos memória e mais tempo na
+execução da tarefa. Seja qual for a decisão tomada há sempre um sacrifício a fazer.
+\par Em jeito de esclarecimento, o trabalho foi realizado em inglês por uma questão de aprendizagem no que toca à
+utilização de ferramentas de código aberto, neste caso git através do GitHub. Deixou-se, no entando todo o output em português, assim, o utilizador
+deparar-se-ia exclusivamente com a sua língua.
+
+\end{document}
