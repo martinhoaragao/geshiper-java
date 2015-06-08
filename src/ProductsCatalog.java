@@ -61,7 +61,7 @@ public class ProductsCatalog {
             throw new IllegalArgumentException("There is already a product with that code.");
         else {
             this.products.put(prod.getCode(), prod);
-            this.unused_products.add(prod.getCode());
+            this.unused_products.add(prod.getCode().trim().replaceAll("[\n\r]",""));
         }
     }
 
@@ -97,7 +97,7 @@ public class ProductsCatalog {
     public void markAsBought (String code) throws NullPointerException {
         if (code == null)
             throw new NullPointerException("code can't be null.");
-        else this.unused_products.remove(code);
+        else this.unused_products.remove(code.trim().replaceAll("[\n\r]",""));
     }
 
     /**

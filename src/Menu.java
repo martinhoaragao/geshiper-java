@@ -79,7 +79,7 @@ public class Menu {
         ArrayList<String> products;
 
         try {
-            products = market.getCheapClients();
+            products = market.getUnusedProducts();
             paginate(products, "Products");
         } catch (Exception e) {
             System.out.println(e.getMessage());

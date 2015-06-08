@@ -48,7 +48,7 @@ public class ClientsCatalog {
             throw new IllegalArgumentException("There is already a client with that code.");
         else {
             this.clients.put(client.getCode(), client);
-            this.cheap_clients.add(client.getCode());
+            this.cheap_clients.add(client.getCode().trim().replaceAll("[\n\r]",""));
         }
     }
 
@@ -98,7 +98,7 @@ public class ClientsCatalog {
     public void removeSpendingClient (String code) throws NullPointerException {
         if (code == null)
             throw new NullPointerException("code can't be null.");
-        else this.cheap_clients.remove(code);
+        else this.cheap_clients.remove(code.trim().replaceAll("[\n\r]", ""));
     }
 
     /**

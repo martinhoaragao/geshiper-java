@@ -41,11 +41,12 @@ public class GesthiperOO {
             BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
             StringTokenizer st;
             String token;
-            ArrayList<String> tokens = new ArrayList<String>();
+            ArrayList<String> tokens;
 
             while ((line = br.readLine()) != null) {
                 int i = 1;
                 st = new StringTokenizer(line, " ");
+                tokens = new ArrayList<String>();
 
                 while (st.hasMoreTokens()) {
                     token = st.nextToken();
