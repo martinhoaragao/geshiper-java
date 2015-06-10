@@ -89,8 +89,8 @@ public class Menu {
     /**
      * Register a sale
      */
-    public void registerSale (ArrayList<String> args) {
-        market.registerSale(args);
+    public void registerSale (String client, int month, Sale s) {
+        market.registerSale(client, month, s);
     }
 
     /**

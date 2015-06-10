@@ -6,8 +6,9 @@ import java.util.Iterator;
  * @version 07/06/2015
  */
 public class Hypermarket {
-    private ProductsCatalog p_cat;   /* The products catalog */
-    private ClientsCatalog  c_cat;   /* The clients catalog */
+    private ProductsCatalog p_cat;  /* The products catalog */
+    private ClientsCatalog  c_cat;  /* The clients catalog */
+    private Sales sales;            /* The sales module */
 
     /**
      * Unparameterized Constructor, will initialize instance variables
@@ -15,6 +16,7 @@ public class Hypermarket {
     public Hypermarket () {
         this.p_cat = new ProductsCatalog();
         this.c_cat = new ClientsCatalog();
+        this.sales = new Sales();
     }
 
     /**
@@ -70,8 +72,9 @@ public class Hypermarket {
     /**
      * Register a sale to the sales module
      */
-    public void registerSale (ArrayList<String> args) {
-        p_cat.markAsBought(args.get(0));
-        c_cat.removeSpendingClient(args.get(1));
+    public void registerSale (String client, int month, Sale sale) {
+        p_cat.markAsBought(sale.getProduct());
+        c_cat.removeSpendingClient(client);
+        sales.addSale(client, month, sale);
     }
 }

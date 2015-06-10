@@ -53,15 +53,18 @@ public class GesthiperOO {
             while ((line = br.readLine()) != null) {
                 int i = 1;
                 st = new StringTokenizer(line, " ");
-                tokens = new ArrayList<String>();
+                Sale sale = new Sale();
+                String client;
+                int month;
 
-                for (i = 1; i <= 6; i++) {
-                    token = st.nextToken();
-                    if (i == 1) tokens.add(token);
-                    else if (i == 5) tokens.add(token);
-                }
+                sale.setProduct(st.nextToken());
+                sale.setPrice(Float.parseFloat(st.nextToken()));
+                sale.setUnits(Integer.parseInt(st.nextToken()));
+                sale.setType(st.nextToken().equals("P"));
+                client = st.nextToken();
+                month = Integer.parseInt(st.nextToken());
 
-                menu.registerSale(tokens);
+                menu.registerSale(client, month, sale);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
