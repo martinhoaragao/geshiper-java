@@ -10,42 +10,31 @@ import java.util.*;
  */
 
 import java.util.ArrayList;
-        import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class ProductsCatalog {
-    private TreeMap<String, Product> products;      /* All clients Code -> Product */
-    private TreeSet<String> unused_products;        /* The products that no one bought */
+    private TreeSet<String> products;           /* All product codes */
+    private TreeSet<String> unused_products;    /* The products that no one bought */
 
     /**
      * Unparameterized Constructor
      */
     public ProductsCatalog () {
-        this.products = new TreeMap<String, Product>();
+        this.products = new TreeSet<String>();
         this.unused_products = new TreeSet<String>(new AlphabeticComparator());
     }
 
     /* Getters */
 
     /**
-     * Get a product with a given code
-     * @param code The product code
-     * @return A clone of the product if it exists, null otherwise
-     */
-    public Product getProduct (String code) throws NullPointerException {
-        if (code == null)
-            throw new NullPointerException("code can't be null.");
-        else return products.get(code).clone();
-    }
-
-    /**
      * Get all the products in the catalog
      * @return ArrayList with clones of all the products
      */
-    public ArrayList<Product> getProducts () {
-        ArrayList<Product> prods = new ArrayList<Product>();
+    public ArrayList<String> getProducts () {
+        ArrayList<String> prods = new ArrayList<String>();
 
-        for (Product prod : this.products.values())
-            prods.add(prod.clone());
+        for (String code : this.products)
+            prods.add(code);
 
         return prods;
     }
@@ -54,14 +43,14 @@ public class ProductsCatalog {
 
     /**
      * Add a product to the products catalog
-     * @param prod Product to be added
+     * @param code The product code
      */
-    public void addProduct (Product prod) throws IllegalArgumentException {
-        if (products.get(prod.getCode()) != null)
-            throw new IllegalArgumentException("There is already a product with that code.");
+    public void addProduct (String code) throws NullPointerException {
+        if (code == null)
+            throw new NullPointerException("code can't be null.");
         else {
-            this.products.put(prod.getCode(), prod);
-            this.unused_products.add(prod.getCode().trim().replaceAll("[\n\r]",""));
+            this.products.add(code.trim().replaceAll("[\n\r]",""));
+            this.unused_products.add(code.trim().replaceAll("[\n\r]",""));
         }
     }
 
@@ -71,7 +60,7 @@ public class ProductsCatalog {
      * @param initial The code initial letter
      */
     public ArrayList<String> getProductsByInitial (String initial) throws IllegalArgumentException {
-        NavigableMap<String, Product> map;
+        NavigableSet<String> set;
         ArrayList<String> codes;
 
         if (initial.trim().length() != 1)
@@ -84,8 +73,8 @@ public class ProductsCatalog {
         String init = Character.toUpperCase(initial.charAt(0)) + "A0000";
         String end  = Character.toUpperCase(initial.charAt(0)) + "Z9999";
 
-        map = products.subMap(init, true, end, true);
-        for (String code : map.keySet())
+        set = products.subSet(init, true, end, true);
+        for (String code : set)
             codes.add(code);
         return codes;
     }
@@ -122,7 +111,7 @@ public class ProductsCatalog {
      * @return true if they are equal, false otherwise
      */
     public boolean equals (ProductsCatalog catalog) {
-        ArrayList<Product> cat_prods;
+        ArrayList<String> cat_prods;
 
         if (catalog == this) return true;
 
@@ -132,9 +121,8 @@ public class ProductsCatalog {
 
         if (cat_prods.size() != this.products.size()) return false;
 
-        for (Product p : cat_prods) {
-            Product aux = this.getProduct(p.getCode());
-            if ((aux == null) || (!aux.equals(p))) return false;
+        for (String p : cat_prods) {
+            if (!this.products.contains(p)) return false;
         }
         return true;
     }

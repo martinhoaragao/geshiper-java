@@ -1,65 +1,52 @@
 /**
- * Class to Represent a Clients Catalog
+ * Class to Represent a Clients Catalog, stores all the client
+ * codes and keeps track of what clients
+ * did not buy a single product
  *
  * @author jfc
  * @version 05/06/2015
  */
 
-import java.util.*;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+import java.util.ArrayList;
 
 public class ClientsCatalog {
-    private TreeMap<String, Client> clients;    /* All clients Code -> Client */
-    private TreeSet<String> cheap_clients;      /* Clients that bought no product */
+    private TreeSet<String> clients;        /* All clients */
+    private TreeSet<String> unused_clients; /* Clients that bought no product */
 
     /**
      * Unparameterized constructor
      */
     public ClientsCatalog () {
-        this.clients = new TreeMap<String, Client>();
-        this.cheap_clients = new TreeSet<String>(new AlphabeticComparator());
-    }
-
-    /**
-     * Get a client if it is inserted in the catalog
-     * @param code The client code
-     */
-    public Client getClient (String code) throws NullPointerException {
-        Client c;
-        if (code == null)
-            throw new NullPointerException("code can't be null.");
-        c = clients.get(code);
-
-        if (c != null) return c.clone();
-        else return c;
+        this.clients = new TreeSet<String>();
+        this.unused_clients = new TreeSet<String>(new AlphabeticComparator());
     }
 
     /**
      * Add a client to the catalog
-     * @param client Client to be added
+     * @param code Client code to be added
      */
-    public void addClient (Client client) throws IllegalArgumentException, NullPointerException {
-        Client c;
-        if (client == null)
-            throw new NullPointerException("client can't be null.");
+    public void addClient (String code) throws NullPointerException {
+        String code_aux;
 
-        /* Check if there is already a client with the given code */
-        c = clients.get(client.getCode());
-        if (c != null)
-            throw new IllegalArgumentException("There is already a client with that code.");
-        else {
-            this.clients.put(client.getCode(), client);
-            this.cheap_clients.add(client.getCode().trim().replaceAll("[\n\r]",""));
-        }
+        if (code == null)
+            throw new NullPointerException("code can't be null.");
+
+        code_aux = code.trim().replaceAll("[\n\r]", "");
+        this.clients.add(code_aux);
+        this.unused_clients.add(code_aux);
     }
 
     /**
      * Get a copy of all the clients in the catalog
      * @return ArrayList<Client> with all the clients
      */
-    public ArrayList<Client> getClients () {
-        ArrayList<Client> clients_copy = new ArrayList<Client>();
+    public ArrayList<String> getClients () {
+        ArrayList<String> clients_copy = new ArrayList<String>();
 
-        for (Client c : clients.values()) {
+        for (String c : clients) {
             clients_copy.add(c);
         }
 
@@ -72,7 +59,7 @@ public class ClientsCatalog {
      * @param initial The code initial letter
      */
     public ArrayList<String> getClientsByInitial (String initial) throws IllegalArgumentException {
-        NavigableMap<String, Client> map;
+        NavigableSet<String> set;
         ArrayList<String> codes;
 
         if (initial.trim().length() != 1)
@@ -85,8 +72,8 @@ public class ClientsCatalog {
         String init = Character.toUpperCase(initial.charAt(0)) + "A000";
         String end  = Character.toUpperCase(initial.charAt(0)) + "Z999";
 
-        map = clients.subMap(init, true, end, true);
-        for (String code : map.keySet())
+        set = clients.subSet(init, true, end, true);
+        for (String code : set)
             codes.add(code);
         return codes;
     }
@@ -98,17 +85,17 @@ public class ClientsCatalog {
     public void removeSpendingClient (String code) throws NullPointerException {
         if (code == null)
             throw new NullPointerException("code can't be null.");
-        else this.cheap_clients.remove(code.trim().replaceAll("[\n\r]", ""));
+        else this.unused_clients.remove(code.trim().replaceAll("[\n\r]", ""));
     }
 
     /**
      * Get list of clients that didn't buy a single product
      * @return ArrayList with the client codes
      */
-    public ArrayList<String> getCheapClients () {
+    public ArrayList<String> getUnusedClients () {
         ArrayList<String> list = new ArrayList<String>();
 
-        for (String code : this.cheap_clients)
+        for (String code : this.unused_clients)
             list.add(code);
 
         return list;
@@ -123,7 +110,7 @@ public class ClientsCatalog {
      * @return true if they are equal, false otherwise
      */
     public boolean equals (ClientsCatalog catalog) {
-        ArrayList<Client> cat_clients;
+        ArrayList<String> cat_clients;
 
         if (catalog == this) return true;
 
@@ -133,9 +120,8 @@ public class ClientsCatalog {
 
         if (cat_clients.size() != clients.size()) return false;
 
-        for (Client c : cat_clients) {
-            Client aux = this.getClient(c.getCode());
-            if ((aux == null) || (!aux.equals(c))) return false;
+        for (String c : cat_clients) {
+            if (!clients.contains(c)) return false;
         }
         return true;
     }

@@ -19,18 +19,18 @@ public class Hypermarket {
 
     /**
      * Add a client to the clients catalog
-     * @param client Client to be added
+     * @param code The client code
      */
-    public void addClient (Client client) {
-        c_cat.addClient(client);
+    public void addClient (String code) {
+        c_cat.addClient(code);
     }
 
     /**
      * Add a product to the products catalog
-     * @param product Product to be added
+     * @param code The product code
      */
-    public void addProduct (Product product) {
-        p_cat.addProduct(product);
+    public void addProduct (String code) {
+        p_cat.addProduct(code);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Hypermarket {
      * @return ArrayList<String> with all the client codes
      */
     public ArrayList<String> getCheapClients () {
-        return c_cat.getCheapClients();
+        return c_cat.getUnusedClients();
     }
 
     /**

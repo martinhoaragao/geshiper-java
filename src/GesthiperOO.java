@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class GesthiperOO {
+    private static long init    = 0L;
+    private static long end     = 0L;
 
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -15,28 +17,33 @@ public class GesthiperOO {
         int option;
 
         /* Read clients file */
+        init = System.nanoTime();
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichClientes.txt"));
             while ((line = br.readLine()) != null) {
-                Client c = new Client(line.trim());
-                menu.addClient(c);
+                menu.addClient(line);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        end = System.nanoTime();
+        System.out.println((end - init) / 1.0E09);
 
         /* Read products file */
+        init = System.nanoTime();
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichProdutos.txt"));
             while ((line = br.readLine()) != null) {
-                Product p = new Product(line.trim());
-                menu.addProduct(p);
+                menu.addProduct(line);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        end = System.nanoTime();
+        System.out.println((end - init) / 1.0E09);
 
         /* Read sales file */
+        init = System.nanoTime();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
             StringTokenizer st;
@@ -48,17 +55,19 @@ public class GesthiperOO {
                 st = new StringTokenizer(line, " ");
                 tokens = new ArrayList<String>();
 
-                while (st.hasMoreTokens()) {
+                for (i = 1; i <= 6; i++) {
                     token = st.nextToken();
                     if (i == 1) tokens.add(token);
-                    if (i == 5) tokens.add(token);
-                    i++;
+                    else if (i == 5) tokens.add(token);
                 }
+
                 menu.registerSale(tokens);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        end = System.nanoTime();
+        System.out.println((end - init) / 1.0E09);
 
         /* Show menu to user */
         while (!finished) {

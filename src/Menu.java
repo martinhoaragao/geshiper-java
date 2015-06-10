@@ -19,18 +19,18 @@ public class Menu {
 
     /**
      * Add a client in gesthiper
-     * @param client Client to be added
+     * @param code The client code
      */
-    public void addClient (Client client) {
-        market.addClient(client);
+    public void addClient (String code) {
+        market.addClient(code);
     }
 
     /**
      * Add a product in gesthiper
-     * @param product Product to be added
+     * @param code The product code
      */
-    public void addProduct (Product product) {
-        market.addProduct(product);
+    public void addProduct (String code) {
+        market.addProduct(code);
     }
 
     /**
