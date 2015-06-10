@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class GesthiperOO {
-    private static long init    = 0L;
-    private static long end     = 0L;
+    private static Crono c = new Crono();
+    private static double elapsed;
 
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -17,7 +17,7 @@ public class GesthiperOO {
         int option;
 
         /* Read clients file */
-        init = System.nanoTime();
+        c.start();
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichClientes.txt"));
             while ((line = br.readLine()) != null) {
@@ -26,11 +26,12 @@ public class GesthiperOO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        end = System.nanoTime();
-        System.out.println((end - init) / 1.0E09);
+        elapsed = c.stop();
+        System.out.println("'FichClientes.txt' read.");
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
 
         /* Read products file */
-        init = System.nanoTime();
+        c.start();
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichProdutos.txt"));
             while ((line = br.readLine()) != null) {
@@ -39,11 +40,12 @@ public class GesthiperOO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        end = System.nanoTime();
-        System.out.println((end - init) / 1.0E09);
+        elapsed = c.stop();
+        System.out.println("'FichProdutos.txt' read.");
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
 
         /* Read sales file */
-        init = System.nanoTime();
+        c.start();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
             StringTokenizer st;
@@ -69,8 +71,12 @@ public class GesthiperOO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        end = System.nanoTime();
-        System.out.println((end - init) / 1.0E09);
+        elapsed = c.stop();
+        System.out.println("'Compras.txt' read.");
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+
+        if (System.console() != null)
+            System.console().readLine();
 
         /* Show menu to user */
         while (!finished) {

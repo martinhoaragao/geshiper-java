@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,10 +41,13 @@ public class Menu {
      */
     public void getClientsByInitial () {
         Scanner sc = new Scanner(System.in);
+        Crono c = new Crono();
+
         clean();
         System.out.print("Initial: ");
+        c.start();
         ArrayList<String> clients = market.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
-        paginate(clients, "Clients");
+        paginate(clients, "Clients", c.stop());
     }
 
     /**
@@ -52,11 +56,13 @@ public class Menu {
      */
     public void getProductsByInitial () {
         Scanner sc = new Scanner(System.in);
+        Crono c = new Crono();
 
         clean();
         System.out.print("Initial: ");
+        c.start();
         ArrayList<String> products = market.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
-        paginate(products, "Products");
+        paginate(products, "Products", c.stop());
     }
 
     /**
@@ -64,10 +70,12 @@ public class Menu {
      */
     public void cheapClients () {
         ArrayList<String> clients;
+        Crono c = new Crono();
 
         try {
+            c.start();
             clients = market.getCheapClients();
-            paginate(clients, "Clients");
+            paginate(clients, "Clients", c.stop());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -78,10 +86,12 @@ public class Menu {
      */
     public void unusedProducts () {
         ArrayList<String> products;
+        Crono c = new Crono();
 
         try {
+            c.start();
             products = market.getUnusedProducts();
-            paginate(products, "Products");
+            paginate(products, "Products", c.stop());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -99,9 +109,14 @@ public class Menu {
      * @param client The client code
      */
     public void getClientMonthySales (String client) {
+        Crono c = new Crono();
+        double elapsed;
+        c.start();
         List<TripNumProdFat> infos = market.getClientMonthlySales(client);
+        elapsed = c.stop();
 
         clean();
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
         System.out.format("%7s | %10s | %10s\n", "Sales", "Products", "Invoiced");
         for (TripNumProdFat trip : infos)
             System.out.format("%7d | %10d | %10.2f\n", trip.getNumOfSales(), trip.getNumOfProducts(), trip.getTotalSpent());
@@ -128,8 +143,9 @@ public class Menu {
      * Paginate a ArrayList of strings
      * @param list List to be displayed
      * @param type What is being displayed
+     * @param elapsed Time elapsed
      */
-    public void paginate (ArrayList<String> list, String type) {
+    public void paginate (ArrayList<String> list, String type, double elapsed) {
         Scanner sc = new Scanner(System.in);
         String choice;      /* The user choice */
         boolean finished;   /* Control if user has finished */
@@ -161,6 +177,7 @@ public class Menu {
                 System.out.println(list.get(index));
             }
             System.out.println("N: Next | B: Back | P: page | E: Exit");
+            System.out.printf("(Time elapsed: %1.6f seconds)\n", elapsed);
 
             choice = sc.nextLine().trim().replaceAll("[\n\r]", "");
 
