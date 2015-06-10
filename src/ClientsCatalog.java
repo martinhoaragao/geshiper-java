@@ -101,6 +101,16 @@ public class ClientsCatalog implements Serializable {
         return list;
     }
 
+    /**
+     * Check if a client exists on the clients catalog
+     * @param code The client code
+     */
+    public boolean exists (String code) throws NullPointerException {
+        if (code == null)
+            throw new NullPointerException("code can't be null.");
+        return this.clients.contains(code);
+    }
+
     /* equals, toString and clone */
 
     /**

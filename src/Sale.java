@@ -99,8 +99,8 @@ public class Sale implements Serializable {
      * @param units Number of units
      */
     public void setUnits (int units) throws IllegalArgumentException {
-        if (units < 0)
-            throw new IllegalArgumentException("units msut be >= 0");
+        if (units <= 0)
+            throw new IllegalArgumentException("units msut be > 0");
         else this.units = units;
     }
 

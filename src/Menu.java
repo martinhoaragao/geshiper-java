@@ -170,6 +170,20 @@ public class Menu {
     }
 
     /**
+     * Check if a client exists
+     */
+    public boolean clientExists (String client) throws NullPointerException {
+        return market.existsClient(client);
+    }
+
+    /**
+     * Check if a product exists
+     */
+    public boolean productExists (String product) throws NullPointerException {
+        return market.existsProduct(product);
+    }
+
+    /**
      * Paginate a ArrayList of strings
      * @param list List to be displayed
      * @param type What is being displayed

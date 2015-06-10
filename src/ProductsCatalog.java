@@ -102,6 +102,16 @@ public class ProductsCatalog implements Serializable {
         return list;
     }
 
+    /**
+     * Check if a given product code exists
+     * @param code The Product code
+     */
+    public boolean exists (String code) throws NullPointerException {
+        if (code == null)
+            throw new NullPointerException("code cant' be null.");
+        return this.products.contains(code);
+    }
+
     /* toString, equals and clone */
 
     /**

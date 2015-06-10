@@ -98,6 +98,22 @@ public class Hypermarket implements Serializable {
     }
 
     /**
+     * Check if a given client is present in the Clients Catalog
+     * @param client The client code
+     */
+    public boolean existsClient (String client) throws NullPointerException {
+        return c_cat.exists(client);
+    }
+
+    /**
+     * Check if a given product is present in the Products Catalog
+     * @param product The Product code
+     */
+    public boolean existsProduct (String product) throws NullPointerException {
+        return p_cat.exists(product);
+    }
+
+    /**
      * Register a sale to the sales module
      */
     public void registerSale (String client, int month, Sale sale) {
