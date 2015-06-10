@@ -1,5 +1,5 @@
+import java.io.Serializable;
 import java.util.Set;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 /**
@@ -9,7 +9,7 @@ import java.util.TreeSet;
  * @author jfc
  * @version 10/06/2015
  */
-public class TripNumProdFat {
+public class TripNumProdFat implements Serializable {
     private int num_sales;          /* Number of sales */
     private Set<String> products;   /* Different bought products */
     private float total;            /* Total spent money */

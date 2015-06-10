@@ -1,3 +1,4 @@
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -123,6 +124,35 @@ public class Menu {
 
         if (System.console() != null)
             System.console().readLine();
+    }
+
+    /**
+     * Save application state to an object file 'hipermercado.obj'
+     */
+    public void saveState () {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hipermercado.obj"));
+
+            oos.writeObject(market);
+            oos.flush();
+            oos.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Load a application state from the file 'hipermercado.obj'
+     */
+    public void loadState () {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hipermercado.obj"));
+
+            market = (Hypermarket) ois.readObject();
+            ois.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

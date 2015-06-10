@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * Save information about a sale
  *
@@ -7,7 +9,7 @@
  * @author jfc
  * @version 10/06/2015
  */
-public class Sale {
+public class Sale implements Serializable {
     private String product; /* The product code */
     private int units;      /* How many units were sold */
     private float price;    /* How much was spent */

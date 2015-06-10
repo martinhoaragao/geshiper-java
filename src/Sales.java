@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -8,7 +9,7 @@ import java.util.TreeMap;
  * @author jfc
  * @version 10/06/2015
  */
-public class Sales {
+public class Sales implements Serializable {
     private ArrayList<TreeMap<String, ArrayList<Sale>>> sales;  /* Sales information by month */
 
     /**

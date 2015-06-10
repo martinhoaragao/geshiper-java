@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -6,7 +7,7 @@ import java.util.List;
  * @author jfc
  * @version 07/06/2015
  */
-public class Hypermarket {
+public class Hypermarket implements Serializable {
     private ProductsCatalog p_cat;  /* The products catalog */
     private ClientsCatalog  c_cat;  /* The clients catalog */
     private Sales sales;            /* The sales module */

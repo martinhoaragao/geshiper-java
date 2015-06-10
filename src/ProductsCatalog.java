@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-public class ProductsCatalog {
+public class ProductsCatalog implements Serializable {
     private TreeSet<String> products;           /* All product codes */
     private TreeSet<String> unused_products;    /* The products that no one bought */
 

@@ -7,12 +7,12 @@
  * @version 05/06/2015
  */
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 import java.util.ArrayList;
 
-public class ClientsCatalog {
+public class ClientsCatalog implements Serializable {
     private TreeSet<String> clients;        /* All clients */
     private TreeSet<String> unused_clients; /* Clients that bought no product */
 
