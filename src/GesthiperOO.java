@@ -82,7 +82,11 @@ public class GesthiperOO {
                 case 2: menu.getProductsByInitial();break;
                 case 3: menu.cheapClients();        break;
                 case 4: menu.unusedProducts();      break;
-                case 5: finished = true;            break;
+                case 5:
+                    sc.nextLine();
+                    menu.getClientMonthySales(sc.nextLine());
+                    break;
+                case 6: finished = true;            break;
                 default:                            break;
             }
         }

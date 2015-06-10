@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -94,6 +95,22 @@ public class Menu {
     }
 
     /**
+     * Show client monthly sales and the total spent on each month
+     * @param client The client code
+     */
+    public void getClientMonthySales (String client) {
+        List<TripNumProdFat> infos = market.getClientMonthlySales(client);
+
+        clean();
+        System.out.format("%7s | %10s | %10s\n", "Sales", "Products", "Invoiced");
+        for (TripNumProdFat trip : infos)
+            System.out.format("%7d | %10d | %10.2f\n", trip.getNumOfSales(), trip.getNumOfProducts(), trip.getTotalSpent());
+
+        if (System.console() != null)
+            System.console().readLine();
+    }
+
+    /**
      * Display the menu to the user
      */
     public void showMenu () {
@@ -103,7 +120,8 @@ public class Menu {
         System.out.println("2: List of Products by initial");
         System.out.println("3: List of clients that bough nothing");
         System.out.println("4: List of products not sold");
-        System.out.println("5: Exit");
+        System.out.println("5: Client anual sales");
+        System.out.println("6: Exit");
     }
 
     /**
