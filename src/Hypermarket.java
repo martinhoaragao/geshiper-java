@@ -105,6 +105,17 @@ public class Hypermarket implements Serializable {
     }
 
     /**
+     * Get the list of the most bought products by a given client
+     * @param client The client code
+     * @return List of product codes, ordered from most bought to least bought.
+     * In case of equal amounts, the products are ordered lexicographically.
+     */
+    public List<ParProductUnits> getProductsMostBought (String client)
+        throws IllegalArgumentException, NullPointerException {
+        return sales.getProductsMostBought(client);
+    }
+
+    /**
      * Check if a given client is present in the Clients Catalog
      * @param client The client code
      */

@@ -161,6 +161,29 @@ public class Menu {
     }
 
     /**
+     * Querie 7
+     * Given a valid client code, get the list of
+     * the most bought products in decreasing order
+     * of quantity
+     */
+    public void querie7 () {
+        Scanner sc = new Scanner(System.in);
+        List<ParProductUnits> result;
+
+        clean();
+        System.out.print("Client: ");
+        try {
+            result = market.getProductsMostBought(sc.nextLine().replaceAll("[\n\r]", ""));
+            for (ParProductUnits par : result)
+                System.out.println(par.getProductCode() + " - " + par.getUnitsSold());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (System.console() != null)
+            System.console().readLine();
+    }
+
+    /**
      * Save application state to an object file 'hipermercado.obj'
      */
     public void saveState () {
@@ -201,9 +224,10 @@ public class Menu {
         System.out.println("4: List of products not sold");
         System.out.println("5: Client anual sales");
         System.out.println("6: (3) Number of sales and clients in a month");
-        System.out.println("7: Save application state");
-        System.out.println("8: Load application state");
-        System.out.println("9: Exit");
+        System.out.println("7: (7) List of a client most bought products");
+        System.out.println("8: Save application state");
+        System.out.println("9: Load application state");
+        System.out.println("10: Exit");
     }
 
     /**
