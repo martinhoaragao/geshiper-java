@@ -55,30 +55,56 @@
 \section{Classes}
 Na seguinte secção vamos explicar as classes que decidimos criar para a resolução do projeto, incluindo diagramas 
 de classes e explicação das estruturas escolhidas para cada classe.
-%------------------------
-% Clients
-%------------------------
 
-\subsection{Client}
-\par Para criar clientes decidimos criar uma class \textbf{Client} que como variável de instância tem apenas uma string 
-com ó código do cliente.
-
-\begin{lstlisting}[language=Java]
-/* Codigo do cliente */
-private String code;
-\end{lstlisting}
-
+% ClientsCatalog
 \subsection{ClientsCatalog}
 \par Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \textbf{ClientsCatalog} irá tratar de guardar 
 os clientes e manter também a lista de clientes que não realizaram nenhuma compra.
 \par Também é esta class que trata de criar a lista com os códigos de cliente dado a letra inicial do código.
 \par Fica aqui o código que define as variáveis de instância:
+
 \begin{lstlisting}[language=Java]
-/* Codigo de cliente -> Cliente */
-private TreeMap<String,Client> clients;
-/* Lista de clientes que nao compraram nenhum produto */
-private TreeSet<String> cheap_clients;
+public class ClientsCatalog {
+	/* Codigo de cliente -> Cliente */
+	private TreeSet<String> clients;
+	/* Lista de clientes que nao compraram nenhum produto */
+	private TreeSet<String> unused_clients;
+}
 \end{lstlisting}
+
+\par Uma das vantagens desta implementação é quando o utilizador decidir ler um novo ficheiro de compras não é necessário 
+percorrer a lista de todos os clientes e voltar a inserir na lista de clientes que nunca compraram nada para depois retirar à 
+medida que aparecem no ficheiro de compras, como \textbf{String} são imutáveis basta correr o código: 
+$unused\_clients = clients.clone();$ e a variável $unused\_clients$ passa agora a ter novamente a lista de todos os clientes que estão no catálogo de clientes.
+
+%ProductsCatalog
+\subsection{ProductsCatalog}
+\par A classe \textbf{ProductsCatalog} vai ser a responsável por guardar todos os códigos de produtos existentes no ficheiro de 
+produtos assim como guardar a lista de produtos que ninguém comprou.
+\par Para guardar a duas listas referidas usamos a classe \textbf{TreeSet} visto que como os códigos de produtos são apenas 
+do tipo \textbf{String} a pesquisa num \textbf{TreeSet} torna-se rápida.
+\par A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}[language=Java]
+public class ProductsCatalog {
+	/* Lista de todos os codigos de produto */
+	private TreeSet<String> products;
+	/* Lista de produtos que ninguem comprou */
+	private TreeSet<String> unused_products;
+}
+\end{lstlisting}
+
+\par Tal como no caso da classe \textbf{ClientsCatalog} sempre que for necessário voltar a ler o ficheiro de compras é fácil 
+reconstruir a lista de todos os códigos de produto na lista dos produtos que ninguém comprou, basta correr: 
+$unused\_products = products.clone();$.
+
+\newpage
+\section{Módulos}
+\subsection{Catálogo de Clientes}
+\par Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário 
+criar um catálogo de clientes. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe 
+\textbf{ClientsCatalog} que guarda todos os códigos de client do tipo \textbf{String} num TreeSet para permitir uma pesquisa 
+rápida.
 
 % UI
 \newpage
