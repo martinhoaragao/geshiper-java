@@ -110,8 +110,11 @@ public class Menu {
      * @param client The client code
      */
     public void getClientMonthySales (String client) {
-        Crono c = new Crono();
-        double elapsed;
+        Crono c = new Crono();      /* Cronometer */
+        double elapsed;             /* Time elapsed */
+        int total_sales = 0, total_products = 0;
+        float total_spent = 0;
+
         c.start();
         List<TripNumProdFat> infos = market.getClientMonthlySales(client);
         elapsed = c.stop();
@@ -119,9 +122,38 @@ public class Menu {
         clean();
         System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
         System.out.format("%7s | %10s | %10s\n", "Sales", "Products", "Invoiced");
-        for (TripNumProdFat trip : infos)
+        for (TripNumProdFat trip : infos) {
             System.out.format("%7d | %10d | %10.2f\n", trip.getNumOfSales(), trip.getNumOfProducts(), trip.getTotalSpent());
+            total_sales += trip.getNumOfSales();
+            total_products += trip.getNumOfProducts();
+            total_spent += trip.getTotalSpent();
+        }
+        System.out.println("---------------------------------------------");
+        System.out.format("%7d | %10d | %10.2f\n", total_sales, total_products, total_spent);
 
+
+        if (System.console() != null)
+            System.console().readLine();
+    }
+
+    /**
+     * Querie 3
+     * Given a valid month, display the number of sales and the number
+     * of different clients that purchased in that month
+     */
+    public void querie3 () {
+        Scanner sc = new Scanner(System.in);
+        ParSaleClient psc;
+
+        clean();
+        System.out.print("Month: ");
+        try {
+            psc = market.getMonthInfo(sc.nextInt());
+            System.out.println("Num of Sales: " + psc.getSales());
+            System.out.println("Num of clients: " + psc.getClients());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         if (System.console() != null)
             System.console().readLine();
     }
@@ -166,7 +198,10 @@ public class Menu {
         System.out.println("3: List of clients that bough nothing");
         System.out.println("4: List of products not sold");
         System.out.println("5: Client anual sales");
-        System.out.println("6: Exit");
+        System.out.println("6: (3) Number of sales and clients in a month");
+        System.out.println("7: Save application state");
+        System.out.println("8: Load application state");
+        System.out.println("9: Exit");
     }
 
     /**

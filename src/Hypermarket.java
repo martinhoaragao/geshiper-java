@@ -1,4 +1,9 @@
+import Exceptions.InvalidMonthException;
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import com.sun.tools.corba.se.idl.InvalidArgument;
+
 import java.io.Serializable;
+import java.security.InvalidAlgorithmParameterException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -103,6 +108,15 @@ public class Hypermarket implements Serializable {
      */
     public boolean existsClient (String client) throws NullPointerException {
         return c_cat.exists(client);
+    }
+
+    /**
+     * Given a valid month create pair with the number of sales
+     * and the number of different clients that purchased that month
+     * @param month
+     */
+    public ParSaleClient getMonthInfo (int month) throws InvalidMonthException {
+        return sales.getMonthInfo(month);
     }
 
     /**

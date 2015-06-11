@@ -1,3 +1,6 @@
+import Exceptions.InvalidMonthException;
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,5 +69,28 @@ public class Sales implements Serializable {
                 month_sales.add(s.clone());
         }
         return month_sales;
+    }
+
+    /**
+     * Creates a pair with the number of sales and the number of
+     * clients that made purchases on a given month
+     * @param month The month to be checked
+     */
+    public ParSaleClient getMonthInfo (int month) throws InvalidMonthException {
+        ParSaleClient psc = null;
+
+        if ((month < 1) || (month > 12))
+            throw new InvalidMonthException("month must be >= 1 and <= 12");
+        else {
+            psc = new ParSaleClient();
+            TreeMap<String, ArrayList<Sale>> map = this.sales.get(month - 1);
+
+            for (ArrayList<Sale> list : map.values()) {
+                psc.addClient(1);
+                psc.addSale(list.size());
+            }
+        }
+
+        return psc;
     }
 }

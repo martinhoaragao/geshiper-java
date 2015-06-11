@@ -119,9 +119,10 @@ public class GesthiperOO {
                     sc.nextLine();
                     menu.getClientMonthySales(sc.nextLine());
                     break;
-                case 6: finished = true;            break;
+                case 6: menu.querie3();             break;
                 case 7: menu.saveState();           break;
                 case 8: menu.loadState();           break;
+                case 9: finished = true;            break;
                 default:                            break;
             }
         }

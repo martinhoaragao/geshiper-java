@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1695">
-              <caret line="182" column="45" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.6921212" vertical-offset="1079" max-vertical-offset="2205">
+              <caret line="202" column="53" selection-start-line="202" selection-start-column="53" selection-end-line="202" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getClientsByInitial#0;class#Menu#0" expanded="false" />
@@ -39,7 +39,6 @@
                 <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
                 <element signature="method#saveState#0;class#Menu#0" expanded="false" />
                 <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-                <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
                 <element signature="method#paginate#0;class#Menu#0" expanded="false" />
                 <element signature="method#clean#0;class#Menu#0" expanded="false" />
               </folding>
@@ -50,8 +49,8 @@
       <file leaf-file-name="Hypermarket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hypermarket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1470">
-              <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1605">
+              <caret line="117" column="78" selection-start-line="117" selection-start-column="78" selection-end-line="117" selection-end-column="78" />
               <folding>
                 <element signature="method#getClientMonthlySales#0;class#Hypermarket#0" expanded="false" />
               </folding>
@@ -59,12 +58,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GesthiperOO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GesthiperOO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GesthiperOO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23757575" vertical-offset="794" max-vertical-offset="1920">
-              <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1935">
+              <caret line="124" column="58" selection-start-line="124" selection-start-column="58" selection-end-line="124" selection-end-column="58" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sales.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Sales.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="1530">
+              <caret line="82" column="73" selection-start-line="82" selection-start-column="73" selection-end-line="82" selection-end-column="73" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,15 +90,17 @@
         <option value="$PROJECT_DIR$/src/Gesthiper.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Crono.java" />
-        <option value="$PROJECT_DIR$/src/Sales.java" />
         <option value="$PROJECT_DIR$/src/TripNumProdFat.java" />
         <option value="$PROJECT_DIR$/src/AlphabeticComparator.java" />
         <option value="$PROJECT_DIR$/src/Sale.java" />
-        <option value="$PROJECT_DIR$/src/ClientsCatalog.java" />
         <option value="$PROJECT_DIR$/src/ProductsCatalog.java" />
+        <option value="$PROJECT_DIR$/src/ClientsCatalog.java" />
+        <option value="$PROJECT_DIR$/src/ParSaleClient.java" />
+        <option value="$PROJECT_DIR$/src/Exceptions/InvalidMonthException.java" />
+        <option value="$PROJECT_DIR$/src/Sales.java" />
         <option value="$PROJECT_DIR$/src/Hypermarket.java" />
-        <option value="$PROJECT_DIR$/src/Menu.java" />
         <option value="$PROJECT_DIR$/src/GesthiperOO.java" />
+        <option value="$PROJECT_DIR$/src/Menu.java" />
       </list>
     </option>
   </component>
@@ -149,6 +162,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="geshiper-java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="geshiper-java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exceptions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -234,13 +265,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -271,6 +302,43 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1695">
+          <caret line="182" column="45" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getClientsByInitial#0;class#Menu#0" expanded="false" />
+            <element signature="method#getProductsByInitial#0;class#Menu#0" expanded="false" />
+            <element signature="method#cheapClients#0;class#Menu#0" expanded="false" />
+            <element signature="method#unusedProducts#0;class#Menu#0" expanded="false" />
+            <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
+            <element signature="method#saveState#0;class#Menu#0" expanded="false" />
+            <element signature="method#loadState#0;class#Menu#0" expanded="false" />
+            <element signature="method#paginate#0;class#Menu#0" expanded="false" />
+            <element signature="method#clean#0;class#Menu#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hypermarket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1470">
+          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+          <folding>
+            <element signature="method#getClientMonthlySales#0;class#Hypermarket#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GesthiperOO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1168" max-vertical-offset="2130">
           <caret line="122" column="49" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
           <folding>
@@ -282,7 +350,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -294,12 +361,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1575">
           <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
-            <element signature="e#767#768#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-            <element signature="e#1784#1785#0" expanded="true" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
+            <element signature="method#getClientMonthlySales#0;class#Hypermarket#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -310,12 +372,6 @@
           <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1352#1353#0" expanded="true" />
-            <element signature="e#1385#1386#0" expanded="true" />
-            <element signature="e#1463#1464#0" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -367,7 +423,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -379,12 +434,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1110">
           <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
           <folding>
-            <element signature="e#767#768#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-            <element signature="e#1784#1785#0" expanded="true" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
+            <element signature="method#getClientMonthlySales#0;class#Hypermarket#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -436,7 +486,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -450,11 +499,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="e#1361#1369#0" expanded="true" />
+            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="e#1421#1429#0" expanded="true" />
             <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -495,7 +547,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -509,11 +560,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="e#1361#1369#0" expanded="true" />
+            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="e#1421#1429#0" expanded="true" />
             <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -546,7 +600,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -566,7 +619,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -586,7 +638,6 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
@@ -600,11 +651,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="e#1361#1369#0" expanded="true" />
+            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="e#1421#1429#0" expanded="true" />
             <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -630,11 +684,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="e#1361#1369#0" expanded="true" />
+            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="e#1421#1429#0" expanded="true" />
             <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
             <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -685,25 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47272727" vertical-offset="0" max-vertical-offset="825">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TripNumProdFat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.018181818" vertical-offset="0" max-vertical-offset="1155">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sales.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2" vertical-offset="0" max-vertical-offset="1140">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -735,28 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10909091" vertical-offset="0" max-vertical-offset="825">
           <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientsCatalog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6909091" vertical-offset="330" max-vertical-offset="1200">
-          <caret line="109" column="66" selection-start-line="109" selection-start-column="66" selection-end-line="109" selection-end-column="66" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="e#1361#1369#0" expanded="true" />
-            <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
-            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -775,20 +791,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TripNumProdFat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ClientsCatalog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6727273" vertical-offset="405" max-vertical-offset="1230">
+          <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#ClientsCatalog#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#addClient#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#getClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="e#1421#1429#0" expanded="true" />
+            <element signature="method#getClientsByInitial#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#removeSpendingClient#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#getUnusedClients#0;class#ClientsCatalog#0" expanded="false" />
+            <element signature="method#equals#0;class#ClientsCatalog#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ParSaleClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43636364" vertical-offset="90" max-vertical-offset="975">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding>
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Exceptions/InvalidMonthException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27272728" vertical-offset="0" max-vertical-offset="825">
+          <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sales.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="1530">
+          <caret line="82" column="73" selection-start-line="82" selection-start-column="73" selection-end-line="82" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hypermarket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1470">
-          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1605">
+          <caret line="117" column="78" selection-start-line="117" selection-start-column="78" selection-end-line="117" selection-end-column="78" />
           <folding>
             <element signature="method#getClientMonthlySales#0;class#Hypermarket#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GesthiperOO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1935">
+          <caret line="124" column="58" selection-start-line="124" selection-start-column="58" selection-end-line="124" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1695">
-          <caret line="182" column="45" selection-start-line="182" selection-start-column="45" selection-end-line="182" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.6921212" vertical-offset="1079" max-vertical-offset="2205">
+          <caret line="202" column="53" selection-start-line="202" selection-start-column="53" selection-end-line="202" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getClientsByInitial#0;class#Menu#0" expanded="false" />
@@ -798,18 +880,9 @@
             <element signature="method#getClientMonthySales#0;class#Menu#0" expanded="false" />
             <element signature="method#saveState#0;class#Menu#0" expanded="false" />
             <element signature="method#loadState#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
             <element signature="method#paginate#0;class#Menu#0" expanded="false" />
             <element signature="method#clean#0;class#Menu#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GesthiperOO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23757575" vertical-offset="794" max-vertical-offset="1920">
-          <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
