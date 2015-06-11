@@ -84,11 +84,13 @@ public class Hypermarket implements Serializable {
      * there were no sales the value will be null
      */
     public List<TripNumProdFat> getClientMonthlySales (String client) {
-        List<Sale> month_sales;
+        List<Sale> month_sales = null;
         List<TripNumProdFat> total_sales = new ArrayList<TripNumProdFat>(12);
 
         for (int month = 1; month < 13; month++) {
-            month_sales = sales.getClientSalesMonth(client, month);
+            try {
+                month_sales = sales.getClientSalesMonth(client, month);
+            }catch(Exception e){}
             TripNumProdFat trip = new TripNumProdFat();
 
             if (month_sales != null) {
@@ -130,7 +132,7 @@ public class Hypermarket implements Serializable {
     /**
      * Register a sale to the sales module
      */
-    public void registerSale (String client, int month, Sale sale) {
+    public void registerSale (String client, int month, Sale sale) throws InvalidMonthException {
         p_cat.markAsBought(sale.getProduct());
         c_cat.removeSpendingClient(client);
         sales.addSale(client, month, sale);

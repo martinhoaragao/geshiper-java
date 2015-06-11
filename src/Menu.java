@@ -1,3 +1,5 @@
+import Exceptions.InvalidMonthException;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -101,7 +103,7 @@ public class Menu {
     /**
      * Register a sale
      */
-    public void registerSale (String client, int month, Sale s) {
+    public void registerSale (String client, int month, Sale s) throws InvalidMonthException {
         market.registerSale(client, month, s);
     }
 
