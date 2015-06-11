@@ -17,7 +17,7 @@
 
 % Code
 \usepackage{listings}
-\lstset{language=C, breaklines=true, basicstyle=\footnotesize} % Especificar Haskell, mudar de linha quando acabar espaço, diminuir tamanho da letra.
+\lstset{language=Java, breaklines=true, basicstyle=\footnotesize} % Especificar Haskell, mudar de linha quando acabar espaço, diminuir tamanho da letra.
 \usepackage{fixltx2e} % Corrige alguns erros
 \begin{document}
 
@@ -99,12 +99,92 @@ reconstruir a lista de todos os códigos de produto na lista dos produtos que ni
 $unused\_products = products.clone();$.
 
 \newpage
+\subsection{ParSaleClient}
+\par A classe \textbf{ParSaleClient} foi criada para responder á necessidade de queries que necessitavam de obter informação 
+relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
+\par Para guardar esta informação usou-se então apenas duas variáveis de instância aqui declaradas:
+
+\begin{lstlisting}[language=Java]
+public class ParSaleClient {
+	/* Numero total de vendas */
+	private int num_sales;
+	/* Numero total de diferentes clientes que efectuaram compras */
+	private int num_clients;
+}
+\end{lstlisting}
+
+\subsection{TripNumProdFat}
+\par Para poder guardar informação relativa ao número de compras, número de diferentes produtos comprados e total 
+facturado por mês para um dado cliente houve necessidade de criar uma nova classe que guardasse estas informações-
+\par A definição das variáveis de instância é a seguinte:
+
+\begin{lstlisting}[language=Java]
+public class TripNumProdFat {
+	/* Numero total de vendas */
+	private int num_sales;
+	/* Lista de produtos que comprados */
+	private Set<String> products;
+	/* Total facturado */
+	private float total;
+}
+\end{lstlisting}
+
+\par Foi necessário utilizar um Set para guardar os códigos de produtos pois era necessário garantir que o mesmo produto 
+não era contabilizado várias vezes. Utilizamos um \textbf{TreeSet} pois a pesquisa é rápida e garante que não existem 
+elementos repetidos.
+\par A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo do que é que um TreeSet de 
+códigos de produtos se parece.
+
+\newpage
+\section{Sale}
+\par Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando,
+o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
+\par A classe \textbf{Sale} trata de guardar informação relativa a uma compra, guardando o código do produto comprado, 
+as unidades, o tipo da compra (promocional ou normal) e o total gasto.
+\par Fica em seguida a declaração das variáveis de instância:
+
+\begin{lstlisting}[language=Java]
+public class Sale {
+	/* Codigo do produto */
+	private String product;
+	/* Numero de unidades compradas */
+	private int units;
+	/* Total gasto na compra */
+	private float price;
+	/* Tipo da compra */
+	private boolean type;
+}
+\end{lstlisting}
+
+\par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra 
+normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
+
+\newpage
 \section{Módulos}
 \subsection{Catálogo de Clientes}
 \par Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário 
 criar um catálogo de clientes. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe 
 \textbf{ClientsCatalog} que guarda todos os códigos de client do tipo \textbf{String} num TreeSet para permitir uma pesquisa 
 rápida.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{catclientes.png}
+\caption{Exemplo de um TreeSet de clientes}
+\end{figure}
+
+\newpage
+\subsection{Catálogo de Produtos}
+\par O catálogo de clientes foi implementado usando a class  \textbf{ProductsCatalog} que basicamente guarda os códigos 
+dos produtos num TreeSet. Como os códigos dos produtos são apenas \textbf{String} a árvore fica então ordenada 
+alfabeticamente e a procura é rápida.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{catprodutos.png}
+\caption{Exemplo de um TreeSet de produtos}
+\label{fig:catprodutos}
+\end{figure}
 
 % UI
 \newpage
