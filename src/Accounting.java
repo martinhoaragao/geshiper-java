@@ -58,7 +58,7 @@ public class Accounting implements Serializable {
             ProductTotalSales productInfo = this.accounting.get(i).get(product);
             sb.append(productInfo.toString());
         }
-        return sb;
+        return sb.toString();
     }
 
 }

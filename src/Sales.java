@@ -119,11 +119,13 @@ public class Sales implements Serializable {
 
         for(int i = 0; i < 12; i++){
             monthly_sales = sales.get(i);
-            for(Sale s : monthly_sales.get(client)){
-                if(!temp.containsKey(s.getProduct())){
-                    temp.put(s.getProduct(), s.getUnits());
-                }else{
-                    temp.put(s.getProduct(), temp.get(s.getProduct()) + s.getUnits());
+            if(monthly_sales.containsKey(client)) {
+                for (Sale s : monthly_sales.get(client)) {
+                    if (!temp.containsKey(s.getProduct())) {
+                        temp.put(s.getProduct(), s.getUnits());
+                    } else {
+                        temp.put(s.getProduct(), temp.get(s.getProduct()) + s.getUnits());
+                    }
                 }
             }
         }
