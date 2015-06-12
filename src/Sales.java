@@ -138,7 +138,9 @@ public class Sales implements Serializable {
 
         Collections.sort(codes, new Comparator<ParProductUnits>(){
             public int compare(ParProductUnits a, ParProductUnits b){
-                return a.compareTo(b);
+                if (a.compareTo(b) < 0) return 1;
+                else if(a.compareTo(b) > 0) return -1;
+                else return a.compareTo(b);
             }
         });
 
