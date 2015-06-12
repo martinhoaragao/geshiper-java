@@ -99,6 +99,29 @@ reconstruir a lista de todos os códigos de produto na lista dos produtos que ni
 $unused\_products = products.clone();$.
 
 \newpage
+\subsection{Sale}
+\par Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando,
+o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
+\par A classe \textbf{Sale} trata de guardar informação relativa a uma compra, guardando o código do produto comprado, 
+as unidades, o tipo da compra (promocional ou normal) e o total gasto.
+\par Fica em seguida a declaração das variáveis de instância:
+
+\begin{lstlisting}[language=Java]
+public class Sale {
+	/* Codigo do produto */
+	private String product;
+	/* Numero de unidades compradas */
+	private int units;
+	/* Total gasto na compra */
+	private float price;
+	/* Tipo da compra */
+	private boolean type;
+}
+\end{lstlisting}
+
+\par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra 
+normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
+
 \subsection{ParSaleClient}
 \par A classe \textbf{ParSaleClient} foi criada para responder á necessidade de queries que necessitavam de obter informação 
 relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
@@ -135,29 +158,27 @@ elementos repetidos.
 \par A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo do que é que um TreeSet de 
 códigos de produtos se parece.
 
-\newpage
-\section{Sale}
-\par Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando,
-o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
-\par A classe \textbf{Sale} trata de guardar informação relativa a uma compra, guardando o código do produto comprado, 
-as unidades, o tipo da compra (promocional ou normal) e o total gasto.
-\par Fica em seguida a declaração das variáveis de instância:
+\subsection{ParClientFat}
+\par Para resolver a querie 5 é necessário guardar informações relativas ao número de clientes que compraram um produto 
+e total faturado desse produto por mês. Para isso definimos a classe \textbf{ParClientFat} cuja definição das variáveis de 
+instância é a seguinte: 
 
 \begin{lstlisting}[language=Java]
-public class Sale {
-	/* Codigo do produto */
+public class ParClientFat {
+	/* Produto a qual esta associado */
 	private String product;
-	/* Numero de unidades compradas */
-	private int units;
-	/* Total gasto na compra */
-	private float price;
-	/* Tipo da compra */
-	private boolean type;
+	/* Lista de clientes que compraram o produto */
+	private Set<String> clients;
+	/* Total faturado */
+	private float invoiced;
 }
 \end{lstlisting}
 
-\par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra 
-normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
+\par Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido 
+pelo utilizador e não muda durante a execução da querie.
+\par A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
+\par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma 
+instância de \textbf{ParClientFat} relativa a esse mês.
 
 \newpage
 \section{Módulos}
@@ -198,19 +219,5 @@ alfabeticamente e a procura é rápida.
 
 \newpage
 \section{Conclusão}
-
-\indent\par Em suma, apesar de cada uma das queries ter sido concluída, o trabalho mantém-se inacabado. De
-facto, existem inúmeros pormenores que não foram resolvidos da melhor forma, como por exemplo a
-eficácia da \emph{query 12}. Mesmo assim, a execução por módulos, com encapsulamento e abstração de dados
-foi conseguida. Nota-se, no entanto, uma clara distinção entre a organização e o código dos diferentes módulos.
-Outro dos problemas presentes, embora menor, é a não adoção das regras de C no que toca à designação de
-nomes de variáveis e funções.
-\par Uma das dificuldades que nos deparamos no curso deste trabalho prático é que, quando se trabalha com vista a responder a um conjunto tão grande de queries
-haverá sempre uma decisão a fazer, ou se perde mais tempo na inicialização do programa consumindo mais memória e se gasta
-menos tempo na execução da tarefa ou, pelo contrário, se gasta menos tempo na inicialização, menos memória e mais tempo na
-execução da tarefa. Seja qual for a decisão tomada há sempre um sacrifício a fazer.
-\par Em jeito de esclarecimento, o trabalho foi realizado em inglês por uma questão de aprendizagem no que toca à
-utilização de ferramentas de código aberto, neste caso git através do GitHub. Deixou-se, no entando todo o output em português, assim, o utilizador
-deparar-se-ia exclusivamente com a sua língua.
 
 \end{document}
