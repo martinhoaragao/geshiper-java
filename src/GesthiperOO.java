@@ -48,18 +48,6 @@ public class GesthiperOO {
         System.out.println("'FichProdutos.txt' read.");
         System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
 
-        /* Read sales file */
-        System.out.println("Do you want to save invalid lines? (y/n)");
-        if (sc.nextLine().equals("y")) {
-            write_invalid = true;
-            System.out.print("Filename: ");
-            try {
-                pw = new PrintWriter(sc.nextLine().trim());
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + " Invalid lines wont be written.");
-            }
-
-        }
         c.start();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
@@ -86,15 +74,6 @@ public class GesthiperOO {
                 } catch (Exception e) {
                 }
             }
-            pw.print("Invalid lines: ");
-            pw.println(invalid_lines);
-            pw.print("Invalid clients: ");
-            pw.println(invalid_clients);
-            pw.print("Invalid products: ");
-            pw.println(invalid_products);
-            pw.flush();
-            pw.close();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
