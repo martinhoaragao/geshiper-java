@@ -183,6 +183,36 @@ public class Menu {
             System.console().readLine();
     }
 
+    public void querie9 () {
+        Scanner sc = new Scanner(System.in);
+        List<ParClientQuant> result;
+
+        clean();
+        System.out.print("How many?");
+        result = market.getTopClients(sc.nextInt());
+        for(ParClientQuant par : result){
+            System.out.println(par.getClientCode() + " - " + par.getProducts());
+        }
+        if(System.console() != null)
+            System.console().readLine();
+    }
+
+    public void querie10 () {
+        Scanner sc = new Scanner(System.in);
+        List<ParClientQuant> result;
+
+        clean();
+        System.out.print("Product: ");
+        String s = sc.nextLine().replaceAll("[\n\r]", "");
+        System.out.print("How many?");
+        result = market.getTopClients(s, sc.nextInt());
+        for(ParClientQuant par : result){
+            System.out.format("%s - %d - %.2f\n", par.getClientCode(), par.getProducts(), par.getInvoice());
+        }
+        if(System.console() != null)
+            System.console().readLine();
+    }
+
     /**
      * Querie 5
      * Given a valid product code, get the list
@@ -254,9 +284,11 @@ public class Menu {
         System.out.println("6: (3) Number of sales and clients in a month");
         System.out.println("7: (7) List of a client most bought products");
         System.out.println("8: Querie 5");
-        System.out.println("9: Save application state");
-        System.out.println("10: Load application state");
-        System.out.println("11: Exit");
+        System.out.println("9: Querie 9");
+        System.out.println("10: Querie 10");
+        System.out.println("11: Save application state");
+        System.out.println("12: Load application state");
+        System.out.println("13: Exit");
     }
 
     /**

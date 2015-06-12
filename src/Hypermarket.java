@@ -116,6 +116,31 @@ public class Hypermarket implements Serializable {
     }
 
     /**
+     * Get the top X clients who bought more different products and how many
+     * different products they bought
+     * @param x The top number of clients who bought more different products
+     * @return List of client codes, sorted in descending order relative to
+     * how many different products each client bought. In case of equal amounts,
+     * the clients are ordered lexicographically.
+     */
+    public List<ParClientQuant> getTopClients(int x){
+        return sales.getTopClients(x);
+    }
+    /**
+     * Given a product code, get a list with the top X clients who bought
+     * said product the most, and much they spent
+     * @param product The product code
+     * @param x The top number of clients
+     * @return List of client codes, sorted in descending order relative to
+     * how many different products each client bought. In case of equal amounts,
+     * the clients are ordered lexicographically.
+     */
+    public List<ParClientQuant> getTopClients(String product, int x)
+            throws NullPointerException, IllegalArgumentException{
+        return sales.getTopClients(product, x);
+    }
+
+    /**
      * Get the list of different clients and the invoiced
      * for a given month every month
      * @param product The product code

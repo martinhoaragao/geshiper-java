@@ -22,7 +22,7 @@ public class ParProductUnits {
     /**
      * Parameterized contructor, sets the product code to
      * the string passed as argument and the number of times
-     * it was bought ot 0
+     * it was bought to 0
      * @param code The product code
      */
     public ParProductUnits(String code){
@@ -48,7 +48,7 @@ public class ParProductUnits {
     }
 
     /**
-     * Get number of clients
+     * Get product code
      */
     public String getProductCode () {
         return product_code;
@@ -90,7 +90,11 @@ public class ParProductUnits {
             if(this.getUnitsSold() > ppu.getUnitsSold()) return 1;
             else return -1;
         }else{
-            return this.getProductCode().compareTo(ppu.getProductCode());
+            if(this.getProductCode().compareTo(ppu.getProductCode()) > 0){
+                return -1;
+            }else if(this.getProductCode().compareTo(ppu.getProductCode()) < 0){
+                return 1;
+            }else return 0;
         }
     }
 }

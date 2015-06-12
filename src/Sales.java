@@ -178,4 +178,119 @@ public class Sales implements Serializable {
         }
         return list;
     }
+
+    /**
+     * Get the top X clients who bought more different products and how many
+     * different products they bought
+     * @param x The top number of clients who bought more different products
+     * @return List of client codes, sorted in descending order relative to
+     * how many different products each client bought. In case of equal amounts,
+     * the clients are ordered lexicographically.
+     */
+    public List<ParClientQuant> getTopClients(int x){
+        List<ParClientQuant> codes = new ArrayList<ParClientQuant>();
+        Map<String, ArrayList<String>> temp = new TreeMap<String, ArrayList<String>>();
+
+        for(int i = 0; i < 12; i++){
+            Iterator it = sales.get(i).entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry pairs = (Map.Entry) it.next();
+                if(!temp.containsKey(pairs.getKey())){
+                    temp.put((String)pairs.getKey(), new ArrayList<String>());
+                }
+                for(Sale s : (ArrayList<Sale>) pairs.getValue()){
+                    if(!temp.get(pairs.getKey()).contains(s.getProduct())){
+                        temp.get(pairs.getKey()).add(s.getProduct());
+                    }
+                }
+            }
+        }
+
+        Iterator it = temp.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry pairs = (Map.Entry) it.next();
+            ParClientQuant pcq = new ParClientQuant((String)pairs.getKey());
+            ArrayList<String> pc = (ArrayList<String>) pairs.getValue();
+            pcq.addProduct(pc.size());
+            codes.add(pcq);
+        }
+
+        Collections.sort(codes, new Comparator<ParClientQuant>(){
+            public int compare(ParClientQuant a, ParClientQuant b){
+                if (a.compareTo(b) < 0) return 1;
+                else if(a.compareTo(b) > 0) return -1;
+                else return a.compareTo(b);
+            }
+        });
+
+        if(x > codes.size()) {
+            return codes;
+        }else
+            return codes.subList(0, x);
+    }
+
+    /**
+     * Given a product code, get a list with the top X clients who bought
+     * said product the most, and much they spent
+     * @param product The product code
+     * @param x The top number of clients
+     * @return List of client codes, sorted in descending order relative to
+     * how many different products each client bought. In case of equal amounts,
+     * the clients are ordered lexicographically.
+     */
+    public List<ParClientQuant> getTopClients(String product, int x) throws NullPointerException, IllegalArgumentException{
+        if(product == null)
+            throw new NullPointerException("client can't be null");
+        try{
+            new Product(product);
+        }catch(IllegalArgumentException iae){
+            throw new IllegalArgumentException(iae.getMessage());
+        }
+
+        List<ParClientQuant> codes = new ArrayList<ParClientQuant>();
+        Map<String, double[]> temp = new TreeMap<String, double[]>();
+
+        for(int i = 0; i < 12; i++){
+            Iterator it = sales.get(i).entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry pairs = (Map.Entry) it.next();
+                for(Sale s : (ArrayList<Sale>) pairs.getValue()){
+                    if(s.getProduct().equals(product)){
+                        double[] inv;
+                        if(!temp.containsKey(pairs.getKey())){
+                            inv = new double[2];
+                        }else{
+                            inv = temp.get(pairs.getKey());
+                        }
+                        inv[0] += (double)s.getUnits();
+                        inv[1] += s.getPrice();
+                        temp.put((String)pairs.getKey(), inv);
+                    }
+                }
+            }
+        }
+
+        Iterator it = temp.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry pairs = (Map.Entry) it.next();
+            ParClientQuant pcq = new ParClientQuant((String)pairs.getKey());
+            double[] pc = (double[]) pairs.getValue();
+            pcq.addProduct((int)pc[0]);
+            pcq.addInvoice(pc[1]);
+            codes.add(pcq);
+        }
+
+        Collections.sort(codes, new Comparator<ParClientQuant>(){
+            public int compare(ParClientQuant a, ParClientQuant b){
+                if (a.compareTo(b) < 0) return 1;
+                else if(a.compareTo(b) > 0) return -1;
+                else return a.compareTo(b);
+            }
+        });
+
+        if(x > codes.size()) {
+            return codes;
+        }else
+            return codes.subList(0, x);
+    }
 }
