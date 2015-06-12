@@ -145,4 +145,33 @@ public class Sales implements Serializable {
         return codes;
     }
 
+
+    /**
+     * Create list of the different clients and total invoiced
+     * for a given product every month of the year
+     * @param product The product code
+     */
+    public List<ParClientFat> getProductClientsSales (String product) {
+        List<ParClientFat> list = new ArrayList<ParClientFat>(12);
+        TreeMap<String, ArrayList<Sale>> map;
+        ParClientFat par;
+
+        for (int i = 0; i < 12; i++) {
+            map = sales.get(i);
+            par = new ParClientFat(product);
+            for (String client : map.keySet()) {
+                ArrayList<Sale> sales = map.get(client);
+                for (Sale s : sales) {
+                    boolean comp = s.getProduct().equals(product);
+                    if (s.getProduct().equals(product)) {
+                        par.addClient(client);
+                        par.addInvoice(s.getPrice());
+                    }
+                }
+            }
+
+            list.add(i, par);
+        }
+        return list;
+    }
 }

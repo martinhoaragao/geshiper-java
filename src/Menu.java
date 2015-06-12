@@ -184,6 +184,34 @@ public class Menu {
     }
 
     /**
+     * Querie 5
+     * Given a valid product code, get the list
+     * of diferent clients that bought the product
+     * and the total invoiced each month
+     */
+    public void querie5 () {
+        Scanner sc = new Scanner(System.in);
+        List<ParClientFat> list;
+        int i;
+
+        clean();
+        System.out.print("Product: ");
+        try {
+            list = market.getProductClientsSales(sc.nextLine().replaceAll("[\n\r]", ""));
+            System.out.printf("%7s | %7s | %7s\n", "Month", "Clients", "Invoiced");
+            for (i = 0; i < 12; i++) {
+                int clients = list.get(i).getNumOfClients();
+                float invoiced = list.get(i).getInvoiced();
+                System.out.format("%7d | %7d | %7.2f\n", i + 1, clients, invoiced);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (System.console() != null)
+            System.console().readLine();
+    }
+
+    /**
      * Save application state to an object file 'hipermercado.obj'
      */
     public void saveState () {
@@ -225,9 +253,10 @@ public class Menu {
         System.out.println("5: Client anual sales");
         System.out.println("6: (3) Number of sales and clients in a month");
         System.out.println("7: (7) List of a client most bought products");
-        System.out.println("8: Save application state");
-        System.out.println("9: Load application state");
-        System.out.println("10: Exit");
+        System.out.println("8: Querie 5");
+        System.out.println("9: Save application state");
+        System.out.println("10: Load application state");
+        System.out.println("11: Exit");
     }
 
     /**

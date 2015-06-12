@@ -116,6 +116,15 @@ public class Hypermarket implements Serializable {
     }
 
     /**
+     * Get the list of different clients and the invoiced
+     * for a given month every month
+     * @param product The product code
+     */
+    public List<ParClientFat> getProductClientsSales (String product) {
+        return sales.getProductClientsSales(product);
+    }
+
+    /**
      * Check if a given client is present in the Clients Catalog
      * @param client The client code
      */
