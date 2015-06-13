@@ -212,4 +212,11 @@ public class Hypermarket implements Serializable {
         res.add(sales.getClientsByMonth());
         return res;
     }
+
+    /**
+     * Get total invoice
+     */
+    public double getTotalInvoice(){
+        return accounting.getInvoiceByMonth().get(12);
+    }
 }

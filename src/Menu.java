@@ -19,7 +19,7 @@ public class Menu {
     private String fileProducts;
     private String fileSales;
 
-    int invalid_lines = 0;
+    int invalid_lines = 0, clines = 0, plines = 0, zerovalueSales = 0;
 
 
     /**
@@ -352,6 +352,37 @@ public class Menu {
             System.console().readLine();
     }
 
+    public void querieStat() {
+        Crono c = new Crono();
+        double elapsed;
+
+        clean();
+        c.start();
+        String s = fileSales;
+        int num_products = plines;
+        int unused_products = market.getUnusedProducts().size();
+        int bought_products = num_products - unused_products;
+        int num_clients = clines;
+        int cheap_clients = market.getCheapClients().size();
+        int buyer_clients = num_clients - cheap_clients;
+        int num_zeroSales = zerovalueSales;
+        double total_invoice = market.getTotalInvoice();
+        c.stop();
+
+        System.out.format("File name: %s\n", s);
+        System.out.format("Total products: %d\n", num_products);
+        System.out.format("Total different products bought: %d\n", bought_products);
+        System.out.format("Total products not bought: &d\n", unused_products);
+        System.out.format("Total clients: %d\n", num_clients);
+        System.out.format("Total clients who purchased products: %d\n", buyer_clients);
+        System.out.format("Total clients who didn't purchased: %d\n", cheap_clients);
+        System.out.format("Total sales with value 0(zero): %d\n", num_zeroSales);
+        System.out.format("Total invoice: %.2f\n", total_invoice);
+
+        if(System.console() != null)
+            System.console().readLine();
+    }
+
     public void querieStat2(){
         Crono c = new Crono();
         double elapsed;
@@ -365,9 +396,9 @@ public class Menu {
         elapsed = c.stop();
 
         System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
-        System.out.format("%5s | %5s | %7s | %7s\n", "Month", "Sales", "Invoice", "Different Clients");
+        System.out.format("%5s | %5s | %10s | %7s\n", "Month", "Sales", "Invoice", "Different Clients");
         for(int i = 0; i < 12; i++){
-            System.out.format("%5d | %5d | %7f | %7d\n", i, sales.get(i).intValue(), invoice.get(i), clients.get(i).intValue());
+            System.out.format("%5d | %5d | %7.2f | %7d\n", i+1, sales.get(i).intValue(), invoice.get(i), clients.get(i).intValue());
         }
         System.out.format("---------------------------\n");
         System.out.format("Total invoice: %f\n", invoice.get(12));
@@ -426,12 +457,13 @@ public class Menu {
         System.out.println("11: (9)  Top n clients");
         System.out.println("12: (10) Top clients for a product");
         System.out.println("13: Statistical querie");
-        System.out.println("14: Reload with another clients file");
-        System.out.println("15: Reload with another products file");
-        System.out.println("16: Reload with another sale file");
-        System.out.println("17: Save application state");
-        System.out.println("18: Load application state");
-        System.out.println("19: Exit");
+        System.out.println("14: Statistical querie 2");
+        System.out.println("15: Reload with another clients file");
+        System.out.println("16: Reload with another products file");
+        System.out.println("17: Reload with another sale file");
+        System.out.println("18: Save application state");
+        System.out.println("19: Load application state");
+        System.out.println("20: Exit");
     }
 
     /**
@@ -515,7 +547,6 @@ public class Menu {
     public void loadClients (boolean first) {
         Scanner sc = new Scanner(System.in);
         String file, line;
-        int lines;
         Crono c = new Crono();
 
         if (first)
@@ -529,11 +560,11 @@ public class Menu {
 
         /* Read clients file */
         c.start();
-        lines = 0;
+        clines = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             while ((line = br.readLine()) != null) {
-                lines++;
+                clines++;
                 this.addClient(line);
             }
         } catch (Exception e) {
@@ -542,7 +573,7 @@ public class Menu {
         }
         System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println("'" + file + "' read.");
-        System.out.format("%d Clients added.\n\n", lines);
+        System.out.format("%d Clients added.\n\n", clines);
         if (!first) this.loadSales(first);
     }
 
@@ -553,7 +584,6 @@ public class Menu {
     public void loadProducts (boolean first) {
         Scanner sc = new Scanner(System.in);
         String file, line;
-        int lines;
         Crono c = new Crono();
 
         if (first)
@@ -566,12 +596,12 @@ public class Menu {
         }
 
         c.start();
-        lines = 0;
+        plines = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             while ((line = br.readLine()) != null) {
                 this.addProduct(line);
-                lines++;
+                plines++;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -579,7 +609,7 @@ public class Menu {
         }
         System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println("'" + file + "' read.");
-        System.out.format("%d Products added.\n\n", lines);
+        System.out.format("%d Products added.\n\n", plines);
         if (!first) this.loadSales(first);
     }
 
@@ -651,7 +681,10 @@ public class Menu {
 
                     if (!this.clientExists(client)) { invalid = true; invalid_clients++; invalid_lines++; }
                     else if (!this.productExists(product)) { invalid = true; invalid_products++; invalid_lines++; }
-                    else this.registerSale(client, month, sale);
+                    else {
+                        if(price == 0) zerovalueSales++;
+                        this.registerSale(client, month, sale);
+                    }
                 } catch (Exception e) {
                 }
 
