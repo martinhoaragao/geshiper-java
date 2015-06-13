@@ -63,7 +63,7 @@ public class Accounting implements Serializable {
 
             ProductTotalSales productInfo = this.accounting.get(i).get(product);
             if (productInfo != null) {
-                String monthInfo = String.format("%-6d | %-12d | %-14.5f | %-11d | %-13.5f", i,  productInfo.getNormalUnits(), productInfo.getNormalRevenue(), productInfo.getPromoUnits(), productInfo.getPromoRevenue());
+                String monthInfo = String.format("%-6d | %-12d | %-14.5f | %-11d | %-13.5f", i+1,  productInfo.getNormalUnits(), productInfo.getNormalRevenue(), productInfo.getPromoUnits(), productInfo.getPromoRevenue());
 
                 sb.append(monthInfo + "\n");
             }

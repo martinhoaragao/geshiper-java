@@ -46,7 +46,7 @@ public class Menu {
         if (file == null) {         /* Ask for the filename */
             Scanner sc = new Scanner(System.in);
             System.out.print("File name: ");
-            file = sc.nextLine().trim().replaceAll("[\n\r", "");
+            file = sc.nextLine().trim().replaceAll("[\n\r]", "");
         }
 
         try {
@@ -83,7 +83,7 @@ public class Menu {
         if (file == null) {         /* Ask for the filename */
             Scanner sc = new Scanner(System.in);
             System.out.print("File name: ");
-            file = sc.nextLine().trim().replaceAll("[\n\r", "");
+            file = sc.nextLine().trim().replaceAll("[\n\r]", "");
         }
 
         try {
@@ -489,29 +489,41 @@ public class Menu {
      * Save application state to an object file 'hipermercado.obj'
      */
     public void saveState () {
+        Crono c = new Crono();
+        double elapsed = 0;
         try {
+            c.start();
+
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("hipermercado.obj"));
 
             oos.writeObject(market);
             oos.flush();
             oos.close();
+            elapsed = c.stop();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
     }
 
     /**
      * Load a application state from the file 'hipermercado.obj'
      */
     public void loadState () {
+        Crono c = new Crono();
+        double elapsed = 0;
         try {
+            c.start();
+
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("hipermercado.obj"));
 
             market = (Hypermarket) ois.readObject();
             ois.close();
+            elapsed = c.stop();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
     }
 
     /**
