@@ -122,7 +122,8 @@ public class Sale {
 \par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra 
 normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
 
-\subsection{ParSaleClient}
+\subsection{Classes Auxiliares}
+\subsubsection{ParSaleClient}
 \par A classe \textbf{ParSaleClient} foi criada para responder á necessidade de queries que necessitavam de obter informação 
 relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
 \par Para guardar esta informação usou-se então apenas duas variáveis de instância aqui declaradas:
@@ -136,7 +137,29 @@ public class ParSaleClient {
 }
 \end{lstlisting}
 
-\subsection{TripNumProdFat}
+\subsubsection{ParClientFat}
+\par Para resolver a querie 5 é necessário guardar informações relativas ao número de clientes que compraram um produto 
+e total faturado desse produto por mês. Para isso definimos a classe \textbf{ParClientFat} cuja definição das variáveis de 
+instância é a seguinte: 
+
+\begin{lstlisting}[language=Java]
+public class ParClientFat {
+	/* Produto a qual esta associado */
+	private String product;
+	/* Lista de clientes que compraram o produto */
+	private Set<String> clients;
+	/* Total faturado */
+	private float invoiced;
+}
+\end{lstlisting}
+
+\par Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido 
+pelo utilizador e não muda durante a execução da querie.
+\par A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
+\par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma 
+instância de \textbf{ParClientFat} relativa a esse mês.
+
+\subsubsection{TripNumProdFat}
 \par Para poder guardar informação relativa ao número de compras, número de diferentes produtos comprados e total 
 facturado por mês para um dado cliente houve necessidade de criar uma nova classe que guardasse estas informações-
 \par A definição das variáveis de instância é a seguinte:
@@ -158,27 +181,22 @@ elementos repetidos.
 \par A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo do que é que um TreeSet de 
 códigos de produtos se parece.
 
-\subsection{ParClientFat}
-\par Para resolver a querie 5 é necessário guardar informações relativas ao número de clientes que compraram um produto 
-e total faturado desse produto por mês. Para isso definimos a classe \textbf{ParClientFat} cuja definição das variáveis de 
-instância é a seguinte: 
+\subsubsection{TripProdCliUnits}
+\par Para a execução da query 8 é necessário guardar informações relativas ao número unidades vendidas de um produto 
+bem como o número de diferentes clientes que compraram esse produto.
+\par A declaração das variáveis de instância é a seguinte:
 
 \begin{lstlisting}[language=Java]
-public class ParClientFat {
-	/* Produto a qual esta associado */
+public class TripProdCliUnits {
+	/* Produto associado */
 	private String product;
 	/* Lista de clientes que compraram o produto */
-	private Set<String> clients;
-	/* Total faturado */
-	private float invoiced;
+	private TreeSet<String> clients;
+	/* Total de unidades vendidas */
+	private int units;
+	...
 }
 \end{lstlisting}
-
-\par Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido 
-pelo utilizador e não muda durante a execução da querie.
-\par A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
-\par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma 
-instância de \textbf{ParClientFat} relativa a esse mês.
 
 \newpage
 \section{Módulos}
@@ -205,6 +223,31 @@ alfabeticamente e a procura é rápida.
 \includegraphics[width=90mm]{catprodutos.png}
 \caption{Exemplo de um TreeSet de produtos}
 \label{fig:catprodutos}
+\end{figure}
+
+\subsection{Compras}
+\par O módulo de compras é responsável por guardar todas as compras válidas, relacionando quais os clientes que fizeram 
+essas compras e quando, para ser possivel consultar as vendas por mês se assim for desejado.
+\par Como então era necessário conseguir dividir as compras por mês utilizamos um \textbf{ArrayList} com 12 entradas, e 
+em cada uma destas entradas existe um \textbf{TreeMap\textless String, ArrayList\textless Sale\textgreater\textgreater} que 
+mapeia um código de cliente para a lista de compras efectuadas por esse cliente. Usando um \textbf{TreeMap} permite uma 
+procura rápida por um dado cliente e o arraylist permite um acesso directo ás compras de um determinado mês.
+\par A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}[language=Java]
+public class Sales {
+	ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par Para mais facilmente entender a implementação incluimos uma figura da estrutura:
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{sales.png}
+\caption{Exemplo da estrutura com as compras de Janeiro do cliente "FN425"}
+\label{fig:sales}
 \end{figure}
 
 % UI
