@@ -49,7 +49,9 @@ public class Accounting implements Serializable {
         }
     }
     /**
-     * Not completed
+     * Build a string with information regarding sales by each month and type
+     * @arg product, code of the product to get info from
+     * @return string with information already formatted for print
      */
     public String productSalesByMonth (String product) {
         StringBuilder sb = new StringBuilder();

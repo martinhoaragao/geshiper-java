@@ -174,6 +174,11 @@ public class Menu {
             System.console().readLine();
     }
 
+    /**
+     * Query 6
+     * Given a product code, display information regarding its sale
+     * across month and type (promotion and normal)
+     */
     public void query6 () {
         Scanner sc = new Scanner(System.in);
         clean();

@@ -102,6 +102,11 @@ public class Hypermarket implements Serializable {
         return total_sales;
     }
 
+    /**
+     * Build a string with information regarding sales by each month and type
+     * @arg product, code of the product to get info from
+     * @return string with information already formatted for print
+     */
     public String productSalesByMonth (String product) {
         return accounting.productSalesByMonth(product);
     }
