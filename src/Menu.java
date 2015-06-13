@@ -183,13 +183,17 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         clean();
         String product;
-        System.out.print("Product to get monthly sales: ");
+        Crono c = new Crono();
 
+        System.out.print("Product to get monthly sales: ");
         product = sc.nextLine().replaceAll("[\n\r]", "");
-        System.out.println(product);
+
+        c.start();
 
         String result = market.productSalesByMonth(product);
+        System.out.println("Time elapsed: " + c.stop() + " seconds");
         System.out.println(result);
+
 
         if(System.console() != null)
             System.console().readLine();
