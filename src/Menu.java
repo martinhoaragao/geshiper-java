@@ -479,6 +479,10 @@ public class Menu {
          System.out.print("\u001b[2J" + "\u001b[H");
     }
 
+    /**
+     * Load a clients file
+     * @arg first, if true, will load last known name, if not will ask for new file
+     */
     public void loadClients (boolean first) {
         Scanner sc = new Scanner(System.in);
         String file, line;
@@ -513,6 +517,10 @@ public class Menu {
         if (!first) this.loadSales(first);
     }
 
+    /**
+     * Load a products file
+     * @arg first, if true, will load last known name, if not will ask for new file
+     */
     public void loadProducts (boolean first) {
         Scanner sc = new Scanner(System.in);
         String file, line;
@@ -546,6 +554,10 @@ public class Menu {
         if (!first) this.loadSales(first);
     }
 
+    /**
+     * Load a sales file
+     * @arg first, if true, will load last known name, if not will ask for new file
+     */
     public void loadSales (boolean first) {
         Scanner sc = new Scanner(System.in);
         String file, line;
