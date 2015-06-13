@@ -56,8 +56,8 @@ public class Accounting implements Serializable {
     public String productSalesByMonth (String product) {
         StringBuilder sb = new StringBuilder();
 
-        String topBar = String.format("%6s | %12s | %14s | %11s | %13s", "Months", "Normal Units", "Normal Revenue", "Promo Units", "Promo Revenue");
-        sb.append(topBar + "\n");
+        String topBar = "Months | Normal Units | Normal Revenue | Promo Units | Promo Revenue\n";
+        sb.append(topBar);
 
         for (int i = 0; i<12; i++) {
 
@@ -68,7 +68,11 @@ public class Accounting implements Serializable {
                 sb.append(monthInfo + "\n");
             }
         }
-        return sb.toString();
+        String result = sb.toString();
+        if (result.equals(topBar))
+            return "Product not valid";
+        else
+            return sb.toString();
     }
 
 }

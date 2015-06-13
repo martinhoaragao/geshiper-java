@@ -380,7 +380,7 @@ public class Menu {
         System.out.println("6: (3) Number of sales and clients in a month");
         System.out.println("7: (7) List of a client most bought products");
         System.out.println("8: Querie 5");
-        System.out.println("9: Query 6");
+        System.out.println("9: (6) Product sales by month and type");
         System.out.println("10: Querie 8");
         System.out.println("11: Querie 9");
         System.out.println("12: Querie 10");
