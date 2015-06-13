@@ -51,6 +51,19 @@
 
 \section{Introdução}
 
+\par Este relatório aborda a resolução do projeto prático em Java de LI3. O Projeto, denominado Gesthiper, baseia-se
+num programa de gestão de hipermercados o qual depende de uma lista de clientes, uma lista de produtos e uma
+lista de compras efetuadas. \par Cada uma destas listas deve estar num ficheiro .txt e para cada um dos ficheiros o
+programa percorre o ficheiro, executando operações que permitam guardar estes dados em memória. Para ajudar nesta tarefa repartiu-se as tarefas em quatro módulos
+módulos. Estes módulos são: um catálogo de clientes; um catálogo de produtos; um módulo de contabilidade; um módulo de compras.
+\par De forma a preservar o encapsulamento de dados disponibilizou-se uma API de
+forma a que o utilizador apenas possa aceder através destas funções públicas.
+\par Depois dos ficheiros serem carregados o utilizador é capaz de executar uma lista de queries que
+foi fornecida pela equipa docente. Para responder às diferentes queries utiliza-se as funções definidas nas API dos diferentes
+módulos já referidos bem como código auxiliar presente no \emph{main}, programa principal.
+\par Ao longo deste relatório aborda-se assim as decisões tomadas na implementação do projeto, nomeadamente quais as estruturas utilizadas para criar cada um dos módulos e as suas APIs.
+
+
 \newpage
 \section{Classes}
 Na seguinte secção vamos explicar as classes que decidimos criar para a resolução do projeto, incluindo diagramas
@@ -58,12 +71,15 @@ de classes e explicação das estruturas escolhidas para cada classe.
 
 % ClientsCatalog
 \subsection{ClientsCatalog}
-\par Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \textbf{ClientsCatalog} irá tratar de guardar
-os clientes e manter também a lista de clientes que não realizaram nenhuma compra.
-\par Também é esta class que trata de criar a lista com os códigos de cliente dado a letra inicial do código.
-\par Fica aqui o código que define as variáveis de instância:
 
-\begin{lstlisting}[language=Java]
+Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \textbf{ClientsCatalog} irá tratar de guardar
+os clientes e manter também a lista de clientes que não realizaram nenhuma compra.
+
+Também é esta class que trata de criar a lista com os códigos de cliente dado a letra inicial do código.
+
+Fica aqui o código que define as variáveis de instância:
+
+\begin{lstlisting}
 public class ClientsCatalog {
 	/* Codigo de cliente -> Cliente */
 	private TreeSet<String> clients;
@@ -72,20 +88,24 @@ public class ClientsCatalog {
 }
 \end{lstlisting}
 
-\par Uma das vantagens desta implementação é quando o utilizador decidir ler um novo ficheiro de compras não é necessário
+
+Uma das vantagens desta implementação é quando o utilizador decidir ler um novo ficheiro de compras não é necessário
 percorrer a lista de todos os clientes e voltar a inserir na lista de clientes que nunca compraram nada para depois retirar à
 medida que aparecem no ficheiro de compras, como \textbf{String} são imutáveis basta correr o código:
 $unused\_clients = clients.clone();$ e a variável $unused\_clients$ passa agora a ter novamente a lista de todos os clientes que estão no catálogo de clientes.
 
 %ProductsCatalog
 \subsection{ProductsCatalog}
-\par A classe \textbf{ProductsCatalog} vai ser a responsável por guardar todos os códigos de produtos existentes no ficheiro de
-produtos assim como guardar a lista de produtos que ninguém comprou.
-\par Para guardar a duas listas referidas usamos a classe \textbf{TreeSet} visto que como os códigos de produtos são apenas
-do tipo \textbf{String} a pesquisa num \textbf{TreeSet} torna-se rápida.
-\par A declaração das variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+A classe \textbf{ProductsCatalog} vai ser a responsável por guardar todos os códigos de produtos existentes no ficheiro de
+produtos assim como guardar a lista de produtos que ninguém comprou.
+
+Para guardar a duas listas referidas usamos a classe \textbf{TreeSet} visto que como os códigos de produtos são apenas
+do tipo \textbf{String} a pesquisa num \textbf{TreeSet} torna-se rápida.
+
+A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
 public class ProductsCatalog {
 	/* Lista de todos os codigos de produto */
 	private TreeSet<String> products;
@@ -94,19 +114,23 @@ public class ProductsCatalog {
 }
 \end{lstlisting}
 
-\par Tal como no caso da classe \textbf{ClientsCatalog} sempre que for necessário voltar a ler o ficheiro de compras é fácil
+
+Tal como no caso da classe \textbf{ClientsCatalog} sempre que for necessário voltar a ler o ficheiro de compras é fácil
 reconstruir a lista de todos os códigos de produto na lista dos produtos que ninguém comprou, basta correr:
 $unused\_products = products.clone();$.
 
 \newpage
 \subsection{Sale}
-\par Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando,
-o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
-\par A classe \textbf{Sale} trata de guardar informação relativa a uma compra, guardando o código do produto comprado,
-as unidades, o tipo da compra (promocional ou normal) e o total gasto.
-\par Fica em seguida a declaração das variáveis de instância:
 
-\begin{lstlisting}[language=Java]
+Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando,
+o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
+
+A classe \textbf{Sale} trata de guardar informação relativa a uma compra, guardando o código do produto comprado,
+as unidades, o tipo da compra (promocional ou normal) e o total gasto.
+
+Fica em seguida a declaração das variáveis de instância:
+
+\begin{lstlisting}
 public class Sale {
 	/* Codigo do produto */
 	private String product;
@@ -119,15 +143,19 @@ public class Sale {
 }
 \end{lstlisting}
 
-\par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra
+
+Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra
 normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
 
 \subsection{ProductTotalSales}
-\par Para o módulo de Contabilidade é necessário guardar informação sobre o total de vendas de um produto ou seja, facturação e unidades divididos entre promoção e vendas normais.
-\par Assim a classe \textbf{Contabilidade} trata de guardar informação relativa a cada um destes dados, ao multiplicar as unidades e preço por unidade de uma venda.
-\par De seguida declara-se as variáveis de instância:
 
-\begin{lstlisting}[language=Java]
+Para o módulo de Contabilidade é necessário guardar informação sobre o total de vendas de um produto ou seja, facturação e unidades divididos entre promoção e vendas normais.
+
+Assim a classe \textbf{Contabilidade} trata de guardar informação relativa a cada um destes dados, ao multiplicar as unidades e preço por unidade de uma venda.
+
+De seguida declara-se as variáveis de instância:
+
+\begin{lstlisting}
 public class Sale {
   private String product;         /* Codigo de Produto */
   private int normalUnits;        /* Quantas unidades vendidas ao preco normal */
@@ -140,11 +168,13 @@ public class Sale {
 
 \subsection{Classes Auxiliares}
 \subsubsection{ParSaleClient}
-\par A classe \textbf{ParSaleClient} foi criada para responder à necessidade de queries que necessitavam de obter informação
-relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
-\par Para guardar esta informação usou-se então apenas duas variáveis de instância aqui declaradas:
 
-\begin{lstlisting}[language=Java]
+A classe \textbf{ParSaleClient} foi criada para responder à necessidade de queries que necessitavam de obter informação
+relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
+
+Para guardar esta informação usou-se então apenas duas variáveis de instância aqui declaradas:
+
+\begin{lstlisting}
 public class ParSaleClient {
 	/* Numero total de vendas */
 	private int num_sales;
@@ -154,11 +184,12 @@ public class ParSaleClient {
 \end{lstlisting}
 
 \subsubsection{ParClientFat}
-\par Para resolver a querie 5 é necessário guardar informações relativas ao número de clientes que compraram um produto
+
+Para resolver a querie 5 é necessário guardar informações relativas ao número de clientes que compraram um produto
 e total faturado desse produto por mês. Para isso definimos a classe \textbf{ParClientFat} cuja definição das variáveis de
 instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}
 public class ParClientFat {
 	/* Produto a qual esta associado */
 	private String product;
@@ -169,18 +200,23 @@ public class ParClientFat {
 }
 \end{lstlisting}
 
-\par Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido
+
+Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido
 pelo utilizador e não muda durante a execução da querie.
-\par A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
-\par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma
+
+A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
+
+Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma
 instância de \textbf{ParClientFat} relativa a esse mês.
 
 \subsubsection{TripNumProdFat}
-\par Para poder guardar informação relativa ao número de compras, número de diferentes produtos comprados e total
-facturado por mês para um dado cliente houve necessidade de criar uma nova classe que guardasse estas informações-
-\par A definição das variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+Para poder guardar informação relativa ao número de compras, número de diferentes produtos comprados e total
+facturado por mês para um dado cliente houve necessidade de criar uma nova classe que guardasse estas informações-
+
+A definição das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
 public class TripNumProdFat {
 	/* Numero total de vendas */
 	private int num_sales;
@@ -191,18 +227,22 @@ public class TripNumProdFat {
 }
 \end{lstlisting}
 
-\par Foi necessário utilizar um Set para guardar os códigos de produtos pois era necessário garantir que o mesmo produto
+
+Foi necessário utilizar um Set para guardar os códigos de produtos pois era necessário garantir que o mesmo produto
 não era contabilizado várias vezes. Utilizamos um \textbf{TreeSet} pois a pesquisa é rápida e garante que não existem
 elementos repetidos.
-\par A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo do que é que um TreeSet de
+
+A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo do que é que um TreeSet de
 códigos de produtos se parece.
 
 \subsubsection{TripProdCliUnits}
-\par Para a execução da query 8 é necessário guardar informações relativas ao número unidades vendidas de um produto
-bem como o número de diferentes clientes que compraram esse produto.
-\par A declaração das variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+Para a execução da query 8 é necessário guardar informações relativas ao número unidades vendidas de um produto
+bem como o número de diferentes clientes que compraram esse produto.
+
+A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
 public class TripProdCliUnits {
 	/* Produto associado */
 	private String product;
@@ -214,18 +254,22 @@ public class TripProdCliUnits {
 }
 \end{lstlisting}
 
-\par Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido
+
+Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido
 pelo utilizador e não muda durante a execução da querie.
-\par A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
-\par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma
+
+A lista de clientes foi implementada usando um \textbf{Set} pois garante a ausência de elementos repetidos.
+
+Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma
 instância de \textbf{ParClientFat} relativa a esse mês.
 
 \subsubsection{ParClientQuant}
-\par A resolução das queries 9 e 10 requeriam que a cada código de cliente estivesse associado um número de unidades e,
+
+A resolução das queries 9 e 10 requeriam que a cada código de cliente estivesse associado um número de unidades e,
 no caso da querie 10, um total fatucado por esse cliente. Assim, foi definida a classe \textbf{ParClientQuant} cuja
 definição das variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}
 public class ParClientQuant {
     /* client code */
 	private String client_code;
@@ -236,16 +280,18 @@ public class ParClientQuant {
 }
 \end{lstlisting}
 
-\par Na querie 9, é apenas necessário associar a um código de cliente, o número de produtos diferentes que esse cliente
+
+Na querie 9, é apenas necessário associar a um código de cliente, o número de produtos diferentes que esse cliente
 comprou. Como tal, a variável \textbf{fat} é apenas utilizada na querie 10, onde é necessário associar a um código de
 cliente, não só o número de unidades de um produto que o cliente comprou, como o total gasto pelo cliente relativo a esse
 produto.
 
 \subsubsection{ParProductUnits}
-\par De modo a resolver a querie 7 foi necessário desenvolver uma classe que associasse um valor a um código de produto.
+
+De modo a resolver a querie 7 foi necessário desenvolver uma classe que associasse um valor a um código de produto.
 Desta forma, a classe \textbf{ParProductUnits} foi definida. A definição das suas variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}
 public class ParProductUnits {
 	/* product code */
     private String product_code;
@@ -253,13 +299,15 @@ public class ParProductUnits {
     private int num_sold;
 \end{lstlisting}
 
-\par Esta classe associa o número de vezes que um produto foi comprado ao código do dito produto. Assim, pudemos evitar
+
+Esta classe associa o número de vezes que um produto foi comprado ao código do dito produto. Assim, pudemos evitar
 a utilização de estruturas de dados demasiado complexas que conseguissem associar um \textbf{int} a uma \textbf{String}.
 
 \newpage
 \section{Módulos}
 \subsection{Catálogo de Clientes}
-\par Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário
+
+Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário
 criar um catálogo de clientes. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe
 \textbf{ClientsCatalog} que guarda todos os códigos de client do tipo \textbf{String} num TreeSet para permitir uma pesquisa
 rápida.
@@ -272,7 +320,8 @@ rápida.
 
 \newpage
 \subsection{Catálogo de Produtos}
-\par O catálogo de clientes foi implementado usando a class  \textbf{ProductsCatalog} que basicamente guarda os códigos
+
+O catálogo de clientes foi implementado usando a class  \textbf{ProductsCatalog} que basicamente guarda os códigos
 dos produtos num TreeSet. Como os códigos dos produtos são apenas \textbf{String} a árvore fica então ordenada
 alfabeticamente e a procura é rápida.
 
@@ -284,22 +333,26 @@ alfabeticamente e a procura é rápida.
 \end{figure}
 
 \subsection{Compras}
-\par O módulo de compras é responsável por guardar todas as compras válidas, relacionando quais os clientes que fizeram
+
+O módulo de compras é responsável por guardar todas as compras válidas, relacionando quais os clientes que fizeram
 essas compras e quando, para ser possivel consultar as vendas por mês se assim for desejado.
-\par Como então era necessário conseguir dividir as compras por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
+
+Como então era necessário conseguir dividir as compras por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
 em cada uma destas entradas existe um \textbf{TreeMap\textless String, ArrayList\textless Sale\textgreater\textgreater} que
 mapeia um código de cliente para a lista de compras efectuadas por esse cliente. Usando um \textbf{TreeMap} permite uma
 procura rápida por um dado cliente e o arraylist permite um acesso directo às compras de um determinado mês.
-\par A declaração das variáveis de instância é a seguinte:
 
-\begin{lstlisting}[language=Java]
+A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
 public class Sales {
 	ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
+
 	...
 }
 \end{lstlisting}
 
-\par Para mais facilmente entender a implementação incluimos uma figura da estrutura:
+Para mais facilmente entender a implementação incluimos uma figura da estrutura:
 
 \begin{figure}[ht!]
 \centering
@@ -309,12 +362,24 @@ public class Sales {
 \end{figure}
 
 \subsection{Contabilidade}
-\par O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
+
+O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
 Desta forma pretende-se que seja possível obter facilmente a facturação total de um mês, analisar as vendas de um produto mensalmente, e as suas vendas todais num ano.
-\par Como então era necessário conseguir dividir as vendas por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
+
+Como então era necessário conseguir dividir as vendas por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
 em cada uma destas entradas existe um \textbf{TreeMap\textless String, ProductTotalSales\textgreater} que mapeia um código de produto para a informação de facturação total do mesmo. Usando um \textbf{TreeMap} permite uma
 procura rápida por um dado produto e o arraylist permite um acesso directo às vendas de um determinado mês.
 
+A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
+public class Accounting {
+/* Informacao de facturacao por mes e por produto */
+  private ArrayList<TreeMap <String,ProductTotalSales>> accounting;
+
+  ...
+}
+\end{lstlisting}
 % UI
 \newpage
 \section{Interface Utilizador}
