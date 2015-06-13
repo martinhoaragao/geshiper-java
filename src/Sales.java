@@ -155,7 +155,7 @@ public class Sales implements Serializable {
      * of the n most bought products during the year
      * @param n Number of products
      */
-    public void getMostBoughtProducts (int n) {
+    public ArrayList<ParClientUnits> getMostBoughtProducts (int n) {
         /* Map between product code and units */
         Map<String, Integer> map_units = new TreeMap<String, Integer>();
         /* Map between units sold and the pairs for which
@@ -223,13 +223,11 @@ public class Sales implements Serializable {
             for (ParClientUnits par : map_pair.get(x).values()) {
                 list.add(index, par);
                 index++;
-                if (index == n) break;
             }
-            if (index == n)  break;
+            if (index >= n)  break;
         }
 
-        for (ParClientUnits par : list)
-            System.out.println(par.getProduct() + " - " + par.getNumOfClients() + " - " + par.getUnits());
+        return list;
     }
 
     /**

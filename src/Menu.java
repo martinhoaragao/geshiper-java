@@ -246,9 +246,15 @@ public class Menu {
 
         clean();
         System.out.print("Number of products: ");
+        ArrayList<ParClientUnits> list;
 
         try {
-            market.getMostBoughtProducts(sc.nextInt());
+            list = market.getMostBoughtProducts(sc.nextInt());
+
+            System.out.format("%7s | %7s | %7s\n", "Product", "Clients", "Units");
+            System.out.println("---------------------------");
+            for (ParClientUnits par : list)
+                System.out.format("%7s | %7d | %7d\n", par.getProduct(), par.getNumOfClients(), par.getUnits());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -300,11 +306,12 @@ public class Menu {
         System.out.println("6: (3) Number of sales and clients in a month");
         System.out.println("7: (7) List of a client most bought products");
         System.out.println("8: Querie 5");
-        System.out.println("9: Querie 9");
-        System.out.println("10: Querie 10");
-        System.out.println("11: Save application state");
-        System.out.println("12: Load application state");
-        System.out.println("13: Exit");
+        System.out.println("9: Querie 8");
+        System.out.println("10: Querie 9");
+        System.out.println("11: Querie 10");
+        System.out.println("12: Save application state");
+        System.out.println("13: Load application state");
+        System.out.println("14: Exit");
     }
 
     /**
