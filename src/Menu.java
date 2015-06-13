@@ -231,11 +231,11 @@ public class Menu {
     }
 
     /**
-     * Querie 3
+     * Query 3
      * Given a valid month, display the number of sales and the number
      * of different clients that purchased in that month
      */
-    public void querie3 () {
+    public void query3 () {
         Scanner sc = new Scanner(System.in);
         ParSaleClient psc;
         Crono c = new Crono();
@@ -286,12 +286,12 @@ public class Menu {
     }
 
     /**
-     * Querie 7
+     * Query 7
      * Given a valid client code, get the list of
      * the most bought products in decreasing order
      * of quantity
      */
-    public void querie7 () {
+    public void query7 () {
         Scanner sc = new Scanner(System.in);
         List<ParProductUnits> result;
         Crono c = new Crono();
@@ -316,7 +316,7 @@ public class Menu {
             System.console().readLine();
     }
 
-    public void querie9 () {
+    public void query9 () {
         Scanner sc = new Scanner(System.in);
         List<ParClientQuant> result;
         Crono c = new Crono();
@@ -338,7 +338,7 @@ public class Menu {
             System.console().readLine();
     }
 
-    public void querie10 () {
+    public void query10 () {
         Scanner sc = new Scanner(System.in);
         List<ParClientQuant> result;
         Crono c = new Crono();
@@ -364,12 +364,12 @@ public class Menu {
     }
 
     /**
-     * Querie 5
+     * Query 5
      * Given a valid product code, get the list
      * of diferent clients that bought the product
      * and the total invoiced each month
      */
-    public void querie5 () {
+    public void query5 () {
         Scanner sc = new Scanner(System.in);
         List<ParClientFat> list;
         int i;
@@ -399,7 +399,7 @@ public class Menu {
             System.console().readLine();
     }
 
-    public void querie8 () {
+    public void query8 () {
         Scanner sc = new Scanner(System.in);
         Crono c = new Crono();
         double elapsed;
@@ -428,7 +428,7 @@ public class Menu {
             System.console().readLine();
     }
 
-    public void querieStat() {
+    public void queryStat() {
         Crono c = new Crono();
         double elapsed;
 
@@ -459,7 +459,7 @@ public class Menu {
             System.console().readLine();
     }
 
-    public void querieStat2(){
+    public void queryStat2(){
         Crono c = new Crono();
         double elapsed;
 
@@ -544,8 +544,8 @@ public class Menu {
         System.out.println("10: (8)  Top n products");
         System.out.println("11: (9)  Top n clients");
         System.out.println("12: (10) Top clients for a product");
-        System.out.println("13: Statistical querie");
-        System.out.println("14: Statistical querie 2");
+        System.out.println("13: Statistical query");
+        System.out.println("14: Statistical query 2");
         System.out.println("15: Reload with another clients file");
         System.out.println("16: Reload with another products file");
         System.out.println("17: Reload with another sale file");
