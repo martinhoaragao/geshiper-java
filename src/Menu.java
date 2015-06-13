@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.Scanner;
 
 /**
@@ -191,7 +192,7 @@ public class Menu {
         c.start();
 
         String result = market.productSalesByMonth(product);
-        System.out.println("Time elapsed: " + c.stop() + " seconds");
+        System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println(result);
 
 
@@ -465,5 +466,145 @@ public class Menu {
     public void clean () {
      if (System.console() != null)
          System.out.print("\u001b[2J" + "\u001b[H");
+    }
+
+    public void loadClients (boolean first) {
+        Scanner sc = new Scanner(System.in);
+        String file, line;
+        int lines;
+        Crono c = new Crono();
+
+        if (first)
+            file = "FichClientes.txt";
+        else {
+            System.out.print("Type the name of the clients file: ");
+            file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+        }
+
+        /* Read clients file */
+        c.start();
+        lines = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("FichClientes.txt"));
+            while ((line = br.readLine()) != null) {
+                lines++;
+                this.addClient(line);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
+        System.out.println("'" + file + "' read.");
+        System.out.format("%d Clients added.\n\n", lines);
+    }
+
+    public void loadProducts (boolean first) {
+        Scanner sc = new Scanner(System.in);
+        String file, line;
+        int lines;
+        Crono c = new Crono();
+
+        if (first)
+            file = "FichProdutos.txt";
+        else {
+            System.out.print("Type the name of the products file: ");
+            file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+        }
+
+        c.start();
+        lines = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while ((line = br.readLine()) != null) {
+                this.addProduct(line);
+                lines++;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
+        System.out.println("'" + file + "' read.");
+        System.out.format("%d Products added.\n\n", lines);
+    }
+
+    public void loadSales (boolean first) {
+        Scanner sc = new Scanner(System.in);
+        String file, line;
+        int lines;
+        Crono c = new Crono();
+
+        System.out.print("Do you wish to save invalid sales? (y/n)");
+        boolean write_invalid = (sc.nextLine().trim().equals("y")) ? true : false;
+        PrintWriter pw = null;
+
+        if (write_invalid) {
+            System.out.print("File: ");
+            file = sc.nextLine().trim().replaceAll("[\n\r]","");
+            try {
+                pw = new PrintWriter(file);
+                pw.printf("%7s %7s %7s %7s %7s %7s\n", "Product", "Price", "Units", "Type", "Client", "Month");
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+        if (first)
+            file = "Compras.txt";
+        else {
+            System.out.print("Type the name of the products file: ");
+            file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+        }
+
+        c.start();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            StringTokenizer st;
+            int invalid_clients = 0, invalid_products = 0, invalid_lines = 0;
+            boolean invalid;        /* Keep control of invalid lines */
+
+            while ((line = br.readLine()) != null) {
+                invalid = false;
+                int i = 1;
+                st = new StringTokenizer(line, " ");
+                Sale sale = new Sale();
+                String client, product;
+                float price;
+                int units, month;
+                boolean type;
+
+                /* Parse line */
+                product = st.nextToken();
+                price   = Float.parseFloat(st.nextToken());
+                units   = Integer.parseInt(st.nextToken());
+                type    = st.nextToken().equals("P");
+                client  = st.nextToken();
+                month   = Integer.parseInt(st.nextToken());
+
+                try {
+                    sale.setProduct(product);
+                    sale.setPrice(price);
+                    sale.setUnits(units);
+                    sale.setType(type);
+
+                    if (!this.clientExists(client)) { invalid = true; invalid_clients++; invalid_lines++; }
+                    else if (!this.productExists(product)) { invalid = true; invalid_products++; invalid_lines++; }
+                    else this.registerSale(client, month, sale);
+                } catch (Exception e) {
+                }
+
+                if (invalid && write_invalid) {
+                    pw.printf("%7s %7.2f %7d %7s %7s %7d\n", product, price, units, type ? "P" : "N", client, month);
+                }
+            }
+
+            pw.flush();
+            pw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
+        System.out.println("'" + file + "' read.");
     }
 }
