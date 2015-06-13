@@ -183,13 +183,20 @@ public class Menu {
     public void querie7 () {
         Scanner sc = new Scanner(System.in);
         List<ParProductUnits> result;
+        Crono c = new Crono();
+        double elapsed;
 
         clean();
         System.out.print("Client: ");
         try {
+            c.start();
             result = market.getProductsMostBought(sc.nextLine().replaceAll("[\n\r]", ""));
+            elapsed = c.stop();
+
+            System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+            System.out.format("%8s | %8s\n", "Product", "Units");
             for (ParProductUnits par : result)
-                System.out.println(par.getProductCode() + " - " + par.getUnitsSold());
+                System.out.format("%8s | %8d\n", par.getProductCode(), par.getUnitsSold());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -200,12 +207,20 @@ public class Menu {
     public void querie9 () {
         Scanner sc = new Scanner(System.in);
         List<ParClientQuant> result;
+        Crono c = new Crono();
+        double elapsed;
 
         clean();
         System.out.print("How many?");
+
+        c.start();
         result = market.getTopClients(sc.nextInt());
+        elapsed = c.stop();
+
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+        System.out.format("%8s | %8s\n", "Clients", "Products");
         for(ParClientQuant par : result){
-            System.out.println(par.getClientCode() + " - " + par.getProducts());
+            System.out.format("%8s | %8d\n", par.getClientCode(), par.getProducts());
         }
         if(System.console() != null)
             System.console().readLine();
@@ -214,14 +229,23 @@ public class Menu {
     public void querie10 () {
         Scanner sc = new Scanner(System.in);
         List<ParClientQuant> result;
+        Crono c = new Crono();
+        double elapsed;
 
         clean();
         System.out.print("Product: ");
         String s = sc.nextLine().replaceAll("[\n\r]", "");
         System.out.print("How many?");
+
+        c.start();
         result = market.getTopClients(s, sc.nextInt());
+        elapsed = c.stop();
+
+
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+        System.out.format("%8s | %8s | %8s\n", "Clients", "Units", "Invoiced");
         for(ParClientQuant par : result){
-            System.out.format("%s - %d - %.2f\n", par.getClientCode(), par.getProducts(), par.getInvoice());
+            System.out.format("%8s | %8d | %8.2f\n", par.getClientCode(), par.getProducts(), par.getInvoice());
         }
         if(System.console() != null)
             System.console().readLine();
