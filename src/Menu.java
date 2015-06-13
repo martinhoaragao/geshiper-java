@@ -15,12 +15,20 @@ import java.util.Scanner;
  */
 public class Menu {
     private Hypermarket market;
+    private String fileClients;
+    private String fileProducts;
+    private String fileSales;
+
 
     /**
      * Unparameterized constructor
      */
     public Menu () {
         market = new Hypermarket();
+        fileClients = "FichClientes.txt";
+        fileProducts = "FichProdutos.txt";
+        fileSales = "Compras.txt";
+
     }
 
     /**
@@ -376,7 +384,7 @@ public class Menu {
      */
     public void showMenu () {
         clean();
-
+        
         System.out.println(" 1: List of Clients by initial");
         System.out.println(" 2: List of Products by initial");
         System.out.println(" 3: (1)  List of products never bought");
@@ -389,9 +397,12 @@ public class Menu {
         System.out.println("10: (8)  Top n products");
         System.out.println("11: (9)  Top n clients");
         System.out.println("12: (10) Top clients for a product");
-        System.out.println("13: Save application state");
-        System.out.println("14: Load application state");
-        System.out.println("15: Exit");
+        System.out.println("13: Reload with another clients file");
+        System.out.println("14: Reload with another products file");
+        System.out.println("15: Reload with another sale file");
+        System.out.println("16: Save application state");
+        System.out.println("17: Load application state");
+        System.out.println("18: Exit");
     }
 
     /**
@@ -475,27 +486,31 @@ public class Menu {
         Crono c = new Crono();
 
         if (first)
-            file = "FichClientes.txt";
+            file = this.fileClients;
         else {
+            clean();
             System.out.print("Type the name of the clients file: ");
             file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+            this.fileClients = file;
         }
 
         /* Read clients file */
         c.start();
         lines = 0;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("FichClientes.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             while ((line = br.readLine()) != null) {
                 lines++;
                 this.addClient(line);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return;
         }
         System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println("'" + file + "' read.");
         System.out.format("%d Clients added.\n\n", lines);
+        if (!first) this.loadSales(first);
     }
 
     public void loadProducts (boolean first) {
@@ -505,10 +520,12 @@ public class Menu {
         Crono c = new Crono();
 
         if (first)
-            file = "FichProdutos.txt";
+            file = this.fileProducts;
         else {
+            clean();
             System.out.print("Type the name of the products file: ");
             file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+            this.fileProducts = file;
         }
 
         c.start();
@@ -521,10 +538,12 @@ public class Menu {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return;
         }
         System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println("'" + file + "' read.");
         System.out.format("%d Products added.\n\n", lines);
+        if (!first) this.loadSales(first);
     }
 
     public void loadSales (boolean first) {
@@ -533,7 +552,7 @@ public class Menu {
         int lines;
         Crono c = new Crono();
 
-        System.out.print("Do you wish to save invalid sales? (y/n)");
+        System.out.print("Do you wish to save invalid sales? (y/n) ");
         boolean write_invalid = (sc.nextLine().trim().equals("y")) ? true : false;
         PrintWriter pw = null;
 
@@ -551,10 +570,11 @@ public class Menu {
         }
 
         if (first)
-            file = "Compras.txt";
+            file = this.fileSales;
         else {
-            System.out.print("Type the name of the products file: ");
+            System.out.print("Type the name of the sales file: ");
             file =  sc.nextLine().trim().replaceAll("[\n\r]", "");
+            this.fileSales = file;
         }
 
         c.start();
@@ -606,5 +626,8 @@ public class Menu {
         }
         System.out.format("Time elapsed: %1.6f seconds\n", c.stop());
         System.out.println("'" + file + "' read.");
+
+        if (System.console() != null)
+            System.console().readLine();
     }
 }

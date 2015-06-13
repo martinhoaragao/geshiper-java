@@ -14,8 +14,7 @@ public class GesthiperOO {
         Menu menu = new Menu();
         Scanner sc = new Scanner(System.in);
         boolean finished = false;
-        String line;
-        int option, lines;
+        int option;
 
         /* Read clients file */
         menu.loadClients(true);
@@ -25,9 +24,6 @@ public class GesthiperOO {
 
         /* Read sales file */
         menu.loadSales(true);
-
-        if (System.console() != null)
-            System.console().readLine();
 
         /* Show menu to user */
         while (!finished) {
@@ -47,9 +43,12 @@ public class GesthiperOO {
                 case 10: menu.querie8();            break;
                 case 11: menu.querie9();            break;
                 case 12: menu.querie10();           break;
-                case 13: menu.saveState();          break;
-                case 14: menu.loadState();          break;
-                case 15: finished = true;           break;
+                case 13: menu.loadClients(false);   break;
+                case 14: menu.loadProducts(false);  break;
+                case 15: menu.loadSales(false);     break;
+                case 16: menu.saveState();          break;
+                case 17: menu.loadState();          break;
+                case 18: finished = true;           break;
                 default:                            break;
             }
         }
