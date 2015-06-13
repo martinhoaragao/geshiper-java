@@ -1,9 +1,7 @@
 import Exceptions.InvalidMonthException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Scanner;
@@ -31,6 +29,80 @@ public class Menu {
         fileProducts = "FichProdutos.txt";
         fileSales = "Compras.txt";
 
+    }
+
+    /**
+     * Load a file with all the client codes
+     * @param file The filename, if the file is null
+     *             the method will request a new file
+     */
+    public void loadClientsFile (String file) {
+        Crono crono = new Crono();  /* Cronometer */
+        double elapsed;             /* Time elapsed */
+        BufferedReader br;          /* To read the file */
+        String line;                /* Store actual line */
+        int lines = 0;              /* Number of lines read */
+
+        if (file == null) {         /* Ask for the filename */
+            Scanner sc = new Scanner(System.in);
+            System.out.print("File name: ");
+            file = sc.nextLine().trim().replaceAll("[\n\r", "");
+        }
+
+        try {
+            crono.start();
+            br = new BufferedReader(new FileReader(file)); /* Open file */
+
+            while ((line = br.readLine()) != null) {
+                lines++;
+                addClient(line);
+            }
+            elapsed = crono.stop();
+
+            System.out.println(file + " was read.");
+            System.out.println(lines + " clients were stored.");
+            System.out.format("Elapsed time: %2.6f\n", elapsed);
+        }
+        catch (Exception e) {
+            System.out.println("The file does not exist.");
+        }
+    }
+
+    /**
+     * Load a file with all the product codes
+     * @param file The filename, if the file is null
+     *             the method will request a new file
+     */
+    public void loadProductsFile (String file) {
+        Crono crono = new Crono();  /* Cronometer */
+        double elapsed;             /* Time elapsed */
+        BufferedReader br;          /* To read the file */
+        String line;                /* Store actual line */
+        int lines = 0;              /* Number of lines read */
+
+        if (file == null) {         /* Ask for the filename */
+            Scanner sc = new Scanner(System.in);
+            System.out.print("File name: ");
+            file = sc.nextLine().trim().replaceAll("[\n\r", "");
+        }
+
+        try {
+            crono.start();
+            br = new BufferedReader(new FileReader(file)); /* Open file */
+
+            while ((line = br.readLine()) != null) {
+                lines++;
+                addProduct(line);
+            }
+            elapsed = crono.stop();
+
+            System.out.println(file + " was read.");
+            System.out.println(lines + " products were stored.");
+            System.out.format("Elapsed time: %2.6f\n", elapsed);
+        }
+        catch (Exception e) {
+            System.out.println("The file does not exist.");
+        }
     }
 
     /**
@@ -225,8 +297,9 @@ public class Menu {
         clean();
         System.out.print("Client: ");
         try {
+            String product = sc.nextLine().replaceAll("[\n\r]", "");
             c.start();
-            result = market.getProductsMostBought(sc.nextLine().replaceAll("[\n\r]", ""));
+            result = market.getProductsMostBought(product);
             elapsed = c.stop();
 
             System.out.format("Time elapsed: %1.6f seconds\n", elapsed);

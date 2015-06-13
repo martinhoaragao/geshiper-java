@@ -24,6 +24,79 @@ public class GesthiperOO {
 
         /* Read sales file */
         menu.loadSales(true);
+        System.out.print("Do you wish to save invalid sales? (y/n)");
+        boolean write_invalid = (sc.nextLine().trim().equals("y")) ? true : false;
+        String file;
+        PrintWriter pw = null;
+
+        if (write_invalid) {
+            System.out.print("File: ");
+            file = sc.nextLine().trim().replaceAll("[\n\r]","");
+            try {
+                pw = new PrintWriter(file);
+                pw.printf("%7s %7s %7s %7s %7s %7s\n", "Product", "Price", "Units", "Type", "Client", "Month");
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+        c.start();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("Compras.txt"));
+            StringTokenizer st;
+            int invalid_clients = 0, invalid_products = 0, invalid_lines = 0;
+            boolean invalid;        /* Keep control of invalid lines */
+
+            while ((line = br.readLine()) != null) {
+                invalid = false;
+                int i = 1;
+                st = new StringTokenizer(line, " ");
+                Sale sale = new Sale();
+                String client, product;
+                float price;
+                int units, month;
+                boolean type;
+
+                /* Parse line */
+                product = st.nextToken();
+                price   = Float.parseFloat(st.nextToken());
+                units   = Integer.parseInt(st.nextToken());
+                price   = price * units;                    /* Update price */
+                type    = st.nextToken().equals("P");
+                client  = st.nextToken();
+                month   = Integer.parseInt(st.nextToken());
+
+                try {
+                    sale.setProduct(product);
+                    sale.setPrice(price);
+                    sale.setUnits(units);
+                    sale.setType(type);
+
+                    if (!menu.clientExists(client)) { invalid = true; invalid_clients++; invalid_lines++; }
+                    else if (!menu.productExists(product)) { invalid = true; invalid_products++; invalid_lines++; }
+                    else menu.registerSale(client, month, sale);
+                } catch (Exception e) {
+                }
+
+                if (invalid && write_invalid) {
+                    pw.printf("%7s %7.2f %7d %7s %7s %7d\n", product, price, units, type ? "P" : "N", client, month);
+                }
+            }
+
+            pw.flush();
+            pw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        elapsed = c.stop();
+        System.out.println("'Compras.txt' read.");
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+
+        if (System.console() != null)
+            System.console().readLine();
+>>>>>>> Add functions to load clients and products files; Fix bug with money spent on each sale
 
         /* Show menu to user */
         while (!finished) {
