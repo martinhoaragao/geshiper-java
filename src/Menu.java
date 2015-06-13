@@ -48,8 +48,9 @@ public class Menu {
 
         clean();
         System.out.print("Initial: ");
+        String client = sc.nextLine().trim().replaceAll("[\n\r]", "");
         c.start();
-        ArrayList<String> clients = market.getClientsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+        ArrayList<String> clients = market.getClientsByInitial(client);
         paginate(clients, "Clients", c.stop());
     }
 
@@ -63,8 +64,9 @@ public class Menu {
 
         clean();
         System.out.print("Initial: ");
+        String product = sc.nextLine().trim().replaceAll("[\n\r]","");
         c.start();
-        ArrayList<String> products = market.getProductsByInitial(sc.nextLine().trim().replaceAll("[\n\r]", ""));
+        ArrayList<String> products = market.getProductsByInitial(product);
         paginate(products, "Products", c.stop());
     }
 
@@ -109,13 +111,17 @@ public class Menu {
 
     /**
      * Show client monthly sales and the total spent on each month
-     * @param client The client code
      */
-    public void getClientMonthySales (String client) {
+    public void clientAnualSales () {
+        Scanner sc = new Scanner(System.in);
         Crono c = new Crono();      /* Cronometer */
         double elapsed;             /* Time elapsed */
         int total_sales = 0, total_products = 0;
         float total_spent = 0;
+
+        clean();
+        System.out.print("Client: ");
+        String client = sc.nextLine().trim().replaceAll("[\n\r]", "");
 
         c.start();
         List<TripNumProdFat> infos = market.getClientMonthlySales(client);
@@ -146,11 +152,19 @@ public class Menu {
     public void querie3 () {
         Scanner sc = new Scanner(System.in);
         ParSaleClient psc;
+        Crono c = new Crono();
+        double elapsed;
 
         clean();
         System.out.print("Month: ");
         try {
-            psc = market.getMonthInfo(sc.nextInt());
+            int month = sc.nextInt();
+            c.start();
+            psc = market.getMonthInfo(month);
+            elapsed = c.stop();
+
+            System.out.format("Time elapsed: %1.6f seconds\n\n", elapsed);
+
             System.out.println("Num of Sales: " + psc.getSales());
             System.out.println("Num of clients: " + psc.getClients());
         } catch (Exception e) {
@@ -223,11 +237,19 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
         List<ParClientFat> list;
         int i;
+        Crono c = new Crono();
+        double elapsed;
+        String product;
 
         clean();
         System.out.print("Product: ");
         try {
-            list = market.getProductClientsSales(sc.nextLine().replaceAll("[\n\r]", ""));
+            product = sc.nextLine().replaceAll("[\n\r]", "");
+            c.start();
+            list = market.getProductClientsSales(product);
+            elapsed = c.stop();
+
+            System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
             System.out.printf("%7s | %7s | %7s\n", "Month", "Clients", "Invoiced");
             for (i = 0; i < 12; i++) {
                 int clients = list.get(i).getNumOfClients();
@@ -243,14 +265,21 @@ public class Menu {
 
     public void querie8 () {
         Scanner sc = new Scanner(System.in);
+        Crono c = new Crono();
+        double elapsed;
 
         clean();
         System.out.print("Number of products: ");
         ArrayList<ParClientUnits> list;
 
         try {
-            list = market.getMostBoughtProducts(sc.nextInt());
 
+            int number = sc.nextInt();
+            c.start();
+            list = market.getMostBoughtProducts(number);
+            elapsed = c.stop();
+
+            System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
             System.out.format("%7s | %7s | %7s\n", "Product", "Clients", "Units");
             System.out.println("---------------------------");
             for (ParClientUnits par : list)

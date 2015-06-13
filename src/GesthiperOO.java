@@ -94,10 +94,7 @@ public class GesthiperOO {
                 case 2: menu.getProductsByInitial();break;
                 case 3: menu.cheapClients();        break;
                 case 4: menu.unusedProducts();      break;
-                case 5:
-                    sc.nextLine();
-                    menu.getClientMonthySales(sc.nextLine());
-                    break;
+                case 5: menu.clientAnualSales();    break;
                 case 6: menu.querie3();             break;
                 case 7: menu.querie7();             break;
                 case 8: menu.querie5();             break;
