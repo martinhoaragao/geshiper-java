@@ -101,12 +101,13 @@ public class GesthiperOO {
                 case 6: menu.querie3();             break;
                 case 7: menu.querie7();             break;
                 case 8: menu.querie5();             break;
-                case 9: menu.querie8();             break;
-                case 10: menu.querie9();             break;
-                case 11: menu.querie10();           break;
-                case 12: menu.saveState();          break;
-                case 13: menu.loadState();          break;
-                case 14: finished = true;           break;
+                case 9: menu.query6();              break;
+                case 10: menu.querie8();             break;
+                case 11: menu.querie9();             break;
+                case 12: menu.querie10();           break;
+                case 13: menu.saveState();          break;
+                case 14: menu.loadState();          break;
+                case 15: finished = true;           break;
                 default:                            break;
             }
         }

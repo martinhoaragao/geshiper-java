@@ -12,6 +12,7 @@ public class Hypermarket implements Serializable {
     private ProductsCatalog p_cat;  /* The products catalog */
     private ClientsCatalog  c_cat;  /* The clients catalog */
     private Sales sales;            /* The sales module */
+    private Accounting accounting;  /* The accounting module */
 
     /**
      * Unparameterized Constructor, will initialize instance variables
@@ -20,6 +21,7 @@ public class Hypermarket implements Serializable {
         this.p_cat = new ProductsCatalog();
         this.c_cat = new ClientsCatalog();
         this.sales = new Sales();
+        this.accounting = new Accounting();
     }
 
     /**
@@ -99,6 +101,16 @@ public class Hypermarket implements Serializable {
 
         return total_sales;
     }
+
+    /**
+     * Build a string with information regarding sales by each month and type
+     * @arg product, code of the product to get info from
+     * @return string with information already formatted for print
+     */
+    public String productSalesByMonth (String product) {
+        return accounting.productSalesByMonth(product);
+    }
+
 
     /**
      * Get the list of the most bought products by a given client
@@ -186,5 +198,6 @@ public class Hypermarket implements Serializable {
         p_cat.markAsBought(sale.getProduct());
         c_cat.removeSpendingClient(client);
         sales.addSale(client, month, sale);
+        accounting.addSale(month, sale);
     }
 }

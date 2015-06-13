@@ -1,5 +1,4 @@
 import Exceptions.InvalidMonthException;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,20 +49,31 @@ public class Accounting implements Serializable {
         }
     }
     /**
-     * Not completed
+     * Build a string with information regarding sales by each month and type
+     * @arg product, code of the product to get info from
+     * @return string with information already formatted for print
      */
     public String productSalesByMonth (String product) {
         StringBuilder sb = new StringBuilder();
+
+        String topBar = "Months | Normal Units | Normal Revenue | Promo Units | Promo Revenue\n";
+        sb.append(topBar);
+
         for (int i = 0; i<12; i++) {
-            sb.append("Month: " + i + "\n");
 
             ProductTotalSales productInfo = this.accounting.get(i).get(product);
-            sb.append("Normal Units: " + productInfo.getNormalUnits() + "\n");
-            sb.append("Promotion Units: " + productInfo.getPromoUnits() + "\n");
-            sb.append("Normal Revenue: " + productInfo.getNormalRevenue() + "\n");
-            sb.append("Promotion Revenue: " + productInfo.getPromoRevenue() + "\n\n");
+            if (productInfo != null) {
+                String monthInfo = String.format("%-6d | %-12d | %-14.5f | %-11d | %-13.5f", i,  productInfo.getNormalUnits(), productInfo.getNormalRevenue(), productInfo.getPromoUnits(), productInfo.getPromoRevenue());
+
+                sb.append(monthInfo + "\n");
+            }
+
         }
-        return sb.toString();
+        String result = sb.toString();
+        if (result.equals(topBar))
+            return "Product not valid";
+        else
+            return sb.toString();
     }
 
 }
