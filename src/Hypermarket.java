@@ -116,6 +116,15 @@ public class Hypermarket implements Serializable {
     }
 
     /**
+     * Get list with number of clients and total units sold
+     * for the n most bought products in the year
+     * @param n Number of products
+     */
+    public void getMostBoughtProducts (int n) {
+        sales.getMostBoughtProducts(n);
+    }
+
+    /**
      * Get the top X clients who bought more different products and how many
      * different products they bought
      * @param x The top number of clients who bought more different products

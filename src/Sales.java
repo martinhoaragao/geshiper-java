@@ -2,6 +2,7 @@ import Exceptions.InvalidMonthException;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -149,6 +150,87 @@ public class Sales implements Serializable {
         return codes;
     }
 
+    /**
+     * Get the list of number of clients and number of units
+     * of the n most bought products during the year
+     * @param n Number of products
+     */
+    public void getMostBoughtProducts (int n) {
+        /* Map between product code and units */
+        Map<String, Integer> map_units = new TreeMap<String, Integer>();
+        /* Map between units sold and the pairs for which
+        products sold that number of units */
+        TreeMap<Integer, Map<String, ParClientUnits>> map_pair = new TreeMap<Integer, Map<String, ParClientUnits>>();
+        int i;
+
+        for (i = 0; i < 12; i++) {
+            /* Get sales for the current month */
+            TreeMap<String, ArrayList<Sale>> month = sales.get(i);
+
+            /* Iterate over every client */
+            for (String client : month.keySet()) {
+                /* Get sales of the client */
+                ArrayList<Sale> client_sales = month.get(client);
+
+                /* Iterator over sales */
+                for (Sale s : client_sales) {
+                    /* Get the product */
+                    String product = s.getProduct();
+                    /* Check if the product is already inserted */
+                    Integer units = map_units.get(product);
+
+                    if (units == null) {    /* First time the product appears */
+                        units = s.getUnits();
+                        ParClientUnits par = new ParClientUnits(product, client, units);
+                        /* Put the new product in the units map */
+                        map_units.put(product, units);
+
+                        Map<String, ParClientUnits> aux = map_pair.get(units);
+
+                        if (aux == null) {
+                            aux = new TreeMap<String, ParClientUnits>();
+                            aux.put(product, par);
+                            map_pair.put(units, aux);
+                        } else aux.put(product, par);
+                    } else {                /* The product has already appeared */
+                        Map<String, ParClientUnits> map_aux = map_pair.get(units);
+                        ParClientUnits par = map_aux.get(product);
+                        map_aux.remove(product);
+
+                        /* Update information */
+                        par.addClient(client);
+                        par.addUnits(s.getUnits());
+                        units = par.getUnits();
+
+                        map_units.put(product, units);
+
+                        Map<String, ParClientUnits> aux = map_pair.get(units);
+
+                        if (aux == null) {
+                            aux = new TreeMap<String, ParClientUnits>();
+                            aux.put(product, par);
+                            map_pair.put(units, aux);
+                        } else aux.put(product, par);
+                    }
+                }
+            }
+        }
+
+        ArrayList<ParClientUnits> list = new ArrayList<ParClientUnits>();
+        int index = 0;
+
+        for (Integer x : map_pair.descendingKeySet()) {
+            for (ParClientUnits par : map_pair.get(x).values()) {
+                list.add(index, par);
+                index++;
+                if (index == n) break;
+            }
+            if (index == n)  break;
+        }
+
+        for (ParClientUnits par : list)
+            System.out.println(par.getProduct() + " - " + par.getNumOfClients() + " - " + par.getUnits());
+    }
 
     /**
      * Create list of the different clients and total invoiced

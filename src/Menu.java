@@ -241,6 +241,22 @@ public class Menu {
             System.console().readLine();
     }
 
+    public void querie8 () {
+        Scanner sc = new Scanner(System.in);
+
+        clean();
+        System.out.print("Number of products: ");
+
+        try {
+            market.getMostBoughtProducts(sc.nextInt());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (System.console() != null)
+            System.console().readLine();
+    }
+
     /**
      * Save application state to an object file 'hipermercado.obj'
      */

@@ -106,6 +106,7 @@ public class GesthiperOO {
                 case 11: menu.saveState();          break;
                 case 12: menu.loadState();          break;
                 case 13: finished = true;           break;
+                case 14: menu.querie8();            break;
                 default:                            break;
             }
         }
