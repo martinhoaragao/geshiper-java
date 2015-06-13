@@ -43,6 +43,7 @@ public class TripNumProdFat implements Serializable {
 
     /**
      * Get total money spent
+     * @return The total money spent
      */
     public float getTotalSpent () {
         return this.total;
@@ -50,6 +51,7 @@ public class TripNumProdFat implements Serializable {
 
     /**
      * Get number of sales
+     * @return Total number of sales
      */
     public int getNumOfSales () {
         return this.num_sales;
@@ -57,6 +59,7 @@ public class TripNumProdFat implements Serializable {
 
     /**
      * Get number of different products bought
+     * @return Number of different products
      */
     public int getNumOfProducts () {
         return this.products.size();
@@ -64,6 +67,7 @@ public class TripNumProdFat implements Serializable {
 
     /**
      * Get information abou this triple
+     * @return Information about this triple
      */
     public String toString () {
         StringBuilder sb = new StringBuilder();

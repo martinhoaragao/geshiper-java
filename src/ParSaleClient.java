@@ -36,6 +36,7 @@ public class ParSaleClient {
 
     /**
      * Get number of clients
+     * @return The number of clients
      */
     public int getClients () {
         return num_clients;
@@ -43,6 +44,7 @@ public class ParSaleClient {
 
     /**
      * Get number of sales
+     * @return The number of sales
      */
     public int getSales () {
         return num_sales;

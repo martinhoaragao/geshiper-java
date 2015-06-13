@@ -187,6 +187,9 @@ public class Menu {
 
     /**
      * Register a sale
+     * @param client    The client that bought the product
+     * @param month     The month in which the sale ocurred
+     * @param s         The instance of sale to be added
      */
     public void registerSale (String client, int month, Sale s) throws InvalidMonthException {
         market.registerSale(client, month, s);
@@ -509,6 +512,8 @@ public class Menu {
 
     /**
      * Check if a client exists
+     * @param client The client code
+     * @return true if the client exists, false otherwise
      */
     public boolean clientExists (String client) throws NullPointerException {
         return market.existsClient(client);
@@ -516,6 +521,8 @@ public class Menu {
 
     /**
      * Check if a product exists
+     * @param product The product code
+     * @return true if the product exists, false otherwise
      */
     public boolean productExists (String product) throws NullPointerException {
         return market.existsProduct(product);
@@ -583,7 +590,7 @@ public class Menu {
 
     /**
      * Load a clients file
-     * @arg first, if true, will load last known name, if not will ask for new file
+     * @param first if true, will load last known name, if not will ask for new file
      */
     public void loadClients (boolean first) {
         Scanner sc = new Scanner(System.in);
@@ -621,7 +628,7 @@ public class Menu {
 
     /**
      * Load a products file
-     * @arg first, if true, will load last known name, if not will ask for new file
+     * @param first if true, will load last known name, if not will ask for new file
      */
     public void loadProducts (boolean first) {
         Scanner sc = new Scanner(System.in);
@@ -658,7 +665,7 @@ public class Menu {
 
     /**
      * Load a sales file
-     * @arg first, if true, will load last known name, if not will ask for new file
+     * @param first if true, will load last known name, if not will ask for new file
      */
     public void loadSales (boolean first) {
         Scanner sc = new Scanner(System.in);
@@ -733,8 +740,7 @@ public class Menu {
                 }
             }
 
-            pw.flush();
-            pw.close();
+            if (write_invalid) { pw.flush(); pw.close(); }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -41,7 +41,7 @@ public class ClientsCatalog implements Serializable {
 
     /**
      * Get a copy of all the clients in the catalog
-     * @return ArrayList<Client> with all the clients
+     * @return ArrayList of Client with all the clients
      */
     public ArrayList<String> getClients () {
         ArrayList<String> clients_copy = new ArrayList<String>();
@@ -57,6 +57,8 @@ public class ClientsCatalog implements Serializable {
      * Create ArrayList with all the clients whose code is initiated
      * by a specified character
      * @param initial The code initial letter
+     * @return List of String with the clients whose code
+     * start with the given initial
      */
     public ArrayList<String> getClientsByInitial (String initial) throws IllegalArgumentException {
         NavigableSet<String> set;
@@ -104,6 +106,7 @@ public class ClientsCatalog implements Serializable {
     /**
      * Check if a client exists on the clients catalog
      * @param code The client code
+     * @return true if the client is in the catalog, false otherwise
      */
     public boolean exists (String code) throws NullPointerException {
         if (code == null)

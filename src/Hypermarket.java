@@ -43,7 +43,7 @@ public class Hypermarket implements Serializable {
     /**
      * Get List of clients whose client code begins with a given initial
      * @param initial The initial letter
-     * @return ArrayList<String> with the client codes
+     * @return ArrayList of String with the client codes
      */
     public ArrayList<String> getClientsByInitial (String initial) {
         return c_cat.getClientsByInitial(initial);
@@ -52,7 +52,7 @@ public class Hypermarket implements Serializable {
     /**
      * Get List of products whose code begins with a given initial
      * @param initial The initial letter
-     * @return ArrayList<String> with the product codes
+     * @return ArrayList of String with the product codes
      */
     public ArrayList<String> getProductsByInitial (String initial) {
         return p_cat.getProductsByInitial(initial);
@@ -60,7 +60,7 @@ public class Hypermarket implements Serializable {
 
     /**
      * Get List of clients that did not buy any product
-     * @return ArrayList<String> with all the client codes
+     * @return ArrayList of String with all the client codes
      */
     public ArrayList<String> getCheapClients () {
         return c_cat.getUnusedClients();
@@ -68,7 +68,7 @@ public class Hypermarket implements Serializable {
 
     /**
      * Get List of products that no one bought
-     * @return ArrayList<String> with all the product codes
+     * @return ArrayList of String with all the product codes
      */
     public ArrayList<String> getUnusedProducts () {
         return p_cat.getUnusedProducts();
@@ -78,7 +78,7 @@ public class Hypermarket implements Serializable {
      * Get list of number of sales, different products bought and the total spent
      * on every month given a client code
      * @param client The client code
-     * @return ArrayList<TripNumProdFat> with info for all months, if in a month
+     * @return ArrayList of TripNumProdFat with info for all months, if in a month
      * there were no sales the value will be null
      */
     public List<TripNumProdFat> getClientMonthlySales (String client) {
@@ -104,7 +104,7 @@ public class Hypermarket implements Serializable {
 
     /**
      * Build a string with information regarding sales by each month and type
-     * @arg product, code of the product to get info from
+     * @param product code of the product to get info from
      * @return string with information already formatted for print
      */
     public String productSalesByMonth (String product) {
@@ -127,6 +127,9 @@ public class Hypermarket implements Serializable {
      * Get list with number of clients and total units sold
      * for the n most bought products in the year
      * @param n Number of products
+     * @return ArrayList with instances of TripProdCliUnits for the
+     * n most bought products, if there are more than n products with
+     * the same units sold they will be included too
      */
     public ArrayList<TripProdCliUnits> getMostBoughtProducts (int n) {
         return sales.getMostBoughtProducts(n);
@@ -161,6 +164,7 @@ public class Hypermarket implements Serializable {
      * Get the list of different clients and the invoiced
      * for a given month every month
      * @param product The product code
+     * @return List with instances of ParClientFat for each month of the year
      */
     public List<ParClientFat> getProductClientsSales (String product) {
         return sales.getProductClientsSales(product);
@@ -169,6 +173,7 @@ public class Hypermarket implements Serializable {
     /**
      * Check if a given client is present in the Clients Catalog
      * @param client The client code
+     * @return true if the client is in the calatog, false otherwise
      */
     public boolean existsClient (String client) throws NullPointerException {
         return c_cat.exists(client);
@@ -177,7 +182,8 @@ public class Hypermarket implements Serializable {
     /**
      * Given a valid month create pair with the number of sales
      * and the number of different clients that purchased that month
-     * @param month
+     * @param month The month from which to get the information
+     * @return Instance of ParSaleClient with info for the given month
      */
     public ParSaleClient getMonthInfo (int month) throws InvalidMonthException {
         return sales.getMonthInfo(month);
@@ -186,6 +192,7 @@ public class Hypermarket implements Serializable {
     /**
      * Check if a given product is present in the Products Catalog
      * @param product The Product code
+     * @return true if the product is in the catalog, false otherwise
      */
     public boolean existsProduct (String product) throws NullPointerException {
         return p_cat.exists(product);
@@ -193,6 +200,10 @@ public class Hypermarket implements Serializable {
 
     /**
      * Register a sale to the sales module
+     * @param client    Client which bought the product
+     * @param month     Month when the sale ocurred
+     * @param sale      Instance of sale with the rest of the information
+     *                  for the product
      */
     public void registerSale (String client, int month, Sale sale) throws InvalidMonthException {
         p_cat.markAsBought(sale.getProduct());

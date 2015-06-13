@@ -18,6 +18,7 @@ public class Crono {
 
     /**
      * Stop the cronometer and get the time elapsed
+     * @return The time elapsed
      */
     public double stop () {
         end = System.nanoTime();

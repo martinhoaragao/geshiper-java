@@ -13,7 +13,7 @@ public class Sale implements Serializable {
     private String product; /* The product code */
     private int units;      /* How many units were sold */
     private float price;    /* How much was spent */
-    private boolean type;   /* true -> promotion, false -> normal */
+    private boolean type;   /* true = promotion, false = normal */
 
     /**
      * Unparameterized constructor
@@ -54,6 +54,7 @@ public class Sale implements Serializable {
 
     /**
      * Get the product code
+     * @return The product code
      */
     public String getProduct () {
         return this.product;
@@ -62,6 +63,7 @@ public class Sale implements Serializable {
 
     /**
      * Get the units sold
+     * @return Number of units sold
      */
     public int getUnits () {
         return this.units;
@@ -69,6 +71,7 @@ public class Sale implements Serializable {
 
     /**
      * Get the money spent
+     * @return Total money spent
      */
     public float getPrice () {
         return this.price;
@@ -77,6 +80,8 @@ public class Sale implements Serializable {
     /**
      * Get the sale type, false means a normal sale
      * true means a promotional sale
+     * @return The sale type, true means a promotion
+     * false means a normal sale
      */
     public boolean getType () {
         return this.type;
@@ -115,7 +120,7 @@ public class Sale implements Serializable {
     }
 
     /**
-     * Set the sale type, true -> promotion sale, false -> normal sale
+     * Set the sale type, true = promotion sale, false = normal sale
      * @param type The sale type
      */
     public void setType (boolean type) {
@@ -127,6 +132,7 @@ public class Sale implements Serializable {
     /**
      * Compare Sale instances to check if they are equal
      * @param o Object whit which to compare
+     * @return true if the the objects are equal, false otherwise
      */
     @Override
     public boolean equals (Object o) {
@@ -145,6 +151,7 @@ public class Sale implements Serializable {
 
     /**
      * Get information about the Sale
+     * @return String with info about this Sale
      */
     @Override
     public String toString () {
@@ -159,6 +166,8 @@ public class Sale implements Serializable {
 
     /**
      * Create a clone of the Sale
+     * @return Sale which is a clone of the one
+     * the method was invoked on
      */
     @Override
     public Sale clone () {

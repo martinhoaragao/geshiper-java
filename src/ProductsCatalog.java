@@ -58,6 +58,7 @@ public class ProductsCatalog implements Serializable {
      * Create ArrayList with all the products whose code is initiated
      * by a specified character
      * @param initial The code initial letter
+     * @return List with all the codes initiated by the given initial
      */
     public ArrayList<String> getProductsByInitial (String initial) throws IllegalArgumentException {
         NavigableSet<String> set;
@@ -91,7 +92,7 @@ public class ProductsCatalog implements Serializable {
 
     /**
      * Create list with all the product codes that no one bought
-     * @return ArrayList<String> with all the product codes
+     * @return ArrayList of String with all the product codes
      */
     public ArrayList<String> getUnusedProducts () {
         ArrayList<String> list = new ArrayList<String>();
@@ -105,6 +106,7 @@ public class ProductsCatalog implements Serializable {
     /**
      * Check if a given product code exists
      * @param code The Product code
+     * @return true if the product code exists, false otherwise
      */
     public boolean exists (String code) throws NullPointerException {
         if (code == null)

@@ -70,6 +70,7 @@ public class TripProdCliUnits {
     /**
      * Get the total number of clients
      * that bought the product
+     * @return The number of clients
      */
     public int getNumOfClients () {
         return this.clients.size();
@@ -77,6 +78,7 @@ public class TripProdCliUnits {
 
     /**
      * Get the number of units sold
+     * @return The number of units
      */
     public int getUnits () {
         return this.units;
@@ -84,6 +86,7 @@ public class TripProdCliUnits {
 
     /**
      * Get product associated with this pair
+     * @return The product code
      */
     public String getProduct () {
         return this.product;
