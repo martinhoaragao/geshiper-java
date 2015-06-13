@@ -55,8 +55,13 @@ public class Accounting implements Serializable {
     public String productSalesByMonth (String product) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i<12; i++) {
+            sb.append("Month: " + i + "\n");
+
             ProductTotalSales productInfo = this.accounting.get(i).get(product);
-            sb.append(productInfo.toString());
+            sb.append("Normal Units: " + productInfo.getNormalUnits() + "\n");
+            sb.append("Promotion Units: " + productInfo.getPromoUnits() + "\n");
+            sb.append("Normal Revenue: " + productInfo.getNormalRevenue() + "\n");
+            sb.append("Promotion Revenue: " + productInfo.getPromoRevenue() + "\n\n");
         }
         return sb.toString();
     }
