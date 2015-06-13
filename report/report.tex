@@ -54,7 +54,7 @@
 Este relatório aborda a resolução do projeto prático em Java de LI3.
 O Projeto, denominado Gesthiper, baseia-se num programa de gestão de hipermercados o qual depende de uma lista de clientes, uma lista de produtos e uma lista de compras efetuadas.
 
-Cada uma destas listas deve estar num ficheiro .txt e para cada um dos ficheiros o programa percorre o ficheiro, executando operações que permitam guardar estes dados em memória. 
+Cada uma destas listas deve estar num ficheiro .txt e para cada um dos ficheiros o programa percorre o ficheiro, executando operações que permitam guardar estes dados em memória.
 Para ajudar nesta tarefa repartiu-se as tarefas em quatro módulos módulos.
 Estes módulos são: um catálogo de clientes; um catálogo de produtos; um módulo de contabilidade; um módulo de compras.
 
@@ -373,6 +373,13 @@ Para mais facilmente entender a implementação incluimos uma figura da estrutur
 \newpage
 \section{Interface Utilizador}
 
+Para ser possível realizar as queries foi necessário criar um menu inicial que não é mais que uma lista com opções numeradas e cada opção tem a sua descrição, a partir deste menu inicial o utilizador apenas tem que introduzir o número da opção que deseja aceder.
+
+Para algumas das queries listas de \emph{Strings} têm de ser apresentadas, essas listas podem variar muito  em tamanho e então era necessário uma maneira de as apresentar no ecrã, sem sacrificar a leitura das mesmas.
+
+Para isso foi criado um método \emph{paginate} que recebendo um array de strings apresenta ao utilizador a possibilidade de navegar nas páginas, especificando se quer ir para a próxima página, para a página anterior, para uma página especifica ou então voltar ao menu inicial.
+
+Também há queries que requerem a apresentação de tabelas, para cada uma dessas queries foi utilizado \emph{String.format} que trata de formatar a palavra para apresentar numa tabela ao terminal do utilizador.
 \newpage
 \section{Diagrama de Classes}
 
