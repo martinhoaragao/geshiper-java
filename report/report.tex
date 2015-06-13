@@ -122,9 +122,25 @@ public class Sale {
 \par Foi usado um valor do tipo \textbf{boolean} para guardar o tipo de compra pois apenas há duas opções, ou é uma compra
 normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor $true$.
 
+\subsection{ProductTotalSales}
+\par Para o módulo de Contabilidade é necessário guardar informação sobre o total de vendas de um produto ou seja, facturação e unidades divididos entre promoção e vendas normais.
+\par Assim a classe \textbf{Contabilidade} trata de guardar informação relativa a cada um destes dados, ao multiplicar as unidades e preço por unidade de uma venda.
+\par De seguida declara-se as variáveis de instância:
+
+\begin{lstlisting}[language=Java]
+public class Sale {
+  private String product;         /* Codigo de Produto */
+  private int normalUnits;        /* Quantas unidades vendidas ao preco normal */
+  private int promoUnits;         /* Quantas unidades vendidas ao preco de promocao */
+  private double normalRevenue;   /* Facturacao total a preco normal */
+  private double promoRevenue;    /* Facturacao total a preco de promocao */
+
+}
+\end{lstlisting}
+
 \subsection{Classes Auxiliares}
 \subsubsection{ParSaleClient}
-\par A classe \textbf{ParSaleClient} foi criada para responder á necessidade de queries que necessitavam de obter informação
+\par A classe \textbf{ParSaleClient} foi criada para responder à necessidade de queries que necessitavam de obter informação
 relativa ao número total de vendas assim como o número total de clientes diferentes que tinham efectuado essas compras.
 \par Para guardar esta informação usou-se então apenas duas variáveis de instância aqui declaradas:
 
@@ -270,10 +286,10 @@ alfabeticamente e a procura é rápida.
 \subsection{Compras}
 \par O módulo de compras é responsável por guardar todas as compras válidas, relacionando quais os clientes que fizeram
 essas compras e quando, para ser possivel consultar as vendas por mês se assim for desejado.
-\par Como então era necessário conseguir dividir as compras por mês utilizamos um \textbf{ArrayList} com 12 entradas, e
+\par Como então era necessário conseguir dividir as compras por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
 em cada uma destas entradas existe um \textbf{TreeMap\textless String, ArrayList\textless Sale\textgreater\textgreater} que
 mapeia um código de cliente para a lista de compras efectuadas por esse cliente. Usando um \textbf{TreeMap} permite uma
-procura rápida por um dado cliente e o arraylist permite um acesso directo ás compras de um determinado mês.
+procura rápida por um dado cliente e o arraylist permite um acesso directo às compras de um determinado mês.
 \par A declaração das variáveis de instância é a seguinte:
 
 \begin{lstlisting}[language=Java]
@@ -291,6 +307,13 @@ public class Sales {
 \caption{Exemplo da estrutura com as compras de Janeiro do cliente "FN425"}
 \label{fig:sales}
 \end{figure}
+
+\subsection{Contabilidade}
+\par O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
+Desta forma pretende-se que seja possível obter facilmente a facturação total de um mês, analisar as vendas de um produto mensalmente, e as suas vendas todais num ano.
+\par Como então era necessário conseguir dividir as vendas por mês utilizou-se um \textbf{ArrayList} com 12 entradas, e
+em cada uma destas entradas existe um \textbf{TreeMap\textless String, ProductTotalSales\textgreater} que mapeia um código de produto para a informação de facturação total do mesmo. Usando um \textbf{TreeMap} permite uma
+procura rápida por um dado produto e o arraylist permite um acesso directo às vendas de um determinado mês.
 
 % UI
 \newpage
