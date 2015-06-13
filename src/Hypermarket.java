@@ -200,4 +200,16 @@ public class Hypermarket implements Serializable {
         sales.addSale(client, month, sale);
         accounting.addSale(month, sale);
     }
+
+    /**
+     * Statistical queries: sales by month, invoice by month and total invoice, number of different clients by month,
+     * total invalid sales registry
+     */
+    public List<List<Double>> getStatInfo2 (){
+        List<List<Double>> res = new ArrayList<List<Double>>();
+        res.add(sales.getSalesByMonth());
+        res.add(accounting.getInvoiceByMonth());
+        res.add(sales.getClientsByMonth());
+        return res;
+    }
 }

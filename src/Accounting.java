@@ -76,4 +76,21 @@ public class Accounting implements Serializable {
             return sb.toString();
     }
 
+    public List<Double> getInvoiceByMonth(){
+        List<Double> res = new ArrayList<Double>();
+        double temp = 0;
+        double temp2 = 0;
+
+        for(int i = 0; i < 12; i++){
+            temp = 0;
+            for(ProductTotalSales pts : accounting.get(i).values()){
+                temp += (pts.getNormalRevenue() + pts.getPromoRevenue());
+            }
+            temp2 += temp;
+            res.add(temp);
+        }
+        res.add(temp2);
+        return res;
+    }
+
 }

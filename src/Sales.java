@@ -49,6 +49,36 @@ public class Sales implements Serializable {
     }
 
     /**
+     * Get the total number of sales by month
+     * @return List with the total number of sales by month
+     */
+    public List<Double> getSalesByMonth(){
+        List<Double> res = new ArrayList<Double>();
+        double temp = 0;
+        for(int i = 0; i < 12; i++){
+            temp = 0;
+            for(ArrayList<Sale> a : sales.get(i).values()){
+                temp += (double)a.size();
+            }
+            res.add(temp);
+        }
+        return res;
+    }
+
+    /**
+     * Get the total number of different clients by month
+     * @return List wih the total number of different clients by month
+     */
+    public List<Double> getClientsByMonth(){
+        List<Double> res = new ArrayList<Double>();
+        for(int i = 0; i < 12; i++){
+            res.add((double)sales.get(i).size());
+        }
+        return res;
+    }
+
+
+    /**
      * Get list of sales associated to a client in a given month
      * @param client The client code
      * @param month The month

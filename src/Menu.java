@@ -19,6 +19,8 @@ public class Menu {
     private String fileProducts;
     private String fileSales;
 
+    int invalid_lines = 0;
+
 
     /**
      * Unparameterized constructor
@@ -350,6 +352,32 @@ public class Menu {
             System.console().readLine();
     }
 
+    public void querieStat2(){
+        Crono c = new Crono();
+        double elapsed;
+
+        clean();
+        c.start();
+        List<List<Double>> listlist = market.getStatInfo2();
+        List<Double> sales = listlist.get(0);
+        List<Double> invoice = listlist.get(1);
+        List<Double> clients = listlist.get(2);
+        elapsed = c.stop();
+
+        System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+        System.out.format("%5s | %5s | %7s | %7s\n", "Month", "Sales", "Invoice", "Different Clients");
+        for(int i = 0; i < 12; i++){
+            System.out.format("%5d | %5d | %7f | %7d\n", i, sales.get(i).intValue(), invoice.get(i), clients.get(i).intValue());
+        }
+        System.out.format("---------------------------\n");
+        System.out.format("Total invoice: %f\n", invoice.get(12));
+        System.out.format("Total invalid sales: %d\n", invalid_lines);
+
+        if (System.console() != null)
+            System.console().readLine();
+
+    }
+
     /**
      * Save application state to an object file 'hipermercado.obj'
      */
@@ -397,12 +425,13 @@ public class Menu {
         System.out.println("10: (8)  Top n products");
         System.out.println("11: (9)  Top n clients");
         System.out.println("12: (10) Top clients for a product");
-        System.out.println("13: Reload with another clients file");
-        System.out.println("14: Reload with another products file");
-        System.out.println("15: Reload with another sale file");
-        System.out.println("16: Save application state");
-        System.out.println("17: Load application state");
-        System.out.println("18: Exit");
+        System.out.println("13: Statistical querie");
+        System.out.println("14: Reload with another clients file");
+        System.out.println("15: Reload with another products file");
+        System.out.println("16: Reload with another sale file");
+        System.out.println("17: Save application state");
+        System.out.println("18: Load application state");
+        System.out.println("19: Exit");
     }
 
     /**
@@ -593,7 +622,7 @@ public class Menu {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             StringTokenizer st;
-            int invalid_clients = 0, invalid_products = 0, invalid_lines = 0;
+            int invalid_clients = 0, invalid_products = 0;
             boolean invalid;        /* Keep control of invalid lines */
 
             while ((line = br.readLine()) != null) {
