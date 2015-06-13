@@ -215,6 +215,7 @@ public class Hypermarket implements Serializable {
     /**
      * Statistical queries: sales by month, invoice by month and total invoice, number of different clients by month,
      * total invalid sales registry
+     * @return List with statistical info regarding sales
      */
     public List<List<Double>> getStatInfo2 (){
         List<List<Double>> res = new ArrayList<List<Double>>();
@@ -226,6 +227,7 @@ public class Hypermarket implements Serializable {
 
     /**
      * Get total invoice
+     * @return The total invoiced
      */
     public double getTotalInvoice(){
         return accounting.getInvoiceByMonth().get(12);
