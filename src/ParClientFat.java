@@ -33,6 +33,7 @@ public class ParClientFat {
 
     /**
      * Get the product code
+     * @return The product code
      */
     public String getProduct () {
         return this.product;
@@ -40,6 +41,7 @@ public class ParClientFat {
 
     /**
      * Get number of clients that bought the product
+     * @return The total number of clients
      */
     public int getNumOfClients () {
         return this.clients.size();
@@ -47,6 +49,7 @@ public class ParClientFat {
 
     /**
      * Get the total invoiced
+     * @return The total invoiced by the product
      */
     public float getInvoiced () {
         return this.invoiced;

@@ -29,8 +29,8 @@ public class ProductTotalSales implements Serializable {
     /**
      * Parameterized constructor
      * @param product           The product code
-     * @param normalUnits       Number of units bought
-     * @param normalUnits       Number of units bought
+     * @param normalUnits       Number of normal units bought
+     * @param promoUnits        Number of promo units bought
      * @param normalRevenue     How much was sold as normal
      * @param promoRevenue      How much was sold in promotion
      */
@@ -44,7 +44,7 @@ public class ProductTotalSales implements Serializable {
 
     /**
      * Constructor by copy
-     * @param sale ProductTotalSales instance from which to copy the information
+     * @param totalSales ProductTotalSales instance from which to copy the information
      */
     public ProductTotalSales (ProductTotalSales totalSales) {
         this.setProduct(totalSales.getProduct());

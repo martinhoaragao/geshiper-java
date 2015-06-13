@@ -35,7 +35,7 @@ public class Sales implements Serializable {
             throw new NullPointerException("sale can't be null.");
         else if(month < 1 || month > 12){
             throw new InvalidMonthException("month must be <= 12 and >=1");
-        }else {
+        } else {
             TreeMap<String,ArrayList<Sale>> map = this.sales.get(month - 1);
             ArrayList<Sale> sales_month = map.get(client);
 
@@ -77,7 +77,6 @@ public class Sales implements Serializable {
         return res;
     }
 
-
     /**
      * Get list of sales associated to a client in a given month
      * @param client The client code
@@ -108,6 +107,7 @@ public class Sales implements Serializable {
      * Creates a pair with the number of sales and the number of
      * clients that made purchases on a given month
      * @param month The month to be checked
+     * @return Instance of ParSaleClient with the info for the given month
      */
     public ParSaleClient getMonthInfo (int month) throws InvalidMonthException {
         ParSaleClient psc = null;
@@ -182,6 +182,9 @@ public class Sales implements Serializable {
      * Get the list of number of clients and number of units
      * of the n most bought products during the year
      * @param n Number of products
+     * @return ArrayList with instances of TripProdCliUnits for the
+     * n most bought products, if there are more than n products with
+     * the same units sold they will be included too
      */
     public ArrayList<TripProdCliUnits> getMostBoughtProducts (int n) {
         /* Map between product code and units */
@@ -262,6 +265,8 @@ public class Sales implements Serializable {
      * Create list of the different clients and total invoiced
      * for a given product every month of the year
      * @param product The product code
+     * @return List with 12 entries with an instance of ParClientFat
+     * for every entry, associated to the given product
      */
     public List<ParClientFat> getProductClientsSales (String product) {
         List<ParClientFat> list = new ArrayList<ParClientFat>(12);

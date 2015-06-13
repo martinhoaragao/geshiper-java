@@ -49,6 +49,7 @@ public class ParProductUnits {
 
     /**
      * Get product code
+     * @return The product code
      */
     public String getProductCode () {
         return product_code;
@@ -56,6 +57,7 @@ public class ParProductUnits {
 
     /**
      * Get number of sales
+     * @return Total number of units sold
      */
     public int getUnitsSold () {
         return num_sold;

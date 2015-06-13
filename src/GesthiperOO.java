@@ -1,10 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class GesthiperOO {
     private static Crono c = new Crono();

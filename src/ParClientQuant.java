@@ -61,6 +61,7 @@ public class ParClientQuant {
 
     /**
      * Get client code
+     * @return The client code
      */
     public String getClientCode () {
         return client_code;
@@ -68,6 +69,7 @@ public class ParClientQuant {
 
     /**
      * Get number of products
+     * @return The number of products
      */
     public int getProducts () {
         return num_products;
@@ -75,6 +77,7 @@ public class ParClientQuant {
 
     /**
      * Get how much the client spent with the products
+     * @return The total invoiced by the product
      */
     public double getInvoice () {
         return this.fat;
