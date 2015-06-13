@@ -372,7 +372,7 @@ public class Menu {
         System.out.format("File name: %s\n", s);
         System.out.format("Total products: %d\n", num_products);
         System.out.format("Total different products bought: %d\n", bought_products);
-        System.out.format("Total products not bought: &d\n", unused_products);
+        System.out.format("Total products not bought: %d\n", unused_products);
         System.out.format("Total clients: %d\n", num_clients);
         System.out.format("Total clients who purchased products: %d\n", buyer_clients);
         System.out.format("Total clients who didn't purchased: %d\n", cheap_clients);
