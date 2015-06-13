@@ -1,5 +1,4 @@
 import Exceptions.InvalidMonthException;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,14 +53,18 @@ public class Accounting implements Serializable {
      */
     public String productSalesByMonth (String product) {
         StringBuilder sb = new StringBuilder();
+
+        String topBar = String.format("%6s | %12s | %14s | %11s | %13s", "Months", "Normal Units", "Normal Revenue", "Promo Units", "Promo Revenue");
+        sb.append(topBar + "\n");
+
         for (int i = 0; i<12; i++) {
-            sb.append("Month: " + i + "\n");
 
             ProductTotalSales productInfo = this.accounting.get(i).get(product);
-            sb.append("Normal Units: " + productInfo.getNormalUnits() + "\n");
-            sb.append("Promotion Units: " + productInfo.getPromoUnits() + "\n");
-            sb.append("Normal Revenue: " + productInfo.getNormalRevenue() + "\n");
-            sb.append("Promotion Revenue: " + productInfo.getPromoRevenue() + "\n\n");
+            if (productInfo != null) {
+                String monthInfo = String.format("%-6d | %-12d | %-14.5f | %-11d | %-13.5f", i,  productInfo.getNormalUnits(), productInfo.getNormalRevenue(), productInfo.getPromoUnits(), productInfo.getPromoRevenue());
+
+                sb.append(monthInfo + "\n");
+            }
         }
         return sb.toString();
     }

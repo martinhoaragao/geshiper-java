@@ -174,6 +174,22 @@ public class Menu {
             System.console().readLine();
     }
 
+    public void query6 () {
+        Scanner sc = new Scanner(System.in);
+        clean();
+        String product;
+        System.out.print("Product to get monthly sales: ");
+
+        product = sc.nextLine().replaceAll("[\n\r]", "");
+        System.out.println(product);
+
+        String result = market.productSalesByMonth(product);
+        System.out.println(result);
+
+        if(System.console() != null)
+            System.console().readLine();
+    }
+
     /**
      * Querie 7
      * Given a valid client code, get the list of
@@ -359,12 +375,13 @@ public class Menu {
         System.out.println("6: (3) Number of sales and clients in a month");
         System.out.println("7: (7) List of a client most bought products");
         System.out.println("8: Querie 5");
-        System.out.println("9: Querie 8");
-        System.out.println("10: Querie 9");
-        System.out.println("11: Querie 10");
-        System.out.println("12: Save application state");
-        System.out.println("13: Load application state");
-        System.out.println("14: Exit");
+        System.out.println("9: Query 6");
+        System.out.println("10: Querie 8");
+        System.out.println("11: Querie 9");
+        System.out.println("12: Querie 10");
+        System.out.println("13: Save application state");
+        System.out.println("14: Load application state");
+        System.out.println("15: Exit");
     }
 
     /**
