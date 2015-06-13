@@ -116,7 +116,7 @@ public class Hypermarket implements Serializable {
      * for the n most bought products in the year
      * @param n Number of products
      */
-    public ArrayList<ParClientUnits> getMostBoughtProducts (int n) {
+    public ArrayList<TripProdCliUnits> getMostBoughtProducts (int n) {
         return sales.getMostBoughtProducts(n);
     }
 

@@ -8,7 +8,7 @@ import java.util.TreeSet;
  * @author jfc
  * @version 12/06/2015
  */
-public class ParClientUnits {
+public class TripProdCliUnits {
     /* The product associated */
     private String product;
     /* The list of clients */
@@ -19,7 +19,7 @@ public class ParClientUnits {
     /**
      * Unparameterized Constructor
      */
-    public ParClientUnits () {
+    public TripProdCliUnits () {
         this.product = new String();
         this.clients = new TreeSet<String>();
         this.units = 0;
@@ -31,7 +31,7 @@ public class ParClientUnits {
      * @param client    The initial client to be added
      * @param units     The initial number of units
      */
-    public ParClientUnits (String product, String client, int units) {
+    public TripProdCliUnits (String product, String client, int units) {
         this.setProduct(product);
         this.clients = new TreeSet<String>();
         this.addClient(client);

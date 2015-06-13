@@ -153,12 +153,12 @@ public class Sales implements Serializable {
      * of the n most bought products during the year
      * @param n Number of products
      */
-    public ArrayList<ParClientUnits> getMostBoughtProducts (int n) {
+    public ArrayList<TripProdCliUnits> getMostBoughtProducts (int n) {
         /* Map between product code and units */
         Map<String, Integer> map_units = new TreeMap<String, Integer>();
         /* Map between units sold and the pairs for which
         products sold that number of units */
-        TreeMap<Integer, Map<String, ParClientUnits>> map_pair = new TreeMap<Integer, Map<String, ParClientUnits>>();
+        TreeMap<Integer, Map<String, TripProdCliUnits>> map_pair = new TreeMap<Integer, Map<String, TripProdCliUnits>>();
         int i;
 
         for (i = 0; i < 12; i++) {
@@ -179,20 +179,20 @@ public class Sales implements Serializable {
 
                     if (units == null) {    /* First time the product appears */
                         units = s.getUnits();
-                        ParClientUnits par = new ParClientUnits(product, client, units);
+                        TripProdCliUnits par = new TripProdCliUnits(product, client, units);
                         /* Put the new product in the units map */
                         map_units.put(product, units);
 
-                        Map<String, ParClientUnits> aux = map_pair.get(units);
+                        Map<String, TripProdCliUnits> aux = map_pair.get(units);
 
                         if (aux == null) {
-                            aux = new TreeMap<String, ParClientUnits>();
+                            aux = new TreeMap<String, TripProdCliUnits>();
                             aux.put(product, par);
                             map_pair.put(units, aux);
                         } else aux.put(product, par);
                     } else {                /* The product has already appeared */
-                        Map<String, ParClientUnits> map_aux = map_pair.get(units);
-                        ParClientUnits par = map_aux.get(product);
+                        Map<String, TripProdCliUnits> map_aux = map_pair.get(units);
+                        TripProdCliUnits par = map_aux.get(product);
                         map_aux.remove(product);
 
                         /* Update information */
@@ -202,10 +202,10 @@ public class Sales implements Serializable {
 
                         map_units.put(product, units);
 
-                        Map<String, ParClientUnits> aux = map_pair.get(units);
+                        Map<String, TripProdCliUnits> aux = map_pair.get(units);
 
                         if (aux == null) {
-                            aux = new TreeMap<String, ParClientUnits>();
+                            aux = new TreeMap<String, TripProdCliUnits>();
                             aux.put(product, par);
                             map_pair.put(units, aux);
                         } else aux.put(product, par);
@@ -214,11 +214,11 @@ public class Sales implements Serializable {
             }
         }
 
-        ArrayList<ParClientUnits> list = new ArrayList<ParClientUnits>();
+        ArrayList<TripProdCliUnits> list = new ArrayList<TripProdCliUnits>();
         int index = 0;
 
         for (Integer x : map_pair.descendingKeySet()) {
-            for (ParClientUnits par : map_pair.get(x).values()) {
+            for (TripProdCliUnits par : map_pair.get(x).values()) {
                 list.add(index, par);
                 index++;
             }

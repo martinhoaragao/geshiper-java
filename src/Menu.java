@@ -294,7 +294,7 @@ public class Menu {
 
         clean();
         System.out.print("Number of products: ");
-        ArrayList<ParClientUnits> list;
+        ArrayList<TripProdCliUnits> list;
 
         try {
 
@@ -306,8 +306,8 @@ public class Menu {
             System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
             System.out.format("%7s | %7s | %7s\n", "Product", "Clients", "Units");
             System.out.println("---------------------------");
-            for (ParClientUnits par : list)
-                System.out.format("%7s | %7d | %7d\n", par.getProduct(), par.getNumOfClients(), par.getUnits());
+            for (TripProdCliUnits aux : list)
+                System.out.format("%7s | %7d | %7d\n", aux.getProduct(), aux.getNumOfClients(), aux.getUnits());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

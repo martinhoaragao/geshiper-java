@@ -14,17 +14,16 @@ public class GesthiperOO {
         Menu menu = new Menu();
         Scanner sc = new Scanner(System.in);
         boolean finished = false;
-        boolean write_invalid = false;          /* Control if user wants to save invalid lines */
-        String filename;                        /* Where to write invalid lines */
-        PrintWriter pw = null;
         String line;
-        int option;
+        int option, lines;
 
         /* Read clients file */
         c.start();
+        lines = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichClientes.txt"));
             while ((line = br.readLine()) != null) {
+                lines++;
                 menu.addClient(line);
             }
         } catch (Exception e) {
@@ -33,13 +32,16 @@ public class GesthiperOO {
         elapsed = c.stop();
         System.out.println("'FichClientes.txt' read.");
         System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+        System.out.format("%d Clients added.\n\n", lines);
 
         /* Read products file */
         c.start();
+        lines = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader("FichProdutos.txt"));
             while ((line = br.readLine()) != null) {
                 menu.addProduct(line);
+                lines++;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -47,6 +49,7 @@ public class GesthiperOO {
         elapsed = c.stop();
         System.out.println("'FichProdutos.txt' read.");
         System.out.format("Time elapsed: %1.6f seconds\n", elapsed);
+        System.out.format("%d Products added.\n\n", lines);
 
         c.start();
         try {
