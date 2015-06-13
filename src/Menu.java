@@ -376,18 +376,18 @@ public class Menu {
     public void showMenu () {
         clean();
 
-        System.out.println("1: List of Clients by initial");
-        System.out.println("2: List of Products by initial");
-        System.out.println("3: List of clients that bough nothing");
-        System.out.println("4: List of products not sold");
-        System.out.println("5: Client anual sales");
-        System.out.println("6: (3) Number of sales and clients in a month");
-        System.out.println("7: (7) List of a client most bought products");
-        System.out.println("8: Querie 5");
-        System.out.println("9: (6) Product sales by month and type");
-        System.out.println("10: Querie 8");
-        System.out.println("11: Querie 9");
-        System.out.println("12: Querie 10");
+        System.out.println(" 1: List of Clients by initial");
+        System.out.println(" 2: List of Products by initial");
+        System.out.println(" 3: (1)  List of products never bought");
+        System.out.println(" 4: (2)  List of clients with no expense");
+        System.out.println(" 5: (3)  Number of sales and clients in a month");
+        System.out.println(" 6: (4)  Client anual sales");
+        System.out.println(" 7: (5)  Product sales");
+        System.out.println(" 8: (6)  Product sales by month and type");
+        System.out.println(" 9: (7)  List of a client most bought products");
+        System.out.println("10: (8)  Top n products");
+        System.out.println("11: (9)  Top n clients");
+        System.out.println("12: (10) Top clients for a product");
         System.out.println("13: Save application state");
         System.out.println("14: Load application state");
         System.out.println("15: Exit");

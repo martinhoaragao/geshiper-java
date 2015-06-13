@@ -132,13 +132,13 @@ public class GesthiperOO {
             switch (option) {
                 case 1: menu.getClientsByInitial(); break;
                 case 2: menu.getProductsByInitial();break;
-                case 3: menu.cheapClients();        break;
-                case 4: menu.unusedProducts();      break;
-                case 5: menu.clientAnualSales();    break;
-                case 6: menu.querie3();             break;
-                case 7: menu.querie7();             break;
-                case 8: menu.querie5();             break;
-                case 9: menu.query6();              break;
+                case 3: menu.unusedProducts();      break;
+                case 4: menu.cheapClients();        break;
+                case 5: menu.querie3();             break;
+                case 6: menu.clientAnualSales();    break;
+                case 7: menu.querie5();             break;
+                case 8: menu.query6();              break;
+                case 9: menu.querie7();             break;
                 case 10: menu.querie8();            break;
                 case 11: menu.querie9();            break;
                 case 12: menu.querie10();           break;
