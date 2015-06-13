@@ -349,8 +349,9 @@ public class Menu {
         String s = sc.nextLine().replaceAll("[\n\r]", "");
         System.out.print("How many?");
 
+        int number = sc.nextInt();
         c.start();
-        result = market.getTopClients(s, sc.nextInt());
+        result = market.getTopClients(s, number);
         elapsed = c.stop();
 
 
