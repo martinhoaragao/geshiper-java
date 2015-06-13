@@ -180,6 +180,42 @@ pelo utilizador e não muda durante a execução da querie.
 \par Relativamente à querie 5 é criado um \textbf{ArrayList} com 12 entradas, um para cada mês, e cada um contêm uma 
 instância de \textbf{ParClientFat} relativa a esse mês.
 
+\subsection{ParClientQuant}
+\par A resolução das queries 9 e 10 requeriam que a cada código de cliente estivesse associado um número de unidades e,
+no caso da querie 10, um total fatucado por esse cliente. Assim, foi definida a classe \textbf{ParClientQuant} cuja
+definição das variáveis de instância é a seguinte:
+
+\begin{lstlisting}[language=Java]
+public class ParClientQuant {
+    /* client code */
+	private String client_code;
+	/* number of products the client bought */
+    private int num_products;
+    /* how much the client spent with the products */
+    private double fat;
+}
+\end{lstlisting}
+
+\par Na querie 9, é apenas necessário associar a um código de cliente, o número de produtos diferentes que esse cliente
+comprou. Como tal, a variável \textbf{fat} é apenas utilizada na querie 10, onde é necessário associar a um código de
+cliente, não só o número de unidades de um produto que o cliente comprou, como o total gasto pelo cliente relativo a esse
+produto.
+
+\subsection{ParProductUnits}
+\par De modo a resolver a querie 7 foi necessário desenvolver uma classe que associasse um valor a um código de produto.
+Desta forma, a classe \textbf{ParProductUnits} foi definida. A definição das suas variáveis de instância é a seguinte:
+
+\begin{lstlisting}[language=Java]
+public class ParProductUnits {
+	/* product code */
+    private String product_code;
+    /* number of times the product was bought */
+    private int num_sold;
+\end{lstlisting}
+
+\par Esta classe associa o número de vezes que um produto foi comprado ao código do dito produto. Assim, pudemos evitar
+a utilização de estruturas de dados demasiado complexas que conseguissem associar um \textbf{int} a uma \textbf{String}.
+
 \newpage
 \section{Módulos}
 \subsection{Catálogo de Clientes}
