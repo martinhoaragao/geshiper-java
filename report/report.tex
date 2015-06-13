@@ -386,6 +386,44 @@ Também há queries que requerem a apresentação de tabelas, para cada uma dess
 \newpage
 \section{Gráficos e Resultados}
 
+\par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes 
+\textbf{BufferedReader} e para a classe \textbf{Scanner}, realizando testes fazendo parsing da string e criando instância 
+da class \textbf{Sale} e testes sem parsing.
+\par De seguida ficam tabelas com os resultados obtidos e também um gráfico para comparação de resultados.
+
+\begin{table}[h]
+\centering
+\caption{Resultados Sem Parsing}
+\label{my-label}
+\begin{tabular}{l|l|l|ll}
+\cline{2-3}
+                                   & BufferedReader (Sem Parsing) & Scanner (Sem Parsing) &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{500k Compras} & 0,127064 seg                 & 2,015564 seg          &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{1M Compras}   & 0,155963 seg                 & 3,479728 seg          &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{3M Compras}   & 0,478711 seg                 & 10,409572 seg         &  &  \\ \cline{1-3}
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Resultados Parsing}
+\label{my-label}
+\begin{tabular}{l|l|l|ll}
+\cline{2-3}
+                                   & BufferedReader (Parsing) & Scanner (Parsing) &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{500k Compras} & 0,340476 seg             & 0,927688 seg      &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{1M Compras}   & 0,586160 seg             & 1,690759 seg      &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{3M Compras}   & 1,478137 seg             & 4,963618 seg      &  &  \\ \cline{1-3}
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{filegraph.png}
+\caption{Resultados dos testes de leitura de ficheiros}
+\label{fig:sales}
+\end{figure}
+
 \newpage
 \section{Conclusão}
 
