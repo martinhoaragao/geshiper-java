@@ -749,6 +749,7 @@ public class Menu {
                 product = st.nextToken();
                 price   = Float.parseFloat(st.nextToken());
                 units   = Integer.parseInt(st.nextToken());
+                price   = price * units;
                 type    = st.nextToken().equals("P");
                 client  = st.nextToken();
                 month   = Integer.parseInt(st.nextToken());

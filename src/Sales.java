@@ -1,6 +1,7 @@
 import Exceptions.InvalidMonthException;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -39,10 +40,10 @@ public class Sales implements Serializable {
             TreeMap<String,ArrayList<Sale>> map = this.sales.get(month - 1);
             ArrayList<Sale> sales_month = map.get(client);
 
-            if (sales_month != null) sales_month.add(sale);
+            if (sales_month != null) sales_month.add(sale.clone());
             else {
                 sales_month = new ArrayList<Sale>();
-                sales_month.add(sale);
+                sales_month.add(sale.clone());
                 map.put(client, sales_month);
             }
         }

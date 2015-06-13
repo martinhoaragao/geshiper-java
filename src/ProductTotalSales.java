@@ -203,12 +203,12 @@ public class ProductTotalSales implements Serializable {
      */
     public void updateTotalSales (Sale sale) {
         if (sale.getType()) {
-            this.setNormalUnits(sale.getUnits());
-            this.setNormalRevenue(sale.getUnits() * sale.getPrice());
+            this.setPromoUnits(sale.getUnits());
+            this.setPromoRevenue(sale.getPrice());
         }
         else {
-            this.setPromoUnits(sale.getUnits());
-            this.setPromoRevenue(sale.getUnits() * sale.getPrice());
+            this.setNormalUnits(sale.getUnits());
+            this.setNormalRevenue(sale.getPrice());
         }
     }
 
