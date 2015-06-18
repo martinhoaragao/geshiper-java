@@ -382,6 +382,30 @@ Para isso foi criado um método \emph{paginate} que recebendo um array de string
 Também há queries que requerem a apresentação de tabelas, para cada uma dessas queries foi utilizado \emph{String.format} que trata de formatar a palavra para apresentar numa tabela ao terminal do utilizador.
 \newpage
 \section{Diagrama de Classes}
+\par De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros .java usados para a entrega, é 
+necessário ter atenção que o BlueJ por algum motivo não cria todas as ligações, por exemplo, através das declarações das 
+variáveis de instância da classe \color{blue} \textbf{Hypermarket} \color{black}:
+
+\begin{lstlisting}
+public class Hypermarket {
+	private ProductsCatalog p_cat;
+   	private ClientsCatalog  c_cat;
+    	private Sales sales;
+    	private Accounting accounting;
+	...
+}
+\end{lstlisting}
+
+\par podemos ver que ele depende das classes: \color{blue} \textbf{ProductsCatalog, ClientsCatalog, Sales} \color{black} e 
+\color{blue} \textbf{Accounting} \color{black}, contudo o BlueJ não cria ligação a todas estas classes, não conseguimos 
+descobrir qual era o problema que causava este comportamento.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{diagram.png}
+\caption{Diagrama de classes}
+\label{fig:sales}
+\end{figure}
 
 \newpage
 \section{Gráficos e Resultados}
@@ -496,11 +520,12 @@ testes de performance das diferentes estruturas.
 \label{fig:sales}
 \end{figure}
 
-Entre as 4 situações, nota-se claramente uma disparidade enorme nos resultados da query 8 para a situação 1 e 3.
-Ou seja, comparando \color{blue}\textbf{HashMap}\textbf{black} com \color{blue}\textbf{TreeMap}\color{black} é evindente que o 1.º apresenta um comportamento muito mais eficiente nas necessidades da query 8.
-De facto, as outras situações e queries não divergem substantivamente.
+\par Entre as 4 situações, nota-se claramente uma disparidade enorme nos resultados da query 8 para a situação 1 e 3.
+Ou seja, comparando \color{blue} \textbf{HashMap} \color{black} com \color{blue} \textbf{TreeMap} \color{black} é evidente que 
+o 1.º apresenta um comportamento muito mais eficiente nas necessidades da query 8.
+De facto, as outras situações e queries não divergem substancialmente.
 
-Demonstra-se assim que se deveria ter implementado um HashMap na estrutura de \color{blue}\textbf{Sales}\color{black}.
+\par Demonstra-se assim que se deveria ter implementado um \color{blue} \textbf{HashMap} \color{black} na estrutura da classe \color{blue}\textbf{Sales}\color{black}.
 \section{Conclusão}
 
 \end{document}
