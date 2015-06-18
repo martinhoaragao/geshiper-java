@@ -386,8 +386,8 @@ Também há queries que requerem a apresentação de tabelas, para cada uma dess
 \newpage
 \section{Gráficos e Resultados}
 
-\par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes 
-\textbf{BufferedReader} e para a classe \textbf{Scanner}, realizando testes fazendo parsing da string e criando instância 
+\par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes
+\textbf{BufferedReader} e para a classe \textbf{Scanner}, realizando testes fazendo parsing da string e criando instância
 da class \textbf{Sale} e testes sem parsing.
 \par De seguida ficam tabelas com os resultados obtidos e também um gráfico para comparação de resultados.
 
@@ -426,8 +426,10 @@ da class \textbf{Sale} e testes sem parsing.
 
 \newpage
 
-\par Também foram realizados testes para outras estruturas de dados para ver a diferença de tempo de execução para as 
-queries 8, 9 e 10. Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de 
+Assim pode-se concluir que apesar de  \color{blue}\textbf{BufferedReader}\color{black} ser mais rápido em todas as situações, ao contrário do que era esperado por nos a class  \color{blue}\textbf{Scanner}\color{black} tem um comportamento mais eficiente durante parsing, pois é esta a sua principal utilização.
+
+\par Também foram realizados testes para outras estruturas de dados para ver a diferença de tempo de execução para as
+queries 8, 9 e 10. Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de
 compras, a class \color{blue} \textbf{Sales} \color{black} tem a sua estrutura definida da seguinte forma:
 
 \begin{lstlisting}
@@ -437,7 +439,7 @@ public class Sales {
 }
 \end{lstlisting}
 
-\par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um 
+\par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um
 \color{blue} \textbf{HashMap} \color{black} . Ficando então a estrutura definida da seguinte forma:
 
 \begin{lstlisting}
@@ -447,7 +449,7 @@ public class Sales {
 }
 \end{lstlisting}
 
-\par Na terceira situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{ArrayList} \color{black} utilizar a 
+\par Na terceira situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{ArrayList} \color{black} utilizar a
 classe  \color{blue} \textbf{Vector} \color{black} . Ficando então a estrutura definida da seguinte forma:
 
 \begin{lstlisting}
@@ -466,11 +468,11 @@ public class Sales {
 }
 \end{lstlisting}
 
-\par Para medir os tempos executamos as queries 8, 9 e 10. Na query 8 utilizamos 1000 produtos como o número base 
-para os testes e na query 9 utilizamos 1000 clientes. Para a query 10, para cada uma das situações corremos 5 vezes, 
-para os produtos: "HO2915", "GF7879", "EN3727", "TM3887", "KN1847" e 1000 clientes, no final calculamos a média destas 5 
+\par Para medir os tempos executamos as queries 8, 9 e 10. Na query 8 utilizamos 1000 produtos como o número base
+para os testes e na query 9 utilizamos 1000 clientes. Para a query 10, para cada uma das situações corremos 5 vezes,
+para os produtos: "HO2915", "GF7879", "EN3727", "TM3887", "KN1847" e 1000 clientes, no final calculamos a média destas 5
 execuções e foi o tempo que registamos.
-\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes 
+\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes
 testes de performance das diferentes estruturas.
 
 \newpage
@@ -494,6 +496,11 @@ testes de performance das diferentes estruturas.
 \label{fig:sales}
 \end{figure}
 
+Entre as 4 situações, nota-se claramente uma disparidade enorme nos resultados da query 8 para a situação 1 e 3.
+Ou seja, comparando \color{blue}\textbf{HashMap}\textbf{black} com \color{blue}\textbf{TreeMap}\color{black} é evindente que o 1.º apresenta um comportamento muito mais eficiente nas necessidades da query 8.
+De facto, as outras situações e queries não divergem substantivamente.
+
+Demonstra-se assim que se deveria ter implementado um HashMap na estrutura de \color{blue}\textbf{Sales}\color{black}.
 \section{Conclusão}
 
 \end{document}
