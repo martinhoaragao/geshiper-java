@@ -425,6 +425,75 @@ da class \textbf{Sale} e testes sem parsing.
 \end{figure}
 
 \newpage
+
+\par Também foram realizados testes para outras estruturas de dados para ver a diferença de tempo de execução para as 
+queries 8, 9 e 10. Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de 
+compras, a class \color{blue} \textbf{Sales} \color{black} tem a sua estrutura definida da seguinte forma:
+
+\begin{lstlisting}
+public class Sales {
+	ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par Na segunda situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{TreeMap} \color{black} utilizar um 
+\color{blue} \textbf{HashMap} \color{black} . Ficando então a estrutura definida da seguinte forma:
+
+\begin{lstlisting}
+public class Sales {
+	ArrayList<HashMap<String, ArrayList<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par Na terceira situação a estrutura foi modifica para em vez de utilizar \color{blue} \textbf{ArrayList} \color{black} utilizar a 
+classe  \color{blue} \textbf{Vector} \color{black} . Ficando então a estrutura definida da seguinte forma:
+
+\begin{lstlisting}
+public class Sales {
+	Vector<TreeMap<String, Vector<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par A útima situação, situação 4 é a mistura da situação 2 e 3, ficando a estrutura definida da seguinte forma:
+
+\begin{lstlisting}
+public class Sales {
+	Vector<HashMap<String, Vector<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par Para medir os tempos executamos as queries 8, 9 e 10. Na query 8 utilizamos 1000 produtos como o número base 
+para os testes e na query 9 utilizamos 1000 clientes. Para a query 10, para cada uma das situações corremos 5 vezes, 
+para os produtos: "HO2915", "GF7879", "EN3727", "TM3887", "KN1847" e 1000 clientes, no final calculamos a média destas 5 
+execuções e foi o tempo que registamos.
+\par De seguida apresentamos a tabela dos tempos registados seguido de um gráfico que irá ajudar na conclusão destes 
+testes de performance das diferentes estruturas.
+
+\newpage
+
+\begin{table}[h]
+\centering
+\caption{Resultados dos Testes às Estruturas}
+\begin{tabular}{l|l|l|l|l|}
+\cline{2-5}
+                               & Situação 1 & Situação 2 & Situação 3 & Situação 4 \\ \hline
+\multicolumn{1}{|l|}{Query 8}  & 2,600 seg  & 0,576 seg  & 2,737 seg  & 0,614 seg  \\ \hline
+\multicolumn{1}{|l|}{Query 9}  & 0,451 seg  & 0,347 seg  & 0,470 seg  & 0,314 seg  \\ \hline
+\multicolumn{1}{|l|}{Query 10} & 0,070 seg  & 0,077 seg  & 0,071 seg  & 0,082 seg  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{graphstruct.png}
+\caption{Resultados dos testes das diferentes estruturas}
+\label{fig:sales}
+\end{figure}
+
 \section{Conclusão}
 
 \end{document}
