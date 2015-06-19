@@ -2,7 +2,6 @@
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage[labelformat=empty]{caption}
 \usepackage{tikz}
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
@@ -14,6 +13,8 @@
 \usepackage{pgfplots}
 
 \usepackage{indentfirst} %Identação nos parágrafos iniciais
+
+\usepackage{caption} % Permitir caption* para não ficar numerado
 
 % Code
 \usepackage{listings}
@@ -31,15 +32,15 @@
 \begin{figure}[!htb]
 \minipage{0.31\textwidth}
   \includegraphics[width=\linewidth]{jc.jpg}
-  \caption{João Costa A70563}\label{fig:awesome_image1}
+  \caption*{João Costa A70563}\label{fig:awesome_image1}
 \endminipage\hfill
 \minipage{0.29\textwidth}
   \includegraphics[width=\linewidth]{ls.jpg}
-  \caption{Leandro Salgado A70949}\label{fig:awesome_image2}
+  \caption*{Leandro Salgado A70949}\label{fig:awesome_image2}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{ma.jpg}
-  \caption{Martinho Aragão A72205}
+  \caption*{Martinho Aragão A72205}
 \endminipage
 \end{figure}
 
@@ -71,60 +72,11 @@ Ao longo deste relatório aborda-se assim as decisões tomadas na implementaçã
 \section{Classes}
 Na seguinte secção vamos explicar as classes que decidimos criar para a resolução do projeto, incluindo diagramas e explicação das estruturas escolhidas para cada classe.
 
-% ClientsCatalog
-\subsection{ClientsCatalog}
-
-Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \color{blue} \textbf{ClientsCatalog} \color{black} que 
-irá guardar clientes e manter a lista dos que não realizaram nenhuma compra.
-Para além disso cria a lista com todos os códigos de cliente a partir de uma letra inicial do código.
-
-Fica aqui o código que define as variáveis de instância:
-
-\begin{lstlisting}
-public class ClientsCatalog {
-	/* Codigo de cliente -> Cliente */
-	private TreeSet<String> clients;
-	/* Lista de clientes que nao compraram nenhum produto */
-	private TreeSet<String> unused_clients;
-}
-\end{lstlisting}
-
-
-Uma das vantagens desta implementação é que, quando o utilizador decide ler um novo ficheiro de compras, não é necessário percorrer a lista de todos os clientes e voltar a inserir na lista de clientes que nunca compraram nada para depois retirar à medida que aparecem no ficheiro de compras.
-Como \color{blue} \textbf{String} \color{black}são imutáveis basta correr o código:
-$unused\_clients = clients.clone();$ e a variável $unused\_clients$ passa agora a ter novamente a lista de todos os clientes que estão no catálogo de clientes.
-
-%ProductsCatalog
-\subsection{ProductsCatalog}
-
-A classe \color{blue} \textbf{ProductsCatalog} \color{black} é responsável por guardar todos os códigos de produtos existentes 
-no ficheiro de produtos assim como guardar a lista de produtos que ninguém comprou.
-Para guardar as duas listas referidas usamos a classe \color{blue} \textbf{TreeSet} \color{black} pois como os códigos de 
-produtos são apenas do tipo \color{blue} \textbf{String} \color{black} a pesquisa num \color{blue} \textbf{TreeSet} \color{black}é 
-rápida.
-
-A declaração das variáveis de instância segue de seguinte:
-
-\begin{lstlisting}
-public class ProductsCatalog {
-	/* Lista de todos os codigos de produto */
-	private TreeSet<String> products;
-	/* Lista de produtos que ninguem comprou */
-	private TreeSet<String> unused_products;
-}
-\end{lstlisting}
-
-
-Tal como no caso da classe \color{blue} \textbf{ClientsCatalog} \color{black} sempre que for necessário voltar a ler o ficheiro de 
-compras basta reconstruir a lista de todos os códigos de produto na lista dos produtos que ninguém comprou, correndo:
-$unused\_products = products.clone();$.
-
-\newpage
 \subsection{Sale}
 
 Para o módulo de Compras é necessário guardar informação sobre todas as compras válidas quem as fez, quando, o que comprou, quantos unidades comprou, o tipo da compra e o total pago.
 
-A classe \color{blue} \textbf{Sale} \color{black} trata de guardar informação relativa a uma compra, guardando o código do 
+A classe \color{blue} \textbf{Sale} \color{black} trata de guardar informação relativa a uma compra, guardando o código do
 produto comprado, as unidades, o tipo da compra (promocional ou normal) e o total gasto.
 Fica em seguida a declaração das variáveis de instância:
 
@@ -142,29 +94,9 @@ public class Sale {
 \end{lstlisting}
 
 
-Foi usado um valor do tipo \color{blue} \textbf{boolean} \color{black} para guardar o tipo de compra pois apenas há duas 
-opções, ou é uma compra normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor 
+Foi usado um valor do tipo \color{blue} \textbf{boolean} \color{black} para guardar o tipo de compra pois apenas há duas
+opções, ou é uma compra normal, à qual associamos o valor $false$, ou é uma compra promocional, à qual associamos o valor
 $true$.
-
-\subsection{Sales}
-\par Classe responsável por representar o módulo de compras, mantendo organização sobre quais as compras feitas, em que 
-mês e por quem. 
-\par Para conseguir guardar estes dados recorremos à classe \color{blue} \textbf{Sale} \color{black}, utilizando também um 
-\color{blue} \textbf{ArrayList} \color{black} com 12 entradas, representando o mês das compras e para cada uma das 
-entradas do array existe um \color{blue} \textbf{TreeMap} \color{black} que mapeia um código de cliente às compras 
-realizadas por esse cliente nesse mesmo mês.
-\par As variáveis de instância da classe ficam então definidas:
-
-\begin{lstlisting}
-public class Sales {
-	/* Mes -> Cliente -> Compras */
-	private ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
-	...
-}
-\end{lstlisting}
-
-\par Na secção \ref{compras} incluímos uma figura que demonstra a estrutura utilizada neste módulo de compras para uma 
-compreensão mais fácil da implementação.
 
 \subsection{ProductTotalSales}
 
@@ -185,11 +117,144 @@ public class Sale {
 }
 \end{lstlisting}
 
+\subsection{Módulos}
+
+% ClientsCatalog
+\subsubsection{ClientsCatalog\label{catalogoclientes}}
+
+Para guardar os clientes presentes no ficheiro de clientes, criámos a classe \color{blue} \textbf{ClientsCatalog} \color{black} que
+irá guardar clientes e manter a lista dos que não realizaram nenhuma compra.
+Para além disso cria a lista com todos os códigos de cliente a partir de uma letra inicial do código. Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe \color{blue} \textbf{ClientsCatalog}
+\color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} num TreeSet
+proporcionando assim uma pesquisa rápida.
+
+Fica aqui o código que define as variáveis de instância:
+
+\begin{lstlisting}
+public class ClientsCatalog {
+	/* Codigo de cliente -> Cliente */
+	private TreeSet<String> clients;
+	/* Lista de clientes que nao compraram nenhum produto */
+	private TreeSet<String> unused_clients;
+}
+\end{lstlisting}
+
+\par A figura \ref{fig:catclientes} demonstra a estrutura utilizada neste módulo para uma compreensão mais fácil da implementação.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{catclientes.png}
+\caption{Exemplo de um TreeSet de clientes}
+\label{fig:catclientes}
+\end{figure}
+
+Uma das vantagens desta implementação é que, quando o utilizador decide ler um novo ficheiro de compras, não é necessário percorrer a lista de todos os clientes e voltar a inserir na lista de clientes que nunca compraram nada para depois retirar à medida que aparecem no ficheiro de compras.
+Como \color{blue} \textbf{String} \color{black}são imutáveis basta correr o código:
+$unused\_clients = clients.clone();$ e a variável $unused\_clients$ passa agora a ter novamente a lista de todos os clientes que estão no catálogo de clientes.
+
+%ProductsCatalog
+\subsubsection{ProductsCatalog\label{catalogoprodutos}}
+
+A classe \color{blue} \textbf{ProductsCatalog} \color{black} é responsável por guardar todos os códigos de produtos existentes
+no ficheiro de produtos assim como guardar a lista de produtos que ninguém comprou.
+Para guardar as duas listas referidas usamos a classe \color{blue} \textbf{TreeSet} \color{black} pois como os códigos de
+produtos são apenas do tipo \color{blue} \textbf{String} \color{black} a pesquisa num \color{blue} \textbf{TreeSet} \color{black}é
+rápida.
+
+A declaração das variáveis de instância segue de seguinte:
+
+\begin{lstlisting}
+public class ProductsCatalog {
+	/* Lista de todos os codigos de produto */
+	private TreeSet<String> products;
+	/* Lista de produtos que ninguem comprou */
+	private TreeSet<String> unused_products;
+}
+\end{lstlisting}
+
+\par A figura \ref{fig:catprodutos} demonstra a estrutura utilizada neste módulo para uma compreensão mais fácil da implementação.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{catprodutos.png}
+\caption{Exemplo de um TreeSet de produtos}
+\label{fig:catprodutos}
+\end{figure}
+
+Tal como no caso da classe \color{blue} \textbf{ClientsCatalog} \color{black} sempre que for necessário voltar a ler o ficheiro de
+compras basta reconstruir a lista de todos os códigos de produto na lista dos produtos que ninguém comprou, correndo:
+$unused\_products = products.clone();$.
+
+\newpage
+
+\subsubsection{Sales\label{compras}}
+
+
+A declaração das variáveis de instância é a seguinte:
+
+\par Classe responsável por representar o módulo de compras, mantendo organização sobre quais as compras feitas, em que
+mês e por quem.
+\par Para conseguir guardar estes dados recorremos à classe \color{blue} \textbf{Sale} \color{black}, utilizando também um
+\color{blue} \textbf{ArrayList} \color{black} com 12 entradas, representando o mês das compras e para cada uma das
+entradas do array existe um \color{blue} \textbf{TreeMap} \color{black} que mapeia um código de cliente às compras
+realizadas por esse cliente nesse mesmo mês.
+\par As variáveis de instância da classe ficam então definidas:
+
+\begin{lstlisting}
+public class Sales {
+	/* Mes -> Cliente -> Compras */
+	private ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
+	...
+}
+\end{lstlisting}
+
+\par A figura \ref{fig:modsales} demonstra a estrutura utilizada neste módulo de compras para uma compreensão mais fácil da implementação.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{sales.png}
+\caption{Exemplo da estrutura com as compras de Janeiro do cliente "FN425"}
+\label{fig:modsales}
+\end{figure}
+
+
+\subsubsection{Contabilidade\label{contabilidade}}
+
+O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
+Desta forma pretende-se que seja possível obter facilmente a faturação total de um mês, analisar as vendas de um produto mensalmente, e as suas vendas todais num ano.
+
+Como então era necessário conseguir dividir as vendas por mês utilizou-se um\color{blue} \textbf{ArrayList} \color{black} com
+12 entradas, e em cada uma destas entradas existe um \color{blue} \textbf{TreeMap\textless String, ProductTotalSales
+\textgreater} \color{black} que mapeia um código de produto para a informação de faturação total do mesmo.
+Usando um \color{blue} \textbf{TreeMap} \color{black} permite uma procura rápida por um dado produto e o arraylist permite um
+acesso directo às vendas de um determinado mês.
+
+A declaração das variáveis de instância é a seguinte:
+
+\begin{lstlisting}
+public class Accounting {
+/* Informacao de faturacao por mes e por produto */
+  private ArrayList<TreeMap <String,ProductTotalSales>> accounting;
+
+  ...
+}
+
+\end{lstlisting}
+
+\par A figura \ref{fig:accounting} demonstra a estrutura utilizada neste módulo para uma compreensão mais fácil da implementação.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{accounting.jpg}
+\caption{Exemplo da estrutura com algumas vendas de Janeiro descritas}
+\label{fig:accounting}
+\end{figure}
+
 \subsection{Hypermarket}
-\par Classe principal que agrega as últimas classes apresentadas, a classe \color{blue} \textbf{Hypermarket} \color{black} 
-é a responsável por representar o hipermercado, mantém como suas variáveis de instância um catálogo de clientes, 
+\par Classe principal que agrega as últimas classes apresentadas, a classe \color{blue} \textbf{Hypermarket} \color{black}
+é a responsável por representar o hipermercado, mantém como suas variáveis de instância um catálogo de clientes,
 um catálogo de produtos, um módulo de contabilidade e um módulo de compras.
-\par Esta classe é também a responsável por comunicar com cada um dos diferentes módulos e contém os métodos 
+\par Esta classe é também a responsável por comunicar com cada um dos diferentes módulos e contém os métodos
 necessários para resolver cada uma das queries propostas.
 \par A definição das variáveis de instância é a seguinte:
 
@@ -209,22 +274,22 @@ public class Hypemarket {
 
 \subsection{Menu}
 \par A classe \color{blue} \textbf{Menu} \color{black} tem como sua variável de instância um objecto do tipo
-\color{blue} \textbf{Hypermarket} \color{black} com o qual comunica para realizar as diferentes queries, e é esta classe que trata 
+\color{blue} \textbf{Hypermarket} \color{black} com o qual comunica para realizar as diferentes queries, e é esta classe que trata
 também da parte de I/O, relativamente a impressão de dados no ecrã para cada uma das diferentes queries.
 \par Esta classe também tem métodos que permitem realizar nova leitura dos diferentes ficheiros de compras, clientes e
 produtos.
 
 \subsection{GesthiperOO}
-\par Classe responsável pela inicialização do programa, ou seja, carregar automaticamente os ficheiros 'FichClientes.txt', 
-'FichProdutos.txt' e 'Compras.txt' para as estruturas utilizando os métodos presentes na classe 
-\color{blue} \textbf{Menu} \color{black}. 
-\par No final de carregar estes ficheiros é a classe que fica responsável por ler a escolha do utilizador e invocar os métodos, 
+\par Classe responsável pela inicialização do programa, ou seja, carregar automaticamente os ficheiros 'FichClientes.txt',
+'FichProdutos.txt' e 'Compras.txt' para as estruturas utilizando os métodos presentes na classe
+\color{blue} \textbf{Menu} \color{black}.
+\par No final de carregar estes ficheiros é a classe que fica responsável por ler a escolha do utilizador e invocar os métodos,
 presentes na classe \color{blue} \textbf{Menu} \color{black}, relativos à escolha do utilizador.
 
 \subsection{InvalidMonthException}
-\par Como muitas das queries necessitam do mês como argumento e os meses válidos apenas estão entre os valores 1 e 12 
-inclusive decidimos criar uma \color{blue} \textbf{Exception} \color{black} para ser utilizada quando o mês passado como 
-argumento. O código da classe é o que se segue, serve meramente para curiosidade visto que as \color{blue} 
+\par Como muitas das queries necessitam do mês como argumento e os meses válidos apenas estão entre os valores 1 e 12
+inclusive decidimos criar uma \color{blue} \textbf{Exception} \color{black} para ser utilizada quando o mês passado como
+argumento. O código da classe é o que se segue, serve meramente para curiosidade visto que as \color{blue}
 \textbf{Exception} \color{black} são fáceis de criar:
 
 \begin{lstlisting}
@@ -272,9 +337,9 @@ public class ParClientFat {
 
 Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido pelo utilizador e não muda durante a execução da query.
 
-A lista de clientes foi implementada usando um \color{blue} \textbf{Set} \color{black} pois garante a ausência de elementos 
+A lista de clientes foi implementada usando um \color{blue} \textbf{Set} \color{black} pois garante a ausência de elementos
 repetidos.
-Relativamente à query 5 é criado um \color{blue} \textbf{ArrayList} \color{black} com 12 entradas, um para cada mês, e cada 
+Relativamente à query 5 é criado um \color{blue} \textbf{ArrayList} \color{black} com 12 entradas, um para cada mês, e cada
 um contêm uma instância de \color{blue} \textbf{ParClientFat} \color{black} relativa a esse mês.
 
 \subsubsection{TripNumProdFat}
@@ -295,9 +360,9 @@ public class TripNumProdFat {
 \end{lstlisting}
 
 
-Foi necessário utilizar um Set para guardar os códigos de produtos pois era necessário garantir que o mesmo produto não era 
+Foi necessário utilizar um Set para guardar os códigos de produtos pois era necessário garantir que o mesmo produto não era
 contabilizado várias vezes.
-Utilizou-se um \color{blue} \textbf{TreeSet} \color{black} pois a pesquisa é rápida e garante que não existem elementos 
+Utilizou-se um \color{blue} \textbf{TreeSet} \color{black} pois a pesquisa é rápida e garante que não existem elementos
 repetidos.
 
 Na secção \ref{catalogoprodutos} incluímos uma figura que demonstra a estrutura de um TreeSet de códigos de produtos.
@@ -324,7 +389,7 @@ public class TripProdCliUnits {
 
 Obviamente não era preciso guardar a informação sobre a qual produto está relacionado visto que o produto é definido pelo utilizador e não muda durante a execução da query.
 
-A lista de clientes foi implementada usando um \color{blue} \textbf{Set} \color{black} pois garante a ausência de elementos 
+A lista de clientes foi implementada usando um \color{blue} \textbf{Set} \color{black} pois garante a ausência de elementos
 repetidos.
 
 \subsubsection{ParClientQuant}
@@ -350,7 +415,7 @@ Como tal, a variável \textbf{fat} é apenas utilizada na query 10, onde é nece
 \subsubsection{ParProductUnits}
 
 De modo a resolver a query 7 foi necessário desenvolver uma classe que associasse um valor a um código de produto.
-Desta forma, a classe \color{blue} \textbf{ParProductUnits} \color{black} foi definida. A definição das suas variáveis de instância 
+Desta forma, a classe \color{blue} \textbf{ParProductUnits} \color{black} foi definida. A definição das suas variáveis de instância
 é a seguinte:
 
 \begin{lstlisting}
@@ -366,96 +431,6 @@ Esta classe associa o número de vezes que um produto foi comprado ao código do
 Assim, pudemos evitar a utilização de estruturas de dados demasiado complexas que conseguissem associar um \textbf{int} a uma \color{blue} \textbf{String} \color{black}
 
 \newpage
-\section{Módulos}
-\subsection{Catálogo de Clientes\label{catalogoclientes}}
-
-Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário
-criar um catálogo de clientes.
-Visto que o catálogo apenas deveria guardar os códigos de clientes decidimos criar a classe \color{blue} \textbf{ClientsCatalog} 
-\color{black} que guarda todos os códigos de cliente do tipo \color{blue} \textbf{String} \color{black} num TreeSet 
-proporcionando assim uma pesquisa rápida.
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=90mm]{catclientes.png}
-\caption{Exemplo de um TreeSet de clientes}
-\end{figure}
-
-\newpage
-\subsection{Catálogo de Produtos\label{catalogoprodutos}}
-
-O catálogo de clientes foi implementado usando a class \color{blue} \textbf{ProductsCatalog} \color{black} que basicamente 
-guarda os códigos dos produtos num \color{blue} \textbf{TreeSet} \color{black}.
-Como os códigos dos produtos são apenas \color{blue} \textbf{String} \color{black} a árvore fica então ordenada alfabeticamente e a procura é rápida.
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=90mm]{catprodutos.png}
-\caption{Exemplo de um TreeSet de produtos}
-\label{fig:catprodutos}
-\end{figure}
-
-\subsection{Compras\label{compras}}
-
-O módulo de compras é responsável por guardar todas as compras válidas, relacionando quais os clientes que fizeram essas compras e quando.
-Desta forma é possivel consultar as vendas por mês se assim for desejado.
-
-Como então era necessário conseguir dividir as compras por mês utilizou-se um \color{blue} \textbf{ArrayList} \color{black} com 
-12 entradas, e em cada uma destas entradas existe um \color{blue} \textbf{TreeMap\textless String, ArrayList\textless Sale
-\textgreater\textgreater} \color{black} que mapeia um código de cliente para a lista de compras efectuadas por esse cliente.
-Usando um \color{blue} \textbf{TreeMap} \color{black} permite uma procura rápida por um dado cliente e o arraylist permite um 
-acesso directo às compras de um determinado mês.
-
-A declaração das variáveis de instância é a seguinte:
-
-\begin{lstlisting}
-public class Sales {
-	ArrayList<TreeMap<String, ArrayList<Sale>>> sales;
-
-	...
-}
-\end{lstlisting}
-
-Para mais facilmente entender a implementação incluimos uma figura da estrutura:
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=90mm]{sales.png}
-\caption{Exemplo da estrutura com as compras de Janeiro do cliente "FN425"}
-\label{fig:sales}
-\end{figure}
-
-\subsection{Contabilidade\label{contabilidade}}
-
-O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
-Desta forma pretende-se que seja possível obter facilmente a faturação total de um mês, analisar as vendas de um produto mensalmente, e as suas vendas todais num ano.
-
-Como então era necessário conseguir dividir as vendas por mês utilizou-se um\color{blue} \textbf{ArrayList} \color{black} com 
-12 entradas, e em cada uma destas entradas existe um \color{blue} \textbf{TreeMap\textless String, ProductTotalSales
-\textgreater} \color{black} que mapeia um código de produto para a informação de faturação total do mesmo.
-Usando um \color{blue} \textbf{TreeMap} \color{black} permite uma procura rápida por um dado produto e o arraylist permite um 
-acesso directo às vendas de um determinado mês.
-
-A declaração das variáveis de instância é a seguinte:
-
-\begin{lstlisting}
-public class Accounting {
-/* Informacao de faturacao por mes e por produto */
-  private ArrayList<TreeMap <String,ProductTotalSales>> accounting;
-
-  ...
-}
-
-\end{lstlisting}
-
-Para mais facilmente entender a implementação incluimos uma figura da estrutura:
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=90mm]{accounting.jpg}
-\caption{Exemplo da estrutura com algumas vendas de Janeiro descritas}
-\label{fig:sales}
-\end{figure}
 
 % UI
 \newpage
@@ -500,7 +475,7 @@ descobrir qual era o problema que causava este comportamento.
 \subsection{Leitura de Ficheiros}
 
 \par Para verificar qual a melhor classe a usar para fazer a leitura dos ficheiros corremos testes para as classes
-\color{blue} \textbf{BufferedReader} \color{black} e para a classe\color{blue} \textbf{Scanner} \color{black} realizando testes 
+\color{blue} \textbf{BufferedReader} \color{black} e para a classe\color{blue} \textbf{Scanner} \color{black} realizando testes
 fazendo parsing da string e criando instância da class \color{blue} \textbf{Sale} \color{black} e testes sem parsing.
 \par De seguida ficam tabelas com os resultados obtidos e também um gráfico para comparação de resultados.
 
@@ -539,14 +514,14 @@ fazendo parsing da string e criando instância da class \color{blue} \textbf{Sal
 
 \newpage
 
-\par Assim pode-se concluir que apesar de  \color{blue} \textbf{BufferedReader} \color{black} ser mais rápido em todas as 
-situações, ao contrário do que era esperado por nos a class  \color{blue} \textbf{Scanner} \color{black} tem um comportamento 
+\par Assim pode-se concluir que apesar de  \color{blue} \textbf{BufferedReader} \color{black} ser mais rápido em todas as
+situações, ao contrário do que era esperado por nos a class  \color{blue} \textbf{Scanner} \color{black} tem um comportamento
 mais eficiente durante parsing, pois é esta a sua principal utilização.
 
 \subsection{Testes a estruturas de dados}
-\par No final da realização experimentamos trocar as estruturas utilizadas no projeto por outras que partilhem a mesma API 
+\par No final da realização experimentamos trocar as estruturas utilizadas no projeto por outras que partilhem a mesma API
 para verificar se a estrutura escolhida era a mais eficiente para executar as queries.
-\par Apenas corremos testes para as queries 8, 9 e 10 para medir os diferentes tempos de execução. 
+\par Apenas corremos testes para as queries 8, 9 e 10 para medir os diferentes tempos de execução.
 Foram consideradas 4 situações diferentes, a primeira situação é onde a estrutura do módulo de
 compras, a class \color{blue} \textbf{Sales} \color{black} tem a sua estrutura definida da seguinte forma:
 
