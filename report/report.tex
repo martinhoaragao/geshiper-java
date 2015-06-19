@@ -382,8 +382,8 @@ Para isso foi criado um método \emph{paginate} que recebendo um array de string
 Também há queries que requerem a apresentação de tabelas, para cada uma dessas queries foi utilizado \emph{String.format} que trata de formatar a palavra para apresentar numa tabela ao terminal do utilizador.
 \newpage
 \section{Diagrama de Classes}
-\par De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros .java usados para a entrega, é 
-necessário ter atenção que o BlueJ por algum motivo não cria todas as ligações, por exemplo, através das declarações das 
+\par De seguida é apresentado o Diagrama de classes gerado no BlueJ com os ficheiros .java usados para a entrega, é
+necessário ter atenção que o BlueJ por algum motivo não cria todas as ligações, por exemplo, através das declarações das
 variáveis de instância da classe \color{blue} \textbf{Hypermarket} \color{black}:
 
 \begin{lstlisting}
@@ -396,8 +396,8 @@ public class Hypermarket {
 }
 \end{lstlisting}
 
-\par podemos ver que ele depende das classes: \color{blue} \textbf{ProductsCatalog, ClientsCatalog, Sales} \color{black} e 
-\color{blue} \textbf{Accounting} \color{black}, contudo o BlueJ não cria ligação a todas estas classes, não conseguimos 
+\par podemos ver que ele depende das classes: \color{blue} \textbf{ProductsCatalog, ClientsCatalog, Sales} \color{black} e
+\color{blue} \textbf{Accounting} \color{black}, contudo o BlueJ não cria ligação a todas estas classes, não conseguimos
 descobrir qual era o problema que causava este comportamento.
 
 \begin{figure}[ht!]
@@ -521,11 +521,21 @@ testes de performance das diferentes estruturas.
 \end{figure}
 
 \par Entre as 4 situações, nota-se claramente uma disparidade enorme nos resultados da query 8 para a situação 1 e 3.
-Ou seja, comparando \color{blue} \textbf{HashMap} \color{black} com \color{blue} \textbf{TreeMap} \color{black} é evidente que 
+Ou seja, comparando \color{blue} \textbf{HashMap} \color{black} com \color{blue} \textbf{TreeMap} \color{black} é evidente que
 o 1.º apresenta um comportamento muito mais eficiente nas necessidades da query 8.
 De facto, as outras situações e queries não divergem substancialmente.
 
 \par Demonstra-se assim que se deveria ter implementado um \color{blue} \textbf{HashMap} \color{black} na estrutura da classe \color{blue}\textbf{Sales}\color{black}.
+
+\newpage
+
 \section{Conclusão}
 
+A implementação de um programa de gestão de hipermercados em Java provou ser mais fácil quando comparado á implementação em C.
+Tal deve-se, em grande maioria, à necessidade de definir de raiz um grande número de funções como por exemplo estruturas.
+Esta vantagem de implementação permite desenvolver soluções adicionais que teriam um custo considerável em C.
+
+Assim sendo foi possível concretizar as várias queries com maior facilidade, sem prejudicar a sua velocidade, graças à facilidade em trocar e testar diferentes estruturas, desde que estas partilhem da mesma API.
+
+Em jeito de esclarecimento, o trabalho foi realizado em inglês por uma questão de aprendizagem no que toca à utilização de ferramentas de código aberto, neste caso git através do GitHub.
 \end{document}
