@@ -214,6 +214,13 @@ também da parte de I/O, relativamente a impressão de dados no ecrã para cada 
 \par Esta classe também tem métodos que permitem realizar nova leitura dos diferentes ficheiros de compras, clientes e
 produtos.
 
+\subsection{GesthiperOO}
+\par Classe responsável pela inicialização do programa, ou seja, carregar automaticamente os ficheiros 'FichClientes.txt', 
+'FichProdutos.txt' e 'Compras.txt' para as estruturas utilizando os métodos presentes na classe 
+\color{blue} \textbf{Menu} \color{black}. 
+\par No final de carregar estes ficheiros é a classe que fica responsável por ler a escolha do utilizador e invocar os métodos, 
+presentes na classe \color{blue} \textbf{Menu} \color{black}, relativos à escolha do utilizador.
+
 \subsection{InvalidMonthException}
 \par Como muitas das queries necessitam do mês como argumento e os meses válidos apenas estão entre os valores 1 e 12 
 inclusive decidimos criar uma \color{blue} \textbf{Exception} \color{black} para ser utilizada quando o mês passado como 
@@ -293,7 +300,7 @@ contabilizado várias vezes.
 Utilizou-se um \color{blue} \textbf{TreeSet} \color{black} pois a pesquisa é rápida e garante que não existem elementos 
 repetidos.
 
-A figura ~\ref{fig:catprodutos} na página ~\pageref{fig:catprodutos} é um exemplo de um TreeSet de códigos de produtos.
+Na secção \ref{catalogoprodutos} incluímos uma figura que demonstra a estrutura de um TreeSet de códigos de produtos.
 
 \subsubsection{TripProdCliUnits}
 
@@ -360,7 +367,7 @@ Assim, pudemos evitar a utilização de estruturas de dados demasiado complexas 
 
 \newpage
 \section{Módulos}
-\subsection{Catálogo de Clientes}
+\subsection{Catálogo de Clientes\label{catalogoclientes}}
 
 Para manter uma cópia de todos os clientes que existem para, por exemplo, verificar se uma compra é válida, é necessário
 criar um catálogo de clientes.
@@ -375,7 +382,7 @@ proporcionando assim uma pesquisa rápida.
 \end{figure}
 
 \newpage
-\subsection{Catálogo de Produtos}
+\subsection{Catálogo de Produtos\label{catalogoprodutos}}
 
 O catálogo de clientes foi implementado usando a class \color{blue} \textbf{ProductsCatalog} \color{black} que basicamente 
 guarda os códigos dos produtos num \color{blue} \textbf{TreeSet} \color{black}.
@@ -418,7 +425,7 @@ Para mais facilmente entender a implementação incluimos uma figura da estrutur
 \label{fig:sales}
 \end{figure}
 
-\subsection{Contabilidade}
+\subsection{Contabilidade\label{contabilidade}}
 
 O módulo de contabilidade é responsável por guardar a faturação mensal de cada um dos produtos.
 Desta forma pretende-se que seja possível obter facilmente a faturação total de um mês, analisar as vendas de um produto mensalmente, e as suas vendas todais num ano.
